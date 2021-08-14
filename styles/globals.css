@@ -15,3 +15,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
