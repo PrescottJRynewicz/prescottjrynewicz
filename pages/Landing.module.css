@@ -1,0 +1,68 @@
+
+
+@keyframes fallOffScreen {
+    100% {
+        transform: translateY(150vh);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0%;
+    }
+
+    to {
+        opacity: 100%;
+    }
+}
+
+@keyframes breathing {
+    0% {
+        transform: scale(1);
+    }
+
+    35% {
+        opacity: 100%;
+        transform: scale(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.breath {
+    opacity: 0;
+    animation: breathing ;
+    animation-delay: 1s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: 3;
+    animation-duration: 2s;
+}
+
+
+.fallOff {
+    animation-timing-function: cubic-bezier(0.30, 2.40, 0.85, 2.50);
+    animation: fallOffScreen;
+    animation-fill-mode: forwards;
+}
+
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeIn 2s;
+    animation-delay: 7s;
+    animation-fill-mode: forwards;
+}
+
+
+.twoSec {
+    animation-duration: 2s;
+}
+.threeSec {
+    animation-duration: 3s;
+}
+.fourSec {
+    animation-duration: 4s;
+}
+
