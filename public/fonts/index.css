@@ -1,0 +1,20 @@
+
+
+@font-face {
+    font-family: "Shrimp";
+    src: url("SHRIMP.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    src: url("Brandon_reg.ttf");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Brandon Grotesque";
+    src: url("Brandon_bld.ttf");
+    font-display: swap;
+    font-weight: bold;
+}
