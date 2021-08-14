@@ -12,7 +12,6 @@ import {
   getRandomSplatterElement,
 } from '/styled';
 
-
 export default function Home() {
   const handleNav = useCallback(() => {
     const dots = Array.from(document.getElementsByClassName(dotClassname));
