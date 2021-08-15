@@ -44,7 +44,12 @@ export default function Home() {
       <Head>
         <title>PJR</title>
         <meta name="description" content="Prescott's Playground 🎢" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
+        <meta property="og:image" content="/site-image.png" />
+        <meta name="twitter:title" content="PrescottJR" />
+        <meta name="twitter:description" content="Prescott's Playground" />
+        <meta name="twitter:image" content="/favicon.png" />
+        <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <BreathingCircle className={styles.breath} />
       <Container className={styles.fadeIn}>
