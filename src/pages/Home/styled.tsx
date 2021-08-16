@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import React from 'react';
+import { solids } from '/design-system/colors';
 
 const Rainbow = '/rainbow-bar.png';
 
@@ -14,17 +15,31 @@ export const Container = styled.div`
   border: 1vw solid;
   border-image: url(${Rainbow}) 30 round;
   align-items: center;
-  justify-content: center;
   display: flex;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   overflow-y: hidden;
+
+  @media (max-width: 700px) {
+    border: 1vh solid;
+    border-image: url(${Rainbow}) 30 round;
+  }
 `;
 
 export const TitleContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 10vh;
+`;
+
+export const MenuContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 130px;
+  padding-top: 70px;
+  width: 100%;
 `;
 
 export const BreathingCircle = styled.span`
@@ -53,15 +68,41 @@ export const Title = styled.h1`
   }
 `;
 
-export const MakeItRain = styled.button`
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
-  font-size: 24px;
-  color: ${colors.Green};
-  background: blanchedalmond;
-  border: solid 2px black;
-  border-radius: 5px;
+const SharedContainerWidth = css`
+  width: 700px;
+
+  @media (max-width: 900px) {
+    width: 500px;
+  }
+  @media (max-width: 700px) {
+    font-size: 32px;
+  }
+  @media (max-width: 600px) {
+    width: 300px;
+  }
+`;
+
+export const SubTitle = styled.span`
+  padding: 20px;
+  border-radius: 30px;
+  border: solid 10px;
+  border-color: ${solids.MIMOSA};
+  font-family: 'Brandon Grotesque';
+  font-weight: bold;
+  font-size: 48px;
+  text-align: center;
+
+  ${SharedContainerWidth}
+`;
+
+export const NavContainer = styled.div`
+  display: flex;
+
+  margin-top: 32px;
+
+  justify-content: space-evenly;
+
+  ${SharedContainerWidth}
 `;
 
 export const numDots = 300;

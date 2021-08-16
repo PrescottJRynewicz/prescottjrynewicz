@@ -3,40 +3,42 @@ import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
   dotClassname,
-  MakeItRain,
   Container,
   TitleContainer,
   Title,
   numDots,
   BreathingCircle,
   getRandomSplatterElement,
+  SubTitle,
+  MenuContainer,
+  NavContainer,
 } from '/src/pages/Home/styled';
+import { Menu } from '/src/components/Menu/Menu';
+import { PrimaryButton } from '/design-system/buttons/primary';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
+
   const handleNav = useCallback(() => {
     const dots = Array.from(document.getElementsByClassName(dotClassname));
 
     dots.forEach((dot) => {
-      let animationDuration = styles.twoSec;
-      switch (Math.ceil(Math.random() * 3)) {
-        case 1: {
-          animationDuration = styles.twoSec;
-          break;
-        }
-        case 2: {
-          animationDuration = styles.threeSec;
-          break;
-        }
-        case 3: {
-          animationDuration = styles.fourSec;
-          break;
-        }
-        default: {
-          break;
-        }
-      }
+      const animationMap = {
+        1: styles.twoSec,
+        2: styles.threeSec,
+        3: styles.fourSec,
+      };
+
+      const animationDuration =
+        animationMap[Math.ceil(Math.random() * 3) as 1 | 2 | 3];
+
       dot.classList.add(styles.fallOff, animationDuration);
     });
+
+    setTimeout(() => {
+      router.push('/about-me');
+    }, 2000);
   }, []);
 
   return (
@@ -56,12 +58,22 @@ export default function Home() {
         {new Array(numDots)
           .fill(0)
           .map((_value, index) => getRandomSplatterElement(index))}
+        <MenuContainer>
+          <Menu />
+        </MenuContainer>
         <TitleContainer>
           <Title>PRESCOTT</Title>
-          <Title>J</Title>
           <Title>RYNEWICZ</Title>
-          <MakeItRain onClick={handleNav}>💦 Make it rain 💦</MakeItRain>
-          <p>More coming soon</p>
+          <SubTitle>
+            A bicycle, coffee, and people loving software engineer
+          </SubTitle>
+          <NavContainer>
+            <PrimaryButton withConfetti simultaneous onClick={handleNav}>
+              About me
+            </PrimaryButton>
+            <PrimaryButton withConfetti>Business</PrimaryButton>
+            <PrimaryButton withConfetti>Casual</PrimaryButton>
+          </NavContainer>
         </TitleContainer>
       </Container>
     </div>
