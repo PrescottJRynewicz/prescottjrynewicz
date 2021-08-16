@@ -11,7 +11,7 @@ export const colors = Object.freeze({
 } as const);
 
 export const Container = styled.div`
-  border: 10px solid;
+  border: 1vw solid;
   border-image: url(${Rainbow}) 30 round;
   align-items: center;
   justify-content: center;
