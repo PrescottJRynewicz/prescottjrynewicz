@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import React from 'react';
 import { solids } from '/design-system/colors';
 import { NakedButton } from '/design-system/buttons/naked';
@@ -106,7 +106,16 @@ export const NavContainer = styled.div`
   ${SharedContainerWidth}
 `;
 
+const SlideIn = keyframes`
+  to {
+  opacity: 100%;
+  }
+`;
+
 export const PeekABoo = styled(NakedButton)`
+  opacity: 0%;
+  animation: ${SlideIn} 1s ease-in-out forwards;
+  animation-delay: 5s;
   position: absolute;
   top: 10vh;
   left: -70px;
