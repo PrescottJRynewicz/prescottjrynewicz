@@ -5,9 +5,9 @@ import { useStateSetter } from '/src/hooks/useStateSetter';
 import { solids } from '/design-system/colors';
 import {
   Button,
-  MenuContainer,
   MenuDivider,
   MenuPrimaryLink,
+  HamburgerBorder,
   MenuSecondaryLink,
 } from '/src/components/Menu/styled';
 import styled from 'styled-components';
@@ -25,10 +25,22 @@ const customStyles: Modal.Styles = {
   },
 };
 
+export const MenuContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10vw;
+  padding-top: 10vh;
+  width: 100%;
+`;
+
 const HamburgerContainer = styled.div`
   padding: 10px 10px 5px 10px;
   border: solid 3px ${solids.PINK_STARBURST};
   border-radius: 10px;
+
+  @media (max-width: 700px) {
+    transform: scale(0.8);
+  }
 `;
 
 Modal.setAppElement('#app');
@@ -72,57 +84,59 @@ export function Menu() {
   }, []);
 
   return (
-    <Button ref={modalParent} onClick={setter(true)}>
-      <Modal
-        isOpen={isMenuOpen}
-        onRequestClose={(event) => {
-          event.stopPropagation();
-          setIsMenuOpen(false);
-        }}
-        contentRef={(ref) => {
-          contentRef.current = ref;
-        }}
-        onAfterOpen={(obj) => {
-          if (obj?.contentEl) {
-            contentRef.current = obj.contentEl;
-            placeMenu();
-          }
-        }}
-        shouldCloseOnEsc
-        shouldCloseOnOverlayClick
-        style={customStyles}
-        contentLabel="Example Modal">
-        <MenuContainer>
-          <Link href="/" passHref>
-            <MenuPrimaryLink>Home</MenuPrimaryLink>
-          </Link>
-          <Link href="/about-me" passHref>
-            <MenuPrimaryLink>About Me</MenuPrimaryLink>
-          </Link>
-          <MenuDivider />
-          <Link href="/cycling" passHref>
-            <MenuSecondaryLink>Cycling</MenuSecondaryLink>
-          </Link>
-          <Link href="/cycling" passHref>
-            <MenuSecondaryLink>Coffee</MenuSecondaryLink>
-          </Link>
-          <Link href="/cycling" passHref>
-            <MenuSecondaryLink>Code</MenuSecondaryLink>
-          </Link>
-        </MenuContainer>
-      </Modal>
-      <HamburgerContainer>
-        <svg
-          width="46"
-          height="42"
-          viewBox="0 0 46 42"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <rect width="46" height="10" rx="5" fill="#E06D98" />
-          <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
-          <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
-        </svg>
-      </HamburgerContainer>
-    </Button>
+    <MenuContainer>
+      <Button ref={modalParent} onClick={setter(true)}>
+        <Modal
+          isOpen={isMenuOpen}
+          onRequestClose={(event) => {
+            event.stopPropagation();
+            setIsMenuOpen(false);
+          }}
+          contentRef={(ref) => {
+            contentRef.current = ref;
+          }}
+          onAfterOpen={(obj) => {
+            if (obj?.contentEl) {
+              contentRef.current = obj.contentEl;
+              placeMenu();
+            }
+          }}
+          shouldCloseOnEsc
+          shouldCloseOnOverlayClick
+          style={customStyles}
+          contentLabel="Example Modal">
+          <HamburgerBorder>
+            <Link href="/" passHref>
+              <MenuPrimaryLink>Home</MenuPrimaryLink>
+            </Link>
+            <Link href="/about-me" passHref>
+              <MenuPrimaryLink>About Me</MenuPrimaryLink>
+            </Link>
+            <MenuDivider />
+            <Link href="/cycling" passHref>
+              <MenuSecondaryLink>Cycling</MenuSecondaryLink>
+            </Link>
+            <Link href="/cycling" passHref>
+              <MenuSecondaryLink>Coffee</MenuSecondaryLink>
+            </Link>
+            <Link href="/cycling" passHref>
+              <MenuSecondaryLink>Code</MenuSecondaryLink>
+            </Link>
+          </HamburgerBorder>
+        </Modal>
+        <HamburgerContainer>
+          <svg
+            width="46"
+            height="42"
+            viewBox="0 0 46 42"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <rect width="46" height="10" rx="5" fill="#E06D98" />
+            <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
+            <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
+          </svg>
+        </HamburgerContainer>
+      </Button>
+    </MenuContainer>
   );
 }

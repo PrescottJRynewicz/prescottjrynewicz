@@ -6,7 +6,7 @@ export const Button = styled.div`
   }
 `;
 
-export const MenuContainer = styled.div`
+export const HamburgerBorder = styled.div`
   display: flex;
   flex-direction: column;
 `;

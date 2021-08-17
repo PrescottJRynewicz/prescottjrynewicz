@@ -1,7 +1,7 @@
 import React, { DOMAttributes, useCallback, useRef } from 'react';
 import { useStateRef } from '/src/hooks/useStateRef';
 import ConfettiExplosion from '@reonomy/react-confetti-explosion';
-import { _PrimaryButton } from './primary';
+import { StyledComponent } from 'styled-components';
 
 /**
  * Fun button wrapper that allow the ability to explode
@@ -10,14 +10,15 @@ import { _PrimaryButton } from './primary';
  * @param Button
  * @constructor
  */
-export const ConfettiButtonWrapper = (
-  Button: typeof _PrimaryButton
+export function ConfettiButtonWrapper<T extends object>(
+  Button: StyledComponent<'button', any, T, never>
 ): React.FC<
-  {
+  T & {
     withConfetti?: boolean;
     simultaneous?: boolean;
+    confettiDuration?: number;
   } & DOMAttributes<HTMLButtonElement>
-> =>
+> {
   /**
    * @param withConfetti Use confetti on click
    * @param simultaneous run the onClick handler at the same time as the confetti pop
@@ -25,7 +26,7 @@ export const ConfettiButtonWrapper = (
    * @param rest
    * @constructor
    */
-  function WrappedConfettiButton({
+  return function WrappedConfettiButton({
     withConfetti = false,
     simultaneous = false,
     children,
@@ -54,6 +55,7 @@ export const ConfettiButtonWrapper = (
     );
 
     return (
+      // @ts-ignore
       <Button {...rest} onClick={handler} ref={buttonRef}>
         {withConfetti && exploding && (
           <ConfettiExplosion
@@ -68,3 +70,4 @@ export const ConfettiButtonWrapper = (
       </Button>
     );
   };
+}

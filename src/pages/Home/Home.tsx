@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
@@ -10,18 +10,17 @@ import {
   BreathingCircle,
   getRandomSplatterElement,
   SubTitle,
-  MenuContainer,
   NavContainer,
-  PeekABoo,
 } from '/src/pages/Home/styled';
 import { Menu } from '/src/components/Menu/Menu';
-import Image from 'next/image';
 
 import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
+import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 
 export default function Home() {
   const router = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleNav = useCallback(() => {
     const dots = Array.from(document.getElementsByClassName(dotClassname));
@@ -40,7 +39,14 @@ export default function Home() {
     });
 
     setTimeout(() => {
-      router.push('/about-me');
+      if (containerRef.current) {
+        containerRef.current.classList.add(styles.fadeOut);
+        containerRef.current.addEventListener('animationend', (event) => {
+          if (event.target === containerRef.current) {
+            router.push('/about-me');
+          }
+        });
+      }
     }, 2000);
   }, []);
 
@@ -57,22 +63,13 @@ export default function Home() {
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <BreathingCircle className={styles.breath} />
-      <Container className={styles.fadeIn}>
+      <Container className={styles.fadeIn} ref={containerRef}>
         {new Array(numDots)
           .fill(0)
           .map((_value, index) => getRandomSplatterElement(index))}
-        <MenuContainer>
-          <Menu />
-        </MenuContainer>
+        <Menu />
 
-        <PeekABoo withConfetti>
-          <Image
-            src="/peek-a-boo.png"
-            width={100}
-            height={100}
-            className={styles.peekABoo}
-          />
-        </PeekABoo>
+        <PeekABoo animationDelay={5} withConfetti />
 
         <TitleContainer>
           <Title>PRESCOTT</Title>

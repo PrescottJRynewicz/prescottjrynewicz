@@ -16,6 +16,16 @@
     }
 }
 
+@keyframes fadeOut {
+    from {
+        opacity: 100%;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
 @keyframes breathing {
     0% {
         transform: scale(1);
@@ -52,6 +62,11 @@
     opacity: 0;
     animation: fadeIn 2s;
     animation-delay: 3s;
+    animation-fill-mode: forwards;
+}
+
+.fadeOut {
+    animation: fadeOut 2s;
     animation-fill-mode: forwards;
 }
 

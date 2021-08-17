@@ -1,7 +1,6 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import React from 'react';
 import { solids } from '/design-system/colors';
-import { NakedButton } from '/design-system/buttons/naked';
 
 const Rainbow = '/rainbow-bar.png';
 
@@ -19,7 +18,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
+  min-height: 100vh;
   overflow-y: hidden;
 
   @media (max-width: 700px) {
@@ -33,14 +33,7 @@ export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 10vh;
-`;
-
-export const MenuContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 130px;
-  padding-top: 70px;
-  width: 100%;
+  margin-bottom: 5vh;
 `;
 
 export const BreathingCircle = styled.span`
@@ -104,30 +97,6 @@ export const NavContainer = styled.div`
   justify-content: space-evenly;
 
   ${SharedContainerWidth}
-`;
-
-const SlideIn = keyframes`
-  to {
-  opacity: 100%;
-  }
-`;
-
-export const PeekABoo = styled(NakedButton)`
-  opacity: 0%;
-  animation: ${SlideIn} 1s ease-in-out forwards;
-  animation-delay: 5s;
-  position: absolute;
-  top: 10vh;
-  left: -70px;
-  border-radius: 100px;
-  transform: rotate(80deg);
-
-  transition: 1s;
-
-  &:hover {
-    left: -40px;
-    cursor: pointer;
-  }
 `;
 
 export const numDots = 300;
