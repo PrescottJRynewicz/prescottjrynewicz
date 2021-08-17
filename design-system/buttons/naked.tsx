@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ConfettiButtonWrapper } from '/design-system/buttons/confettiWrapper';
+import { withConfetti } from '/design-system/buttons/utils/withConfetti';
 
 const Button = styled.button`
   border: none;
@@ -13,4 +13,4 @@ const Button = styled.button`
   }
 `;
 
-export const NakedButton = ConfettiButtonWrapper(Button);
+export const NakedButton = withConfetti(Button);

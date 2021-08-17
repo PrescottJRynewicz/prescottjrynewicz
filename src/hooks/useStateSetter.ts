@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import memoize from 'lodash/memoize';
+import memoize from 'fast-memoize';
 
 /**
  * Simple state hook util.

@@ -1,4 +1,5 @@
 export const solids = Object.freeze({
+  // GOGYFT Colors
   DARK_KNIGHT: '#1E1D21',
   WHITE_KNIGHT: '#FFFFFF',
   PAPER: '#E9D4BA',
@@ -9,6 +10,12 @@ export const solids = Object.freeze({
   MIMOSA: '#E2C22B',
   MILK: '#F8EDE1',
   PINK_STARBURST: '#E06D98',
+
+  // Custom PrescottJR colors
+  RED: '#D32A2A',
+  BLUE: '#1E58ED',
+  GREEN: '#41BE4E',
+  YELLOW: '#E9D520',
 });
 
 export type Solids = keyof typeof solids;

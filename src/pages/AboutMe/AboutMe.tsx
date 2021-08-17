@@ -1,6 +1,6 @@
 import React from 'react';
 import { AboutMeContainer } from '/src/pages/AboutMe/styled';
-import { AboutMeSectionOne } from '/src/pages/AboutMe/AboutMeSectionOne';
+import { AboutMeSectionOne } from '/src/pages/AboutMe/SectionOne/AboutMeSectionOne';
 
 export function AboutMe() {
   return (

@@ -28,6 +28,7 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'react/prop-types': 'off',
     'no-param-reassign': 'off',
+    'react/require-default-props': 'off',
     'react/jsx-filename-extension': [
       2,
       { extensions: ['.js', '.jsx', '.ts', '.tsx'] },

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ConfettiButtonWrapper } from '/design-system/buttons/confettiWrapper';
+import { withConfetti } from '/design-system/buttons/utils/withConfetti';
 
-export const _PrimaryButton = styled.button<{ textColor?: string }>`
+const Button = styled.button<{ textColor?: string }>`
   align-items: center;
   display: flex;
   color: ${(props) => props.textColor || 'black'};
@@ -19,4 +19,4 @@ export const _PrimaryButton = styled.button<{ textColor?: string }>`
   }
 `;
 
-export const PrimaryButton = ConfettiButtonWrapper(_PrimaryButton);
+export const PrimaryButton = withConfetti(Button);

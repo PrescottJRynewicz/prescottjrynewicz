@@ -1,8 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { NakedButton } from '/design-system/buttons/naked';
 import Image from 'next/image';
-import React from 'react';
-import styles from './PeekABoo.module.css';
+import React, { RefObject } from 'react';
 
 const SlideIn = keyframes`
   to {
@@ -38,11 +37,15 @@ const PeekABooWrapper = styled(NakedButton)<Props>`
   }
 `;
 
+const CustomImage = styled(Image)`
+  border-radius: 100px;
+`;
+
 export const PeekABoo = (
-  props: React.ComponentProps<typeof NakedButton> & Props
+  props: React.ComponentProps<typeof NakedButton> &
+    Props & { ref?: RefObject<HTMLButtonElement> }
 ) => (
-  // @ts-ignore TODO: Fix this type - has to do with legacy refs
   <PeekABooWrapper {...props}>
-    <Image src="/peek-a-boo.png" layout="fill" className={styles.peekABoo} />
+    <CustomImage src="/peek-a-boo.png" layout="fill" quality={5} />
   </PeekABooWrapper>
 );

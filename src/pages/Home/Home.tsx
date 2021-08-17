@@ -17,15 +17,19 @@ import { Menu } from '/src/components/Menu/Menu';
 import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
+import { animateElement } from '/src/utils/animations/animate';
 
 export default function Home() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleNav = useCallback(() => {
-    const dots = Array.from(document.getElementsByClassName(dotClassname));
+    const dots = Array.from(
+      document.getElementsByClassName(dotClassname)
+    ) as HTMLElement[];
 
-    dots.forEach((dot) => {
+    let listenerAdded = false;
+    dots.forEach(async (dot) => {
       const animationMap = {
         1: styles.twoSec,
         2: styles.threeSec,
@@ -35,20 +39,25 @@ export default function Home() {
       const animationDuration =
         animationMap[Math.ceil(Math.random() * 3) as 1 | 2 | 3];
 
-      dot.classList.add(styles.fallOff, animationDuration);
-    });
+      const animationPromise = animateElement({
+        node: dot,
+        animationClassNames: [styles.fallOff, animationDuration],
+      });
 
-    setTimeout(() => {
-      if (containerRef.current) {
-        containerRef.current.classList.add(styles.fadeOut);
-        containerRef.current.addEventListener('animationend', (event) => {
-          if (event.target === containerRef.current) {
-            router.push('/about-me');
-          }
-        });
+      if (animationDuration === styles.twoSec && !listenerAdded) {
+        listenerAdded = true;
+
+        await animationPromise;
+        if (containerRef.current) {
+          await animateElement({
+            node: containerRef.current,
+            animationClassNames: [styles.fadeOut],
+          });
+          await router.push('/about-me');
+        }
       }
-    }, 2000);
-  }, []);
+    });
+  }, [router]);
 
   return (
     <div>
@@ -69,7 +78,7 @@ export default function Home() {
           .map((_value, index) => getRandomSplatterElement(index))}
         <Menu />
 
-        <PeekABoo animationDelay={5} withConfetti />
+        <PeekABoo animationDelay={5} useConfetti />
 
         <TitleContainer>
           <Title>PRESCOTT</Title>
@@ -78,11 +87,15 @@ export default function Home() {
             A bicycle, coffee, and people loving software engineer
           </SubTitle>
           <NavContainer>
-            <PrimaryButton withConfetti simultaneous onClick={handleNav}>
+            <PrimaryButton
+              useConfetti
+              simultaneous
+              confettiDuration={2000}
+              onClick={handleNav}>
               About me
             </PrimaryButton>
-            <PrimaryButton withConfetti>Business</PrimaryButton>
-            <PrimaryButton withConfetti>Casual</PrimaryButton>
+            <PrimaryButton useConfetti>Business</PrimaryButton>
+            <PrimaryButton useConfetti>Casual</PrimaryButton>
           </NavContainer>
         </TitleContainer>
       </Container>
