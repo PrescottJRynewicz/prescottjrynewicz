@@ -1,4 +1,4 @@
-import React, { DOMAttributes, useCallback, useRef } from 'react';
+import React, { MutableRefObject, useCallback } from 'react';
 import { useStateRef } from '/src/hooks/useStateRef';
 import ConfettiExplosion from '@reonomy/react-confetti-explosion';
 import { StyledComponent } from 'styled-components';
@@ -17,7 +17,11 @@ export function ConfettiButtonWrapper<T extends object>(
     withConfetti?: boolean;
     simultaneous?: boolean;
     confettiDuration?: number;
-  } & DOMAttributes<HTMLButtonElement>
+    buttonRef?: MutableRefObject<HTMLButtonElement>;
+  } & React.DetailedHTMLProps<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+    >
 > {
   /**
    * @param withConfetti Use confetti on click
@@ -30,10 +34,10 @@ export function ConfettiButtonWrapper<T extends object>(
     withConfetti = false,
     simultaneous = false,
     children,
+    buttonRef,
     ...rest
   }) {
     const [exploding, setExploding, explodingRef] = useStateRef(false);
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     const confettiDuration = 2000;
 

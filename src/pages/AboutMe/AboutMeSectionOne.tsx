@@ -35,9 +35,9 @@ const Title = styled.h1`
 
 const ContentContainer = styled.div`
   display: flex;
-  padding: 5vh 10vw;
   width: 80%;
-  max-width: 1400px;
+  margin-top: 5vh;
+  max-width: 1200px;
   justify-content: space-between;
 `;
 

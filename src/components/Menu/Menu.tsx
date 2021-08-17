@@ -4,13 +4,13 @@ import Modal from 'react-modal';
 import { useStateSetter } from '/src/hooks/useStateSetter';
 import { solids } from '/design-system/colors';
 import {
-  Button,
   MenuDivider,
   MenuPrimaryLink,
   HamburgerBorder,
   MenuSecondaryLink,
 } from '/src/components/Menu/styled';
 import styled from 'styled-components';
+import { NakedButton } from '/design-system/buttons/naked';
 
 const customStyles: Modal.Styles = {
   content: {
@@ -31,6 +31,7 @@ export const MenuContainer = styled.div`
   padding-right: 10vw;
   padding-top: 10vh;
   width: 100%;
+  max-width: 1440px;
 `;
 
 const HamburgerContainer = styled.div`
@@ -43,6 +44,12 @@ const HamburgerContainer = styled.div`
   }
 `;
 
+const MenuButton = styled(NakedButton)`
+  position: absolute;
+  top: 5vh;
+  right: 5vw;
+`;
+
 Modal.setAppElement('#app');
 
 export function Menu() {
@@ -52,7 +59,7 @@ export function Menu() {
     setter,
   } = useStateSetter(false);
   const contentRef: MutableRefObject<HTMLElement | undefined> = useRef();
-  const modalParent = useRef() as MutableRefObject<HTMLDivElement>;
+  const modalParent = useRef() as MutableRefObject<HTMLButtonElement>;
 
   const placeMenu = useCallback(() => {
     if (contentRef.current) {
@@ -84,59 +91,57 @@ export function Menu() {
   }, []);
 
   return (
-    <MenuContainer>
-      <Button ref={modalParent} onClick={setter(true)}>
-        <Modal
-          isOpen={isMenuOpen}
-          onRequestClose={(event) => {
-            event.stopPropagation();
-            setIsMenuOpen(false);
-          }}
-          contentRef={(ref) => {
-            contentRef.current = ref;
-          }}
-          onAfterOpen={(obj) => {
-            if (obj?.contentEl) {
-              contentRef.current = obj.contentEl;
-              placeMenu();
-            }
-          }}
-          shouldCloseOnEsc
-          shouldCloseOnOverlayClick
-          style={customStyles}
-          contentLabel="Example Modal">
-          <HamburgerBorder>
-            <Link href="/" passHref>
-              <MenuPrimaryLink>Home</MenuPrimaryLink>
-            </Link>
-            <Link href="/about-me" passHref>
-              <MenuPrimaryLink>About Me</MenuPrimaryLink>
-            </Link>
-            <MenuDivider />
-            <Link href="/cycling" passHref>
-              <MenuSecondaryLink>Cycling</MenuSecondaryLink>
-            </Link>
-            <Link href="/cycling" passHref>
-              <MenuSecondaryLink>Coffee</MenuSecondaryLink>
-            </Link>
-            <Link href="/cycling" passHref>
-              <MenuSecondaryLink>Code</MenuSecondaryLink>
-            </Link>
-          </HamburgerBorder>
-        </Modal>
-        <HamburgerContainer>
-          <svg
-            width="46"
-            height="42"
-            viewBox="0 0 46 42"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <rect width="46" height="10" rx="5" fill="#E06D98" />
-            <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
-            <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
-          </svg>
-        </HamburgerContainer>
-      </Button>
-    </MenuContainer>
+    <MenuButton buttonRef={modalParent} onClick={setter(true)}>
+      <Modal
+        isOpen={isMenuOpen}
+        onRequestClose={(event) => {
+          event.stopPropagation();
+          setIsMenuOpen(false);
+        }}
+        contentRef={(ref) => {
+          contentRef.current = ref;
+        }}
+        onAfterOpen={(obj) => {
+          if (obj?.contentEl) {
+            contentRef.current = obj.contentEl;
+            placeMenu();
+          }
+        }}
+        shouldCloseOnEsc
+        shouldCloseOnOverlayClick
+        style={customStyles}
+        contentLabel="Example Modal">
+        <HamburgerBorder>
+          <Link href="/" passHref>
+            <MenuPrimaryLink>Home</MenuPrimaryLink>
+          </Link>
+          <Link href="/about-me" passHref>
+            <MenuPrimaryLink>About Me</MenuPrimaryLink>
+          </Link>
+          <MenuDivider />
+          <Link href="/cycling" passHref>
+            <MenuSecondaryLink>Cycling</MenuSecondaryLink>
+          </Link>
+          <Link href="/cycling" passHref>
+            <MenuSecondaryLink>Coffee</MenuSecondaryLink>
+          </Link>
+          <Link href="/cycling" passHref>
+            <MenuSecondaryLink>Code</MenuSecondaryLink>
+          </Link>
+        </HamburgerBorder>
+      </Modal>
+      <HamburgerContainer>
+        <svg
+          width="46"
+          height="42"
+          viewBox="0 0 46 42"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect width="46" height="10" rx="5" fill="#E06D98" />
+          <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
+          <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
+        </svg>
+      </HamburgerContainer>
+    </MenuButton>
   );
 }

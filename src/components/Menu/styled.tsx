@@ -1,11 +1,5 @@
 import styled from 'styled-components';
 
-export const Button = styled.div`
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 export const HamburgerBorder = styled.div`
   display: flex;
   flex-direction: column;

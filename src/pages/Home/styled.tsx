@@ -14,8 +14,10 @@ export const colors = Object.freeze({
 export const Container = styled.div`
   border: 1vw solid;
   border-image: url(${Rainbow}) 30 round;
+  position: relative;
   align-items: center;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   width: 100vw;
   height: fit-content;
@@ -53,7 +55,7 @@ export const Title = styled.h1`
     Helvetica Neue, sans-serif;
   margin: 10px 0;
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     font-size: 64px;
   }
 
@@ -67,8 +69,6 @@ const SharedContainerWidth = css`
 
   @media (max-width: 900px) {
     width: 500px;
-  }
-  @media (max-width: 700px) {
     font-size: 32px;
   }
   @media (max-width: 600px) {
@@ -114,8 +114,8 @@ export function getRandomSplatterElement(index: number) {
       className={dotClassname}
       style={{
         position: 'absolute',
-        top: `${topPosition}vh`,
-        left: `${leftPosition}vw`,
+        top: `${topPosition}%`,
+        left: `${leftPosition}%`,
         backgroundColor: color,
         width: `${width}vw`,
         height: `${width}vw`,
