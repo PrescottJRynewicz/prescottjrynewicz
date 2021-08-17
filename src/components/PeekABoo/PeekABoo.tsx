@@ -41,11 +41,8 @@ const PeekABooWrapper = styled(NakedButton)<Props>`
 export const PeekABoo = (
   props: React.ComponentProps<typeof NakedButton> & Props
 ) => (
+  // @ts-ignore TODO: Fix this type
   <PeekABooWrapper {...props}>
-    <Image
-      src="/peek-a-boo.png"
-      layout="fill"
-      className={styles.peekABoo}
-    />
+    <Image src="/peek-a-boo.png" layout="fill" className={styles.peekABoo} />
   </PeekABooWrapper>
 );
