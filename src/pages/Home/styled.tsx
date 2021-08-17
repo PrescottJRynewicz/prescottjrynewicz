@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import React from 'react';
 import { solids } from '/design-system/colors';
+import { NakedButton } from '/design-system/buttons/naked';
 
 const Rainbow = '/rainbow-bar.png';
 
@@ -103,6 +104,21 @@ export const NavContainer = styled.div`
   justify-content: space-evenly;
 
   ${SharedContainerWidth}
+`;
+
+export const PeekABoo = styled(NakedButton)`
+  position: absolute;
+  top: 10vh;
+  left: -70px;
+  border-radius: 100px;
+  transform: rotate(80deg);
+
+  transition: 1s;
+
+  &:hover {
+    left: -40px;
+    cursor: pointer;
+  }
 `;
 
 export const numDots = 300;

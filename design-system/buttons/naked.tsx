@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ConfettiButtonWrapper } from '/design-system/buttons/confettiWrapper';
 
-export const NakedButton = styled.button`
+const Button = styled.button`
   border: none;
   background-color: transparent;
   font-family: 'Brandon Grotesque';
@@ -11,3 +12,5 @@ export const NakedButton = styled.button`
     text-decoration: underline;
   }
 `;
+
+export const NakedButton = ConfettiButtonWrapper(Button);

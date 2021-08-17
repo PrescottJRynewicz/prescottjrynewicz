@@ -1,9 +1,7 @@
-import React, { DOMAttributes, useCallback, useRef } from 'react';
 import styled from 'styled-components';
-import ConfettiExplosion from '@reonomy/react-confetti-explosion';
-import { useStateRef } from '/src/hooks/useStateRef';
+import { ConfettiButtonWrapper } from '/design-system/buttons/confettiWrapper';
 
-export const Button = styled.button`
+export const _PrimaryButton = styled.button`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -20,46 +18,4 @@ export const Button = styled.button`
   }
 `;
 
-export const PrimaryButton: React.FC<
-  {
-    withConfetti?: boolean;
-    simultaneous?: boolean;
-  } & DOMAttributes<HTMLButtonElement>
-> = ({ withConfetti = false, simultaneous = false, children, ...rest }) => {
-  const [exploding, setExploding, explodingRef] = useStateRef(false);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
-
-  const confettiDuration = 2000;
-
-  const handler = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      if (withConfetti && !explodingRef.current) {
-        setExploding(true);
-        if (simultaneous && rest.onClick) rest.onClick(event);
-        setTimeout(() => {
-          setExploding(false);
-
-          if (!simultaneous && rest.onClick) rest.onClick(event);
-        }, confettiDuration);
-      } else if (rest.onClick) {
-        rest.onClick(event);
-      }
-    },
-    [withConfetti, rest.onClick]
-  );
-
-  return (
-    <Button {...rest} onClick={handler} ref={buttonRef}>
-      {withConfetti && exploding && (
-        <ConfettiExplosion
-          duration={confettiDuration}
-          force={0.2}
-          particleCount={60}
-          floorHeight={1000}
-          floorWidth={300}
-        />
-      )}
-      {children}
-    </Button>
-  );
-};
+export const PrimaryButton = ConfettiButtonWrapper(_PrimaryButton);

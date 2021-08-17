@@ -12,8 +12,11 @@ import {
   SubTitle,
   MenuContainer,
   NavContainer,
+  PeekABoo,
 } from '/src/pages/Home/styled';
 import { Menu } from '/src/components/Menu/Menu';
+import Image from 'next/image';
+
 import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
 
@@ -61,6 +64,16 @@ export default function Home() {
         <MenuContainer>
           <Menu />
         </MenuContainer>
+
+        <PeekABoo withConfetti>
+          <Image
+            src="/peek-a-boo.png"
+            width={100}
+            height={100}
+            className={styles.peekABoo}
+          />
+        </PeekABoo>
+
         <TitleContainer>
           <Title>PRESCOTT</Title>
           <Title>RYNEWICZ</Title>

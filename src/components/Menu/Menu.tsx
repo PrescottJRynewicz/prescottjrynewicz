@@ -10,6 +10,7 @@ import {
   MenuPrimaryLink,
   MenuSecondaryLink,
 } from '/src/components/Menu/styled';
+import styled from 'styled-components';
 
 const customStyles: Modal.Styles = {
   content: {
@@ -23,6 +24,12 @@ const customStyles: Modal.Styles = {
     backgroundColor: 'transparent',
   },
 };
+
+const HamburgerContainer = styled.div`
+  padding: 10px 10px 5px 10px;
+  border: solid 3px ${solids.PINK_STARBURST};
+  border-radius: 10px;
+`;
 
 Modal.setAppElement('#app');
 
@@ -104,16 +111,18 @@ export function Menu() {
           </Link>
         </MenuContainer>
       </Modal>
-      <svg
-        width="46"
-        height="42"
-        viewBox="0 0 46 42"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg">
-        <rect width="46" height="10" rx="5" fill="#E06D98" />
-        <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
-        <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
-      </svg>
+      <HamburgerContainer>
+        <svg
+          width="46"
+          height="42"
+          viewBox="0 0 46 42"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <rect width="46" height="10" rx="5" fill="#E06D98" />
+          <rect y="15" width="46" height="10" rx="5" fill="#E06D98" />
+          <rect y="32" width="46" height="10" rx="5" fill="#E06D98" />
+        </svg>
+      </HamburgerContainer>
     </Button>
   );
 }
