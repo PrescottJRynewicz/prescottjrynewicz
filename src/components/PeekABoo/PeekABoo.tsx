@@ -41,7 +41,7 @@ const PeekABooWrapper = styled(NakedButton)<Props>`
 export const PeekABoo = (
   props: React.ComponentProps<typeof NakedButton> & Props
 ) => (
-  // @ts-ignore TODO: Fix this type
+  // @ts-ignore TODO: Fix this type - has to do with legacy refs
   <PeekABooWrapper {...props}>
     <Image src="/peek-a-boo.png" layout="fill" className={styles.peekABoo} />
   </PeekABooWrapper>
