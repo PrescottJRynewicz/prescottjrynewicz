@@ -37,7 +37,7 @@ export function AboutMeSectionFour() {
       <ContentContainer>
         <LeftSection>
           <CyclingImageContainer>
-            <Image src="/code.png" layout="fill" objectFit="cover" />
+            <Image src="/code.png" layout="fill" objectFit="cover" priority />
           </CyclingImageContainer>
         </LeftSection>
         <RightSection>

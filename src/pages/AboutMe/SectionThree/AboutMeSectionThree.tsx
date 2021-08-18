@@ -43,6 +43,7 @@ export function AboutMeSectionThree() {
               layout="fill"
               objectFit="cover"
               quality={50}
+              priority
             />
           </CoffeeImageContainer>
         </LeftSection>

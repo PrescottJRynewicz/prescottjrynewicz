@@ -20,7 +20,12 @@ export function AboutMeSectionTwo() {
       <ContentContainer>
         <LeftSection>
           <CyclingImageContainer>
-            <Image src="/cycling.jpeg" layout="fill" objectFit="cover" />
+            <Image
+              src="/cycling.jpeg"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
           </CyclingImageContainer>
         </LeftSection>
         <RightSection>
