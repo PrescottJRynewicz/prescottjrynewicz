@@ -38,13 +38,10 @@ export const AboutMeSectionOne = () => {
             <InfoText>👋🏻👋🏻👋🏻 Hello! 👋🏻👋🏻👋🏻</InfoText>
             <InfoText>
               My name is Prescott. I am a bicycle loving, espresso drinking
-              software engineer from Los Angeles.{' '}
+              software engineer from Los Angeles.
             </InfoText>
             <br />
-            <InfoText>
-              It’s hard for me to not fall in love with what I do. Check out
-              some of those passions below
-            </InfoText>
+            <InfoText>Checkout some of these passions below</InfoText>
             <ButtonContainer>
               <PrimaryButton
                 textColor="green"
@@ -60,7 +57,12 @@ export const AboutMeSectionOne = () => {
                 onClick={handleNav('coffee')}>
                 Coffee
               </PrimaryButton>
-              <PrimaryButton>Code</PrimaryButton>
+              <PrimaryButton
+                useConfetti
+                simultaneous
+                onClick={handleNav('code')}>
+                Code
+              </PrimaryButton>
             </ButtonContainer>
           </TextContainer>
         </LeftSection>

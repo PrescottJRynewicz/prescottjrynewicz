@@ -22,6 +22,14 @@ export const ContentContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+export const StravaLink = styled.a`
+  color: #fc4c02;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
 export const LeftSection = styled.div`
   align-items: center;
   justify-content: center;

@@ -8,6 +8,7 @@ import {
   ScribbleUnderlineContainer,
   SectionTwoContainer,
   SectionTwoTitle,
+  StravaLink,
 } from '/src/pages/AboutMe/PhotoFirstSections/styled';
 import { PolkaDots } from '/src/components/PolkaDots/PolkaDots';
 import { InfoText, TextContainer } from '/src/pages/AboutMe/SectionOne/styled';
@@ -36,8 +37,16 @@ export function AboutMeSectionTwo() {
             </InfoText>
             <br />
             <InfoText>
-              Find out where I am riding on Strava, and checkout the cycling
-              section of my site to dive deeper into the world of cycling
+              Find out where I am riding on{' '}
+              <StravaLink
+                style={{ color: '#fc4c02' }}
+                href="https://www.strava.com/athletes/27617019"
+                target="_blank"
+                rel="noop noreferrer">
+                Strava
+              </StravaLink>
+              , and come back to checkout the cycling section of my site (coming
+              soon).
             </InfoText>
           </TextContainer>
         </RightSection>

@@ -90,8 +90,8 @@ export default function Home() {
               onClick={handleNav}>
               About me
             </PrimaryButton>
-            <PrimaryButton useConfetti>Business</PrimaryButton>
-            <PrimaryButton useConfetti>Casual</PrimaryButton>
+            {/* <PrimaryButton useConfetti>Business</PrimaryButton> */}
+            {/* <PrimaryButton useConfetti>Casual</PrimaryButton> */}
           </NavContainer>
         </TitleContainer>
       </Container>

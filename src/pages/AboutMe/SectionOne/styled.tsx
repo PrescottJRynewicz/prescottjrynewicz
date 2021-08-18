@@ -81,6 +81,12 @@ export const InfoText = styled.p`
   font-family: 'Brandon Grotesque';
   font-size: 24px;
   margin: 0;
+
+  a {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `;
 
 export const ImageContainer = styled.div`

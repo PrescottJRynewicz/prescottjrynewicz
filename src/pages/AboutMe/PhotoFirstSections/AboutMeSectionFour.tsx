@@ -14,6 +14,7 @@ import React, { useCallback } from 'react';
 import { NakedButton } from '/design-system/buttons/naked';
 import styles from '/src/pages/AboutMe/PhotoFirstSections/AboutMeSectionFour.module.css';
 import { animateElement } from '/src/utils/animations/animate';
+import { solids } from '/design-system/colors';
 
 export function AboutMeSectionFour() {
   const animateDots = useCallback(() => {
@@ -56,7 +57,26 @@ export function AboutMeSectionFour() {
               </NakedButton>
             </InfoText>
             <br />
-            <InfoText />
+            <InfoText>
+              I work full time at{' '}
+              <a
+                style={{ color: 'purple' }}
+                href="https://www.cameo.com"
+                target="_blank"
+                rel="nofollow noreferrer">
+                Cameo
+              </a>
+              , and dabble in projects like{' '}
+              <a
+                style={{ color: solids.PINK_STARBURST }}
+                href="https://www.gogyft.com"
+                target="_blank"
+                rel="nofollow noreferrer">
+                GoGyft
+              </a>{' '}
+              which you&apos;ll notice influenced this website 😉
+              <br />A full work bio is coming soon to the site
+            </InfoText>
           </TextContainer>
         </RightSection>
       </ContentContainer>

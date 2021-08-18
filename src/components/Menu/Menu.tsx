@@ -66,13 +66,13 @@ export function Menu() {
             <MenuPrimaryLink>About Me</MenuPrimaryLink>
           </Link>
           <MenuDivider />
-          <Link href="/cycling" passHref>
+          <Link href="/about-me#cycling" passHref>
             <MenuSecondaryLink>Cycling</MenuSecondaryLink>
           </Link>
-          <Link href="/cycling" passHref>
+          <Link href="/about-me#cofee" passHref>
             <MenuSecondaryLink>Coffee</MenuSecondaryLink>
           </Link>
-          <Link href="/cycling" passHref>
+          <Link href="/about-me#code" passHref>
             <MenuSecondaryLink>Code</MenuSecondaryLink>
           </Link>
         </HamburgerBorder>
