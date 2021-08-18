@@ -11,4 +11,6 @@ export const AboutMeContainer = styled.div`
   animation: ${fadeIn} 2s forwards;
   display: flex;
   flex-direction: column;
+
+  scroll-behavior: smooth;
 `;

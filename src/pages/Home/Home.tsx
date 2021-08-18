@@ -2,13 +2,10 @@ import React, { useCallback, useRef } from 'react';
 import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
-  dotClassname,
   Container,
   TitleContainer,
   Title,
-  numDots,
   BreathingCircle,
-  getRandomSplatterElement,
   SubTitle,
   NavContainer,
 } from '/src/pages/Home/styled';
@@ -18,6 +15,7 @@ import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { animateElement } from '/src/utils/animations/animate';
+import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
 
 export default function Home() {
   const router = useRouter();
@@ -73,9 +71,7 @@ export default function Home() {
       </Head>
       <BreathingCircle className={styles.breath} />
       <Container className={styles.fadeIn} ref={containerRef}>
-        {new Array(numDots)
-          .fill(0)
-          .map((_value, index) => getRandomSplatterElement(index))}
+        <PolkaDots numDots={300} />
         <Menu />
 
         <PeekABoo animationDelay={5} useConfetti />

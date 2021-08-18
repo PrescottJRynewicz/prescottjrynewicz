@@ -1,0 +1,14 @@
+
+@keyframes spinElement {
+    50% {
+        transform: rotateX(90deg) rotateY(90deg);
+    }
+
+    100% {
+        transform: rotateX(180deg) ;
+    }
+}
+
+.spinAnimation {
+    animation: spinElement 1s ease-in;;
+}

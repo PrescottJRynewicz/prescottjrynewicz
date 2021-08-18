@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import React from 'react';
 import { solids } from '/design-system/colors';
 
 const Rainbow = '/rainbow-bar.png';
@@ -98,30 +97,3 @@ export const NavContainer = styled.div`
 
   ${SharedContainerWidth}
 `;
-
-export const numDots = 300;
-export const dotClassname = 'dot-class-id';
-
-export function getRandomSplatterElement(index: number) {
-  const topPosition = Math.random() * 98;
-  const leftPosition = Math.random() * 98;
-  const color = Object.values(colors)[Math.floor(Math.random() * 3.99)];
-  const width = Math.random();
-
-  return (
-    <span
-      key={index}
-      className={dotClassname}
-      style={{
-        position: 'absolute',
-        top: `${topPosition}%`,
-        left: `${leftPosition}%`,
-        backgroundColor: color,
-        width: `${width}vw`,
-        height: `${width}vw`,
-        borderRadius: 100,
-        zIndex: -1,
-      }}
-    />
-  );
-}
