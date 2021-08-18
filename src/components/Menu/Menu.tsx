@@ -69,7 +69,7 @@ export function Menu() {
           <Link href="/about-me#cycling" passHref>
             <MenuSecondaryLink>Cycling</MenuSecondaryLink>
           </Link>
-          <Link href="/about-me#cofee" passHref>
+          <Link href="/about-me#coffee" passHref>
             <MenuSecondaryLink>Coffee</MenuSecondaryLink>
           </Link>
           <Link href="/about-me#code" passHref>
