@@ -1,43 +1,61 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
-  dotClassname,
-  MakeItRain,
   Container,
   TitleContainer,
   Title,
-  numDots,
   BreathingCircle,
-  getRandomSplatterElement,
+  SubTitle,
+  NavContainer,
 } from '/src/pages/Home/styled';
+import { Menu } from '/src/components/Menu/Menu';
+
+import { PrimaryButton } from '/design-system/buttons/primary';
+import { useRouter } from 'next/router';
+import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
+import { animateElement } from '/src/utils/animations/animate';
+import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
 
 export default function Home() {
-  const handleNav = useCallback(() => {
-    const dots = Array.from(document.getElementsByClassName(dotClassname));
+  const router = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
 
-    dots.forEach((dot) => {
-      let animationDuration = styles.twoSec;
-      switch (Math.ceil(Math.random() * 3)) {
-        case 1: {
-          animationDuration = styles.twoSec;
-          break;
-        }
-        case 2: {
-          animationDuration = styles.threeSec;
-          break;
-        }
-        case 3: {
-          animationDuration = styles.fourSec;
-          break;
-        }
-        default: {
-          break;
+  const handleNav = useCallback(() => {
+    const dots = Array.from(
+      document.getElementsByClassName(dotClassname)
+    ) as HTMLElement[];
+
+    let listenerAdded = false;
+    dots.forEach(async (dot) => {
+      const animationMap = {
+        1: styles.twoSec,
+        2: styles.threeSec,
+        3: styles.fourSec,
+      };
+
+      const animationDuration =
+        animationMap[Math.ceil(Math.random() * 3) as 1 | 2 | 3];
+
+      const animationPromise = animateElement({
+        node: dot,
+        animationClassNames: [styles.fallOff, animationDuration],
+      });
+
+      if (animationDuration === styles.twoSec && !listenerAdded) {
+        listenerAdded = true;
+
+        await animationPromise;
+        if (containerRef.current) {
+          await animateElement({
+            node: containerRef.current,
+            animationClassNames: [styles.fadeOut],
+          });
+          await router.push('/about-me');
         }
       }
-      dot.classList.add(styles.fallOff, animationDuration);
     });
-  }, []);
+  }, [router]);
 
   return (
     <div>
@@ -52,16 +70,29 @@ export default function Home() {
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <BreathingCircle className={styles.breath} />
-      <Container className={styles.fadeIn}>
-        {new Array(numDots)
-          .fill(0)
-          .map((_value, index) => getRandomSplatterElement(index))}
+      <Container className={styles.fadeIn} ref={containerRef}>
+        <PolkaDots numDots={300} />
+        <Menu />
+
+        <PeekABoo animationDelay={5} useConfetti />
+
         <TitleContainer>
           <Title>PRESCOTT</Title>
-          <Title>J</Title>
           <Title>RYNEWICZ</Title>
-          <MakeItRain onClick={handleNav}>💦 Make it rain 💦</MakeItRain>
-          <p>More coming soon</p>
+          <SubTitle>
+            A bicycle, coffee, and people loving software engineer
+          </SubTitle>
+          <NavContainer>
+            <PrimaryButton
+              useConfetti
+              simultaneous
+              confettiDuration={2000}
+              onClick={handleNav}>
+              About me
+            </PrimaryButton>
+            {/* <PrimaryButton useConfetti>Business</PrimaryButton> */}
+            {/* <PrimaryButton useConfetti>Casual</PrimaryButton> */}
+          </NavContainer>
         </TitleContainer>
       </Container>
     </div>

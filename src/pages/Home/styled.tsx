@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import React from 'react';
+import styled, { css } from 'styled-components';
+import { solids } from '/design-system/colors';
 
 const Rainbow = '/rainbow-bar.png';
 
@@ -13,18 +13,28 @@ export const colors = Object.freeze({
 export const Container = styled.div`
   border: 1vw solid;
   border-image: url(${Rainbow}) 30 round;
+  position: relative;
   align-items: center;
-  justify-content: center;
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   width: 100vw;
-  height: 100vh;
+  height: fit-content;
+  min-height: 100vh;
   overflow-y: hidden;
+
+  @media (max-width: 700px) {
+    border: 1vh solid;
+    border-image: url(${Rainbow}) 30 round;
+  }
 `;
 
 export const TitleContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
 `;
 
 export const BreathingCircle = styled.span`
@@ -44,7 +54,7 @@ export const Title = styled.h1`
     Helvetica Neue, sans-serif;
   margin: 10px 0;
 
-  @media (max-width: 700px) {
+  @media (max-width: 900px) {
     font-size: 64px;
   }
 
@@ -53,40 +63,37 @@ export const Title = styled.h1`
   }
 `;
 
-export const MakeItRain = styled.button`
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-    sans-serif;
-  font-size: 24px;
-  color: ${colors.Green};
-  background: blanchedalmond;
-  border: solid 2px black;
-  border-radius: 5px;
+const SharedContainerWidth = css`
+  width: 700px;
+
+  @media (max-width: 900px) {
+    width: 500px;
+    font-size: 32px;
+  }
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
-export const numDots = 300;
-export const dotClassname = 'dot-class-id';
+export const SubTitle = styled.span`
+  padding: 20px;
+  border-radius: 30px;
+  border: solid 10px;
+  border-color: ${solids.MIMOSA};
+  font-family: 'Brandon Grotesque';
+  font-weight: bold;
+  font-size: 48px;
+  text-align: center;
 
-export function getRandomSplatterElement(index: number) {
-  const topPosition = Math.random() * 98;
-  const leftPosition = Math.random() * 98;
-  const color = Object.values(colors)[Math.floor(Math.random() * 3.99)];
-  const width = Math.random();
+  ${SharedContainerWidth}
+`;
 
-  return (
-    <span
-      key={index}
-      className={dotClassname}
-      style={{
-        position: 'absolute',
-        top: `${topPosition}vh`,
-        left: `${leftPosition}vw`,
-        backgroundColor: color,
-        width: `${width}vw`,
-        height: `${width}vw`,
-        borderRadius: 100,
-        zIndex: -1,
-      }}
-    />
-  );
-}
+export const NavContainer = styled.div`
+  display: flex;
+
+  margin-top: 32px;
+
+  justify-content: space-evenly;
+
+  ${SharedContainerWidth}
+`;

@@ -6,9 +6,11 @@ import { apolloClient } from 'graph/apolloClient';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ApolloProvider client={apolloClient}>
-      <Component {...pageProps} />
-    </ApolloProvider>
+    <div id="app">
+      <ApolloProvider client={apolloClient}>
+        <Component {...pageProps} />
+      </ApolloProvider>
+    </div>
   );
 }
 export default MyApp;
