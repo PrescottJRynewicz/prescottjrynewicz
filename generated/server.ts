@@ -30,20 +30,20 @@ export type Query = {
 export type User = {
   __typename?: 'User';
   _id: Scalars['ObjectId'];
+  createdAt: Scalars['Date'];
   email: Scalars['String'];
   emailVerified?: Maybe<Scalars['Date']>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
   image?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['Date'];
 };
 
 export type VerificationRequest = {
   __typename?: 'VerificationRequest';
   _id: Scalars['ObjectId'];
+  createdAt: Scalars['Date'];
+  expires: Scalars['Date'];
   identifier: Scalars['String'];
   token: Scalars['String'];
-  expires: Scalars['Date'];
-  createdAt: Scalars['Date'];
   updatedAt: Scalars['Date'];
 };
 
@@ -130,25 +130,25 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Date: ResolverTypeWrapper<Scalars['Date']>;
   DbCollections: DbCollections;
   ObjectId: ResolverTypeWrapper<Scalars['ObjectId']>;
   Query: ResolverTypeWrapper<{}>;
-  User: ResolverTypeWrapper<User>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  User: ResolverTypeWrapper<User>;
   VerificationRequest: ResolverTypeWrapper<VerificationRequest>;
-  Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  Boolean: Scalars['Boolean'];
   Date: Scalars['Date'];
   ObjectId: Scalars['ObjectId'];
   Query: {};
-  User: User;
   String: Scalars['String'];
+  User: User;
   VerificationRequest: VerificationRequest;
-  Boolean: Scalars['Boolean'];
 };
 
 export interface DateScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['Date'], any> {
@@ -165,20 +165,20 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
   _id: Resolver<ResolversTypes['ObjectId'], ParentType, ContextType>;
+  createdAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   email: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   emailVerified: Resolver<Maybe<ResolversTypes['Date']>, ParentType, ContextType>;
-  createdAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  updatedAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   image: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  updatedAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type VerificationRequestResolvers<ContextType = any, ParentType extends ResolversParentTypes['VerificationRequest'] = ResolversParentTypes['VerificationRequest']> = {
   _id: Resolver<ResolversTypes['ObjectId'], ParentType, ContextType>;
+  createdAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
+  expires: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   identifier: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   token: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  expires: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
-  createdAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   updatedAt: Resolver<ResolversTypes['Date'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

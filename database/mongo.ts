@@ -1,12 +1,9 @@
 import { Db, MongoClient } from 'mongodb';
-import {
-  DbCollections,
-  User,
-  VerificationRequest,
-} from '/generated/server';
+import { DbCollections, User, VerificationRequest } from '/generated/server';
 
 // Connection URL
 const url = process.env.MONGO_URI;
+
 export const mongoClient = new MongoClient(url || '');
 
 // Database Names
