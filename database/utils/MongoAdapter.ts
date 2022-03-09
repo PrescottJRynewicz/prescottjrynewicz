@@ -21,15 +21,18 @@ const MongoAdapter = (): AdapterType => ({
       async createUser(profile) {
         if (profile) {
           const insertedUser = await Mongo.Users.insertOne({
+            _id: new ObjectId(),
             email: profile?.email,
             emailVerified: profile?.emailVerified,
             createdAt: new Date(),
             updatedAt: new Date(),
           });
 
-          return await Mongo.Users.findOne({
-            _id: insertedUser.insertedId,
-          });
+          return (
+            (await Mongo.Users.findOne({
+              _id: insertedUser.insertedId,
+            })) || undefined
+          );
         }
         return undefined;
       },
@@ -56,7 +59,7 @@ const MongoAdapter = (): AdapterType => ({
               },
             }
           );
-          return result.value;
+          return result.value || undefined;
         }
 
         return undefined;
@@ -69,6 +72,7 @@ const MongoAdapter = (): AdapterType => ({
         provider
       ) {
         await Mongo.VerificationRequests.insertOne({
+          _id: new ObjectId(),
           identifier,
           token,
           createdAt: new Date(),

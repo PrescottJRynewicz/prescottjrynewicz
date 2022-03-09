@@ -31,20 +31,20 @@ export type ClientQuery = {
 export type ClientUser = {
   __typename?: 'User';
   _id: Scalars['ObjectId'];
+  createdAt: Scalars['Date'];
   email: Scalars['String'];
   emailVerified?: Maybe<Scalars['Date']>;
-  createdAt: Scalars['Date'];
-  updatedAt: Scalars['Date'];
   image?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['Date'];
 };
 
 export type ClientVerificationRequest = {
   __typename?: 'VerificationRequest';
   _id: Scalars['ObjectId'];
+  createdAt: Scalars['Date'];
+  expires: Scalars['Date'];
   identifier: Scalars['String'];
   token: Scalars['String'];
-  expires: Scalars['Date'];
-  createdAt: Scalars['Date'];
   updatedAt: Scalars['Date'];
 };
 
