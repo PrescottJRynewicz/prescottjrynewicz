@@ -6,7 +6,14 @@ import { AboutMeSectionTwo } from '/src/pages/AboutMe/PhotoFirstSections/AboutMe
 import { AboutMeSectionThree } from '/src/pages/AboutMe/SectionThree/AboutMeSectionThree';
 import { AboutMeSectionFour } from '/src/pages/AboutMe/PhotoFirstSections/AboutMeSectionFour';
 
+import useSwr from 'swr';
+
 export function AboutMe() {
+  const { data, error } = useSwr('api/notion-test');
+
+  console.log(data);
+  console.log(error);
+
   return (
     <AboutMeContainer>
       <Head>

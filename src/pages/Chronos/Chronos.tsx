@@ -27,7 +27,7 @@ function timelineCurve(x: number) {
 }
 const totalRepeats = 3;
 const totalXPoints = 8;
-const yScaleFactory = 5;
+const yScaleFactory = 10;
 const yOffset = 50;
 
 function buildTimeline() {
