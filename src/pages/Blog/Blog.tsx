@@ -11,6 +11,7 @@ import { Menu } from '/src/components/Menu/Menu';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { Header1 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
+import Head from 'next/head';
 
 export type BlogStaticProps = {
   posts: BlogGetResponse['posts'];
@@ -18,6 +19,16 @@ export type BlogStaticProps = {
 
 export const Blog = (props: BlogStaticProps) => (
   <BlogContainer>
+    <Head>
+      <title>PJR - Blog</title>
+      <meta name="description" content="Prescott's Playground 🎢" />
+      <link rel="icon" href="/favicon.png" />
+      <meta property="og:image" content="/site-image.png" />
+      <meta name="twitter:title" content="PrescottJR" />
+      <meta name="twitter:description" content="Prescott's Playground" />
+      <meta name="twitter:image" content="/favicon.png" />
+      <meta name="twitter:image:alt" content="Prescott's Playground" />
+    </Head>
     <Menu />
     <PeekABoo useConfetti animationDelay={2} />
     <BlogPostContainer>
