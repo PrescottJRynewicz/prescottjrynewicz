@@ -43,6 +43,9 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<{
   props: BlogPostProps;
 }> {
   const postName = context.params?.blogPost?.[0];
+
+  console.log(postName);
+
   const url = getApiUrl(`blog/posts/${postName}`);
 
   const rawResult = await fetch(url, {
