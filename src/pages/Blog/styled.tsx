@@ -8,6 +8,7 @@ export const BlogPostContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
   width: 100%;
 `;
 
@@ -15,6 +16,14 @@ export const BlogPostContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 20vh;
+  width: 1280px;
+  max-width: 80%;
+`;
+
+export const BlogContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
   width: 1280px;
   max-width: 80%;
 `;

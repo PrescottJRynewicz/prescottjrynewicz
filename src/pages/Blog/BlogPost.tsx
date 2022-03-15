@@ -1,7 +1,6 @@
 import React from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap } from 'notion-types';
-import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
 import {
   BlogPostContainer,
   BlogPostContentWrapper,
@@ -15,7 +14,7 @@ import { Menu } from '/src/components/Menu/Menu';
 import {
   Emoji,
   MultiSelectType,
-  NotionTypeHelper,
+  NotionPage,
   PageCover,
   Properties,
   RichTextType,
@@ -28,11 +27,12 @@ import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
-  pageData: NotionTypeHelper<GetPageResponse>;
+  pageData: NotionPage;
 };
 
 export const BlogPost = ({ post, pageData }: BlogPostProps) => {
-  if (!pageData || !post) {
+  if (!pageData || !post || !pageData?.cover?.type) {
+    // TODO: Add 404
     return <></>;
   }
 

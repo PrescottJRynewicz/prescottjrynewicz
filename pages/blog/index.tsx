@@ -14,8 +14,6 @@ export async function getServerSideProps(): Promise<{
 }> {
   const url = getApiUrl(`blog`);
 
-  console.log('Base URL', url);
-
   const rawResult = await fetch(`${url}`, {
     method: 'POST',
   });
