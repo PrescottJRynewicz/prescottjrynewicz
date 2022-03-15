@@ -8,6 +8,11 @@ module.exports = {
     // full width images. And if we do, it is probably a specific
     // use case
     deviceSizes: [640],
+    domains: [
+      'www.notion.so',
+      's3.us-west-2.amazonaws.com',
+      'images.unsplash.com',
+    ],
   },
 
   webpack: (config) => {
