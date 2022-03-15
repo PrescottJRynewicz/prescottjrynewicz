@@ -12,8 +12,6 @@ const api = new NotionAPI({
   authToken: notionUserTokenV2,
 });
 
-// const maxPageSize = 100;
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<BlogPostGetResponse | { error: string }>

@@ -5,7 +5,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from 'graph/apolloClient';
-import '../src/styles/notion-styles.css';
+import '../styles/notion-styles.css';
 
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css';

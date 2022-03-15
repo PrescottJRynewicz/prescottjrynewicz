@@ -1,18 +1,16 @@
 import { Blog, BlogStaticProps } from '/src/pages/Blog/Blog';
 import fetch from 'node-fetch';
 import { BlogGetResponse } from '/src/types/api/blog';
+import { getApiUrl } from '/src/utils/url/getApiUrl';
 
 export default Blog;
 
 export async function getStaticProps(): Promise<{
   props: BlogStaticProps;
 }> {
-  const baseUrl =
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000/api/'
-      : `${process.env.VERCEL_URL}/api`;
+  const baseUrl = getApiUrl(`blog`);
 
-  const rawResult = await fetch(`${baseUrl}blog`, {
+  const rawResult = await fetch(`${baseUrl}`, {
     method: 'POST',
   });
 
