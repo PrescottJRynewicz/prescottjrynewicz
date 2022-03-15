@@ -22,7 +22,10 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     paths: blogs.posts.map((post) => ({
       params: {
         blogPost: [
-          post.properties.Title.title.map((item) => item.plain_text).join('-'),
+          post.properties.Title.title
+            .map((item) => item.plain_text)
+            .join()
+            .replace(/\s/g, '-'),
         ],
       },
     })),
