@@ -12,9 +12,11 @@ export default Blog;
 export async function getServerSideProps(): Promise<{
   props: BlogStaticProps;
 }> {
-  const baseUrl = getApiUrl(`blog`);
+  const url = getApiUrl(`blog`);
 
-  const rawResult = await fetch(`${baseUrl}`, {
+  console.log('Base URL', url);
+
+  const rawResult = await fetch(`${url}`, {
     method: 'POST',
   });
 

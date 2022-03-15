@@ -13,6 +13,7 @@ export async function getServerSideProps(
 }> {
   const postName = context.params?.blogPost?.[0];
   const url = getApiUrl(`blog/posts/${postName}`);
+  console.log(' URL', url);
 
   const rawResult = await fetch(url, {
     method: 'POST',
