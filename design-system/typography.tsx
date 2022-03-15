@@ -24,13 +24,21 @@ export const SubHeader1 = styled.h1`
   font-size: 2em;
 
   margin: 0.25em 0;
+
+  @media (max-width: 700px) {
+    font-size: 1.25em;
+  }
 `;
 
 export const SubHeader2 = styled.h2`
   font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
-  font-size: 1.5em;
+  font-size: 1.75em;
 
   margin: 0.25em 0;
+
+  @media (max-width: 700px) {
+    font-size: 1em;
+  }
 `;

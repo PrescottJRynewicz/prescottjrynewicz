@@ -1,5 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { solids, speckles, textures } from '/design-system/colors';
+
+const fadeIn = keyframes`
+  to {
+    opacity: 100%;
+  }
+`;
+
+export const BlogContainer = styled.div`
+  opacity: 0;
+  animation: ${fadeIn} 2s forwards;
+`;
 
 export const BlogPostContainer = styled.div`
   //background-image: url(${speckles.MILK});
