@@ -1,5 +1,9 @@
 import { BlogPost, BlogPostProps } from '/src/pages/Blog/BlogPost';
-import { GetStaticPathsResult, GetStaticPropsContext } from 'next';
+import {
+  GetStaticPathsResult,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
 import fetch from 'node-fetch';
 import { BlogPostGetResponse } from '/src/types/api/blog/posts';
 import { getApiUrl } from '/src/utils/url/getApiUrl';
@@ -32,17 +36,13 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     fallback: true,
   };
 
-  console.log(JSON.stringify(result));
-
   return result;
 }
 
-export async function getStaticProps(context: GetStaticPropsContext): Promise<{
-  props: BlogPostProps;
-}> {
+export async function getStaticProps(
+  context: GetStaticPropsContext
+): Promise<GetStaticPropsResult<BlogPostProps>> {
   const postName = context.params?.blogPost?.[0];
-
-  console.log('Post', postName);
 
   const url = getApiUrl(`blog/posts/${postName}`);
 
@@ -57,5 +57,6 @@ export async function getStaticProps(context: GetStaticPropsContext): Promise<{
     props: {
       ...blogPost,
     },
+    revalidate: 10,
   };
 }
