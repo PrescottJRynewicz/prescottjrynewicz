@@ -1,14 +1,12 @@
 import { BlogPost, BlogPostProps } from '/src/pages/Blog/BlogPost';
-import { GetServerSidePropsContext } from 'next';
+import { GetStaticPropsContext } from 'next';
 import fetch from 'node-fetch';
 import { BlogPostGetResponse } from '/src/types/api/blog/posts';
 import { getApiUrl } from '/src/utils/url/getApiUrl';
 
 export default BlogPost;
 
-export async function getServerSideProps(
-  context: GetServerSidePropsContext
-): Promise<{
+export async function getStaticProps(context: GetStaticPropsContext): Promise<{
   props: BlogPostProps;
 }> {
   const postName = context.params?.blogPost?.[0];

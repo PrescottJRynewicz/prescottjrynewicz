@@ -24,6 +24,7 @@ import Image from 'next/image';
 import { speckles } from '/design-system/colors';
 import { Header3, SubHeader1 } from '/design-system/typography';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
+import Head from 'next/head';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
@@ -51,6 +52,21 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
 
   return (
     <>
+      <Head>
+        <title>
+          PJR -{' '}
+          {pageData.properties.Title.title
+            .map((item) => item.plain_text)
+            .join()}
+        </title>
+        <meta name="description" content="Prescott's Playground 🎢" />
+        <link rel="icon" href="/favicon.png" />
+        <meta property="og:image" content="/site-image.png" />
+        <meta name="twitter:title" content="PrescottJR" />
+        <meta name="twitter:description" content="Prescott's Playground" />
+        <meta name="twitter:image" content="/favicon.png" />
+        <meta name="twitter:image:alt" content="Prescott's Playground" />
+      </Head>
       <Menu />
       <PeekABoo useConfetti animationDelay={2} />
       <BlogPostContainer>
