@@ -36,6 +36,7 @@ export type Textures = keyof typeof textures;
 export type TextureUrls = typeof solids[Textures];
 
 export const speckles = Object.freeze({
+  BASIC: '/textures/speckled/BASIC.png',
   DARK_KNIGHT: '/textures/speckled/DARK_KNIGHT.png',
   PAPER: '/textures/speckled/PAPER.png',
   RUST: '/textures/speckled/RUST.png',
@@ -48,4 +49,4 @@ export const speckles = Object.freeze({
 });
 
 export type Speckles = keyof typeof speckles;
-export type SpeckleUrls = typeof solids[Speckles];
+export type SpeckleUrls = typeof speckles[Speckles];
