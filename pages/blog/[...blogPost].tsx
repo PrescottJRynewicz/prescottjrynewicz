@@ -18,16 +18,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const blogs: BlogGetResponse =
     (await rawResult.json()) as unknown as BlogGetResponse;
 
-  console.log({
-    paths: blogs.posts.map((post) => ({
-      params: {
-        blogPost: [
-          post.properties.Title.title.map((item) => item.plain_text).join('-'),
-        ],
-      },
-    })),
-  });
-  return {
+  const result = {
     paths: blogs.posts.map((post) => ({
       params: {
         blogPost: [
@@ -37,6 +28,10 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     })),
     fallback: true,
   };
+
+  console.log(JSON.stringify(result));
+
+  return result;
 }
 
 export async function getStaticProps(context: GetStaticPropsContext): Promise<{
