@@ -2,6 +2,7 @@ import { Blog, BlogStaticProps } from '/src/pages/Blog/Blog';
 import fetch from 'node-fetch';
 import { BlogGetResponse } from '/src/types/api/blog';
 import { getApiUrl } from '/src/utils/url/getApiUrl';
+import { GetStaticPropsResult } from 'next';
 
 export default Blog;
 
@@ -9,9 +10,9 @@ export default Blog;
  * TODO: Update this to be getStaticProps once endpoits are deployed
  * and blog is cleaned up.
  */
-export async function getStaticProps(): Promise<{
-  props: BlogStaticProps;
-}> {
+export async function getStaticProps(): Promise<
+  GetStaticPropsResult<BlogStaticProps>
+> {
   const url = getApiUrl(`blog`);
 
   const rawResult = await fetch(`${url}`, {
@@ -25,5 +26,6 @@ export async function getStaticProps(): Promise<{
     props: {
       posts: blogPosts.posts,
     },
+    revalidate: 10,
   };
 }
