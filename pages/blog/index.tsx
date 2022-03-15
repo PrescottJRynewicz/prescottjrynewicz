@@ -5,7 +5,11 @@ import { getApiUrl } from '/src/utils/url/getApiUrl';
 
 export default Blog;
 
-export async function getStaticProps(): Promise<{
+/**
+ * TODO: Update this to be getStaticProps once endpoits are deployed
+ * and blog is cleaned up.
+ */
+export async function getServerSideProps(): Promise<{
   props: BlogStaticProps;
 }> {
   const baseUrl = getApiUrl(`blog`);
