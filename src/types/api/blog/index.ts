@@ -1,5 +1,5 @@
-import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
+import { NotionPage } from '/src/types/cms/properties';
 
 export type BlogGetResponse = {
-  posts: GetPageResponse[];
+  posts: NotionPage[];
 };

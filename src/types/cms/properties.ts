@@ -21,7 +21,16 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Published: 'Published',
 };
 
-export const PropertyMap: Record<CmsProperties, string> = {
+export const PropertyMap: Record<
+  CmsProperties,
+  | 'title'
+  | 'rich_text'
+  | 'multi_select'
+  | 'date'
+  | 'created_time'
+  | 'last_edited_time'
+  | 'people'
+> = {
   Title: 'title',
   Subtitle: 'rich_text',
   Tags: 'multi_select',
@@ -30,24 +39,53 @@ export const PropertyMap: Record<CmsProperties, string> = {
   Created: 'created_time',
   Updated: 'last_edited_time',
   Author: 'people',
-};
+} as const;
 
 export type NotionTypeHelper<T> = Extract<T, { parent: {} }>;
 
-export type NotionPage = NotionTypeHelper<GetPageResponse>;
-export type PageCover = Extract<NotionPage['cover'], { external: {} }>;
+export type BaseNotionPage = NotionTypeHelper<GetPageResponse>;
+export type NotionPage = NotionTypeHelper<GetPageResponse> & {
+  icon: Emoji;
+  cover: PageCover;
+  properties: {
+    Title: Extract<BaseNotionPage['properties']['title'], { type: 'title' }>;
+    Subtitle: Extract<
+      BaseNotionPage['properties']['rich_text'],
+      { type: 'rich_text' }
+    >;
+    Tags: Extract<
+      BaseNotionPage['properties']['multi_select'],
+      { type: 'multi_select' }
+    >;
+    Categories: Extract<
+      BaseNotionPage['properties']['multi_select'],
+      { type: 'multi_select' }
+    >;
+    Published: Extract<BaseNotionPage['properties']['date'], { type: 'date' }>;
+    Created: Extract<
+      BaseNotionPage['properties']['created_time'],
+      { type: 'created_time' }
+    >;
+    Updated: Extract<
+      BaseNotionPage['properties']['last_edited_time'],
+      { type: 'last_edited_time' }
+    >;
+    Author: Extract<BaseNotionPage['properties']['people'], { type: 'people' }>;
+  };
+};
+export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 export type TitleType = Extract<
-  NotionPage['properties']['title'],
+  BaseNotionPage['properties']['title'],
   { type: 'title' }
 >;
 
-export type Emoji = Extract<NotionPage['icon'], { type: 'emoji' }>;
+export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
 
 export type RichTextType = Extract<
-  NotionPage['properties']['rich_text'],
+  BaseNotionPage['properties']['rich_text'],
   { type: 'rich_text' }
 >;
 export type MultiSelectType = Extract<
-  NotionPage['properties']['multi_select'],
+  BaseNotionPage['properties']['multi_select'],
   { type: 'multi_select' }
 >;

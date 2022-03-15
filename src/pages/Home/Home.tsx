@@ -21,41 +21,44 @@ export default function Home() {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleNav = useCallback(() => {
-    const dots = Array.from(
-      document.getElementsByClassName(dotClassname)
-    ) as HTMLElement[];
+  const handleNav = useCallback(
+    (pathname: string) => () => {
+      const dots = Array.from(
+        document.getElementsByClassName(dotClassname)
+      ) as HTMLElement[];
 
-    let listenerAdded = false;
-    dots.forEach(async (dot) => {
-      const animationMap = {
-        1: styles.twoSec,
-        2: styles.threeSec,
-        3: styles.fourSec,
-      };
+      let listenerAdded = false;
+      dots.forEach(async (dot) => {
+        const animationMap = {
+          1: styles.twoSec,
+          2: styles.threeSec,
+          3: styles.fourSec,
+        };
 
-      const animationDuration =
-        animationMap[Math.ceil(Math.random() * 3) as 1 | 2 | 3];
+        const animationDuration =
+          animationMap[Math.ceil(Math.random() * 3) as 1 | 2 | 3];
 
-      const animationPromise = animateElement({
-        node: dot,
-        animationClassNames: [styles.fallOff, animationDuration],
-      });
+        const animationPromise = animateElement({
+          node: dot,
+          animationClassNames: [styles.fallOff, animationDuration],
+        });
 
-      if (animationDuration === styles.twoSec && !listenerAdded) {
-        listenerAdded = true;
+        if (animationDuration === styles.twoSec && !listenerAdded) {
+          listenerAdded = true;
 
-        await animationPromise;
-        if (containerRef.current) {
-          await animateElement({
-            node: containerRef.current,
-            animationClassNames: [styles.fadeOut],
-          });
-          await router.push('/about-me');
+          await animationPromise;
+          if (containerRef.current) {
+            await animateElement({
+              node: containerRef.current,
+              animationClassNames: [styles.fadeOut],
+            });
+            await router.push(pathname);
+          }
         }
-      }
-    });
-  }, [router]);
+      });
+    },
+    [router]
+  );
 
   return (
     <div>
@@ -87,8 +90,15 @@ export default function Home() {
               useConfetti
               simultaneous
               confettiDuration={2000}
-              onClick={handleNav}>
+              onClick={handleNav('/about-me')}>
               About me
+            </PrimaryButton>
+            <PrimaryButton
+              useConfetti
+              simultaneous
+              confettiDuration={2000}
+              onClick={handleNav('/blog')}>
+              Blog
             </PrimaryButton>
             {/* <PrimaryButton useConfetti>Business</PrimaryButton> */}
             {/* <PrimaryButton useConfetti>Casual</PrimaryButton> */}

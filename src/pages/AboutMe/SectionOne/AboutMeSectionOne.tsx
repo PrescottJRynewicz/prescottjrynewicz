@@ -74,7 +74,6 @@ export const AboutMeSectionOne = () => {
               objectFit="cover"
               quality={50}
               priority
-              // sizes="(min-width: 640px) 640px, 100vw"
               placeholder="blur"
               blurDataURL={speckles.MIMOSA}
             />
