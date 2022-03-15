@@ -7,8 +7,8 @@ import { Properties } from '/src/types/cms/properties';
 
 const { Client } = require('@notionhq/client');
 
-const blogDatbaseId = 'a7a4a3733f5445d885fecc257f9e5e80';
-const notionKey = `secret_wF2JU6392aTNgm92xDmIuBJoxvS74k3wsj0nfxromLj`;
+const blogDatbaseId = process.env.BLOG_DATABASE_ID;
+const notionAPIKey = process.env.NOTION_API_KEY;
 
 const maxPageSize = 100;
 
@@ -18,7 +18,7 @@ export default async function handler(
 ) {
   try {
     const notion = new Client({
-      auth: notionKey,
+      auth: notionAPIKey,
     });
 
     let iterations = 0;
