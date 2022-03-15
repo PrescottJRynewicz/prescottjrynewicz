@@ -15,6 +15,10 @@ export const Header3 = styled.h3`
 
   font-size: 4em;
   margin: 1em 0 0;
+
+  @media (max-width: 700px) {
+    font-size: 2em;
+  }
 `;
 
 export const SubHeader1 = styled.h1`

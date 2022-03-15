@@ -6,10 +6,6 @@ import { GetStaticPropsResult } from 'next';
 
 export default Blog;
 
-/**
- * TODO: Update this to be getStaticProps once endpoits are deployed
- * and blog is cleaned up.
- */
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogStaticProps>
 > {
