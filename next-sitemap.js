@@ -15,6 +15,11 @@ module.exports = {
     lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
     alternateRefs: config.alternateRefs ?? [],
   }),
+  additionalPaths: async (config) => [
+    await config.transform(config, '/about-me'),
+    await config.transform(config, '/blog'),
+    await config.transform(config, '/'),
+  ],
   robotsTxtOptions: {
     policies: [
       {
