@@ -83,11 +83,11 @@ export const PostListing = ({ post }: { post: NotionPage }) => (
     </SubHeaderTwo>
     <PillContainer>
       {post.properties.Categories.multi_select.map((cat) => (
-        <CategoryText>{cat.name}</CategoryText>
+        <CategoryText key={cat.name}>{cat.name}</CategoryText>
       ))}
       <TagContainer>
         {post.properties.Tags.multi_select.map((tag) => (
-          <Tag>{tag.name}</Tag>
+          <Tag key={tag.name}>{tag.name}</Tag>
         ))}
       </TagContainer>
     </PillContainer>

@@ -23,6 +23,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     priority: 0.7,
   }));
 
+  routes.push(
+    ...blogPosts.categories.map((category) => ({
+      loc: `https://prescottjr.com/blog/category/${category}`,
+      lastmod: new Date().toDateString(),
+      priority: 0.7,
+    }))
+  );
+
   return getServerSideSitemap(ctx, routes);
 };
 

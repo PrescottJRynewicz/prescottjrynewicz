@@ -21,6 +21,7 @@ export async function getStaticProps(): Promise<
   return {
     props: {
       posts: blogPosts.posts,
+      categories: blogPosts.categories,
     },
     revalidate: 10,
   };
