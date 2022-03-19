@@ -21,6 +21,7 @@ export const BlogPostContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100%;
+  padding-bottom: 10vh;
 `;
 
 export const BlogPostContentWrapper = styled.div`

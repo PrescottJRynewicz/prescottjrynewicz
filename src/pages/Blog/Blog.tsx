@@ -59,7 +59,7 @@ export const Blog = (props: BlogStaticProps) => {
             <div style={{ whiteSpace: 'pre-wrap' }}>
               {(props.categories || []).map((category) => (
                 <>
-                  <Link href={`/blog/category/${category}`}>
+                  <Link passHref href={`/blog/category/${category}`}>
                     <CategoryLink>{category}</CategoryLink>
                   </Link>
                   {'          '}
@@ -69,7 +69,7 @@ export const Blog = (props: BlogStaticProps) => {
           ) : (
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <ChevronLeft color={solids.PINK_STARBURST} />
-              <Link href="/blog">
+              <Link passHref href="/blog">
                 <CategoryLink>Home</CategoryLink>
               </Link>
             </div>
@@ -81,6 +81,7 @@ export const Blog = (props: BlogStaticProps) => {
               .join();
             return (
               <Link
+                passHref
                 key={postName}
                 href={`/blog/${postName.replace(/\s/g, '-')}`}>
                 <a>

@@ -24,7 +24,7 @@ export const AboutMeSectionOne = () => {
     (elementId: string) => () => {
       router.push(`/about-me#${elementId}`);
     },
-    []
+    [router]
   );
 
   return (
