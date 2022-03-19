@@ -22,11 +22,13 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     (await rawResult.json()) as unknown as BlogGetResponse;
 
   const result = {
-    paths: blogs.categories.map((category) => ({
-      params: {
-        category: [category],
-      },
-    })),
+    paths: blogs.categories
+      ? blogs.categories.map((category) => ({
+          params: {
+            category: [category],
+          },
+        }))
+      : [],
     fallback: true,
   };
 
