@@ -39,7 +39,7 @@ export const Blog = (props: BlogStaticProps) => {
   return (
     <BlogContainer>
       <Head>
-        <title>PJR - Blog</title>
+        <title>PJR - {isCategoryPage ? props.category : 'Blog'}</title>
         <meta name="description" content="Prescott's Playground 🎢" />
         <link rel="icon" href="/favicon.png" />
         <meta property="og:image" content="/site-image.png" />
