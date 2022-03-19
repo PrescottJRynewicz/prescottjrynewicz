@@ -19,9 +19,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       .map((item) => item.plain_text)
       .join()
       .replace(/\s/g, '-')}`,
-    lastmod: new Date().toDateString(),
+    lastmod: new Date().toISOString(),
     priority: 0.7,
   }));
+
+  routes.push(
+    ...blogPosts.categories.map((category) => ({
+      loc: `https://prescottjr.com/blog/category/${category}`,
+      lastmod: new Date().toISOString(),
+      priority: 0.7,
+    }))
+  );
 
   return getServerSideSitemap(ctx, routes);
 };
