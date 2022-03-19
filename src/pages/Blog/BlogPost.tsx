@@ -11,6 +11,7 @@ import {
   TitleContainer,
 } from '/src/pages/Blog/styled';
 import { Menu } from '/src/components/Menu/Menu';
+import { Code } from '/src/pages/Blog/components/Code';
 import {
   Emoji,
   MultiSelectType,
@@ -103,7 +104,12 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             </div>
           </TitleContainer>
           <Divider />
-          <NotionRenderer recordMap={post} />
+          <NotionRenderer
+            recordMap={post}
+            components={{
+              code: Code,
+            }}
+          />
         </BlogPostContentWrapper>
       </BlogPostContainer>
     </>
