@@ -54,16 +54,17 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
   return (
     <>
       <Head>
-        <title>
-          PJR -{' '}
-          {pageData.properties.Title.title
-            .map((item) => item.plain_text)
-            .join()}
-        </title>
-        <meta name="description" content="Prescott's Playground 🎢" />
+        <title>PJR - {title.title.map((item) => item.plain_text).join()}</title>
+        <meta
+          name="description"
+          content={subtitle.rich_text.map((item) => item.plain_text).join()}
+        />
         <link rel="icon" href="/favicon.png" />
-        <meta property="og:image" content="/site-image.png" />
-        <meta name="twitter:title" content="PrescottJR" />
+        <meta property="og:image" content={url} />
+        <meta
+          name="twitter:title"
+          content={title.title.map((item) => item.plain_text).join()}
+        />
         <meta name="twitter:description" content="Prescott's Playground" />
         <meta name="twitter:image" content="/favicon.png" />
         <meta name="twitter:image:alt" content="Prescott's Playground" />
