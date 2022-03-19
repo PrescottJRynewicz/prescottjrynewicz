@@ -57,7 +57,7 @@ export const Blog = (props: BlogStaticProps) => {
           </Header1>
           {!isCategoryPage ? (
             <div style={{ whiteSpace: 'pre-wrap' }}>
-              {props.categories.map((category) => (
+              {(props.categories || []).map((category) => (
                 <>
                   <Link href={`/blog/category/${category}`}>
                     <CategoryLink>{category}</CategoryLink>
@@ -75,7 +75,7 @@ export const Blog = (props: BlogStaticProps) => {
             </div>
           )}
           <Divider />
-          {props.posts.map((post) => {
+          {(props.posts || []).map((post) => {
             const postName = post.properties.Title.title
               .map((item) => item.plain_text)
               .join();
