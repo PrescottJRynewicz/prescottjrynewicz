@@ -19,7 +19,6 @@ export const BlogPostContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding-bottom: 2em;
   width: 100%;
 `;
 
