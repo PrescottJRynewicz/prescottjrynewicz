@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { speckles } from '/design-system/colors';
+import { solids, speckles } from '/design-system/colors';
 
 export const FooterContainer = styled.div`
   align-items: center;
@@ -64,7 +64,7 @@ export const MenuContainer = styled.div`
   color: white;
   display: flex;
   flex-direction: column;
-  background-image: url(${speckles.MIMOSA});
+  border: solid 5px ${solids.MIMOSA};
   height: fit-content;
   width: fit-content;
   border-radius: 0.5em;
