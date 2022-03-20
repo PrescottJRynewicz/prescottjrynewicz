@@ -65,7 +65,7 @@ export const SubHeader2 = styled.h2`
   margin: 0.25em 0;
 
   @media (max-width: 700px) {
-    font-size: 1em;
+    font-size: 1.25em;
   }
 `;
 

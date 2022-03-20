@@ -22,6 +22,7 @@ const Container = styled.div`
 
 const TitleContainer = styled.div`
   display: flex;
+  align-items: baseline;
   flex-direction: row;
   flex-wrap: wrap;
   white-space: pre;
@@ -46,7 +47,7 @@ const SubHeaderOne = styled(SubHeader1)`
   -webkit-box-orient: vertical;
 `;
 
-const SubHeader1Light = styled(SubHeader1)`
+const SubHeader1Light = styled(SubHeader2)`
   font-weight: 100;
 `;
 
