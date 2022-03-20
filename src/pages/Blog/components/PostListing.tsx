@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { solids, speckles } from '/design-system/colors';
 import { SubHeader1, SubHeader2 } from '/design-system/typography';
 import { CategoryText, Tag } from '/src/pages/Blog/styled';
+import { growOnHover } from '/styles/animations';
 
 const Container = styled.div`
   background-image: url(${speckles.BASIC});
@@ -12,16 +13,10 @@ const Container = styled.div`
   max-width: 100%;
 
   min-height: fit-content;
-  padding: 2em;
   border-radius: 2em;
   border: 5px solid ${solids.PINK_STARBURST};
   margin-bottom: 40px;
-  transition-duration: 0.3s;
-
-  &:hover {
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
-  }
+  ${growOnHover};
 `;
 
 const TitleContainer = styled.div`

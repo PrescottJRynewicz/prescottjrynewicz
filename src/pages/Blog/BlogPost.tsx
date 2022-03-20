@@ -5,11 +5,13 @@ import {
   BlogPostContainer,
   BlogPostContentWrapper,
   CategoryText,
+  CommentContainer,
   Divider,
   PostCoverContainer,
   Tag,
   TitleContainer,
 } from '/src/pages/Blog/styled';
+import { MessageCircle } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
 import {
@@ -23,9 +25,10 @@ import {
 } from '/src/types/cms/properties';
 import Image from 'next/image';
 import { speckles } from '/design-system/colors';
-import { Header3, SubHeader1 } from '/design-system/typography';
+import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import Head from 'next/head';
+import { Footer } from '/src/components/Footer/Footer';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
@@ -95,15 +98,28 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             <SubHeader1>
               {subtitle.rich_text.map((item) => item.plain_text).join()}
             </SubHeader1>
-            <div>
-              {categories.multi_select.map((cat) => (
-                <CategoryText>{cat.name}</CategoryText>
-              ))}
-              {tags.multi_select.map((tag) => (
-                <Tag>{tag.name}</Tag>
-              ))}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+              }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {categories.multi_select.map((cat) => (
+                  <CategoryText>{cat.name}</CategoryText>
+                ))}
+                {tags.multi_select.map((tag) => (
+                  <Tag>{tag.name}</Tag>
+                ))}
+              </div>
+              <CommentContainer href={pageData.url} target="_blank">
+                <MessageCircle style={{ marginRight: '10px' }} />
+                <SubHeader3>Head over to the CMS to comment!</SubHeader3>
+              </CommentContainer>
             </div>
           </TitleContainer>
+
           <Divider />
           <NotionRenderer
             recordMap={post}
@@ -112,6 +128,7 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             }}
           />
         </BlogPostContentWrapper>
+        <Footer />
       </BlogPostContainer>
     </>
   );
