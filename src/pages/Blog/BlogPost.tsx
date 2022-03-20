@@ -105,7 +105,12 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
               }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                }}>
                 {categories.multi_select.map((cat) => (
                   <CategoryText>{cat.name}</CategoryText>
                 ))}

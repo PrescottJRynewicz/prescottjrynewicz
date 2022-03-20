@@ -60,15 +60,17 @@ export const TitleContainer = styled.div`
 `;
 
 export const CategoryText = styled.span`
-  font-weight: 600;
-  font-size: 1.25em;
+  background-image: url(${textures.DARK_KNIGHT});
+  color: white;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  font-weight: 400;
   margin-right: 1em;
   margin-top: 20px;
 `;
 
 export const Tag = styled.span`
   background-image: url(${textures.PINK_STARBURST});
-  background-color: gray;
   border-radius: 2em;
   padding: 0.5em 1em;
   margin-right: 1em;
