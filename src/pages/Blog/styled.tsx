@@ -60,7 +60,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const CategoryText = styled.span`
-  background-image: url(${textures.DARK_KNIGHT});
+  background-color: ${solids.DARK_KNIGHT};
   color: white;
   border-radius: 2em;
   padding: 0.5em 1em;
