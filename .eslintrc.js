@@ -17,6 +17,8 @@ module.exports = {
   rules: {
     'no-return-await': 'off',
     'import/prefer-default-export': 'off',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',
     'import/no-unresolved': 'off',

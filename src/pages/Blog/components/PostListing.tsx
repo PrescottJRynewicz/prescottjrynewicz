@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { solids, speckles } from '/design-system/colors';
 import { SubHeader1, SubHeader2 } from '/design-system/typography';
 import { CategoryText, Tag } from '/src/pages/Blog/styled';
+import { growOnHover } from '/styles/animations';
 
 const Container = styled.div`
   background-image: url(${speckles.BASIC});
@@ -16,16 +17,12 @@ const Container = styled.div`
   border-radius: 2em;
   border: 5px solid ${solids.PINK_STARBURST};
   margin-bottom: 40px;
-  transition-duration: 0.3s;
-
-  &:hover {
-    -webkit-transform: scale(1.02);
-    transform: scale(1.02);
-  }
+  ${growOnHover};
 `;
 
 const TitleContainer = styled.div`
   display: flex;
+  align-items: baseline;
   flex-direction: row;
   flex-wrap: wrap;
   white-space: pre;
@@ -50,7 +47,7 @@ const SubHeaderOne = styled(SubHeader1)`
   -webkit-box-orient: vertical;
 `;
 
-const SubHeader1Light = styled(SubHeader1)`
+const SubHeader1Light = styled(SubHeader2)`
   font-weight: 100;
 `;
 

@@ -7,6 +7,7 @@ import {
   BlogPostContainer,
   Divider,
 } from '/src/pages/Blog/styled';
+import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { Header1 } from '/design-system/typography';
@@ -14,7 +15,7 @@ import { PostListing } from '/src/pages/Blog/components/PostListing';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { solids } from '/design-system/colors';
-import { ChevronLeft } from 'react-feather';
+import { Footer } from '/src/components/Footer/Footer';
 
 export type BlogStaticProps = {
   posts: BlogGetResponse['posts'];
@@ -55,25 +56,37 @@ export const Blog = (props: BlogStaticProps) => {
           <Header1 style={{ marginBottom: '0px' }}>
             {isCategoryPage ? props.category?.toUpperCase() : 'BLOG'}
           </Header1>
-          {!isCategoryPage ? (
-            <div style={{ whiteSpace: 'pre-wrap' }}>
-              {(props.categories || []).map((category) => (
-                <>
-                  <Link passHref href={`/blog/category/${category}`}>
-                    <CategoryLink>{category}</CategoryLink>
-                  </Link>
-                  {'          '}
-                </>
-              ))}
-            </div>
-          ) : (
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <ChevronLeft color={solids.PINK_STARBURST} />
-              <Link passHref href="/blog">
-                <CategoryLink>Home</CategoryLink>
-              </Link>
-            </div>
-          )}
+          <div
+            style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            {!isCategoryPage ? (
+              <div style={{ whiteSpace: 'pre-wrap', minWidth: '100px' }}>
+                {(props.categories || []).map((category) => (
+                  <>
+                    <Link passHref href={`/blog/category/${category}`}>
+                      <CategoryLink>{category}</CategoryLink>
+                    </Link>
+                    {'          '}
+                  </>
+                ))}
+              </div>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <ChevronLeft color={solids.PINK_STARBURST} />
+                <Link passHref href="/blog">
+                  <CategoryLink>Home</CategoryLink>
+                </Link>
+              </div>
+            )}
+
+            {/* Turn this back on to start working on search */}
+            {/* <SearchInputContainer> */}
+            {/*  <SearchInput */}
+            {/*    type="text" */}
+            {/*    onChange={(event) => onSearchChange(event.target.value)} */}
+            {/*  /> */}
+            {/*  <Search style={{ marginLeft: '-20px' }} /> */}
+            {/* </SearchInputContainer> */}
+          </div>
           <Divider />
           {(props.posts || []).map((post) => {
             const postName = post.properties.Title.title
@@ -92,6 +105,7 @@ export const Blog = (props: BlogStaticProps) => {
           })}
         </BlogContentWrapper>
       </BlogPostContainer>
+      <Footer />
     </BlogContainer>
   );
 };

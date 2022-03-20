@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { NakedButton } from '/design-system/buttons/naked';
 import { solids } from '/design-system/colors';
+import { growOnHover } from '/styles/animations';
 
 export const MenuButton = styled(NakedButton)`
   position: absolute;
@@ -19,6 +20,7 @@ export const MenuPrimaryLink = styled.a`
   font-weight: bold;
 
   margin: 10px 0;
+  ${growOnHover}
 `;
 
 export const MenuSecondaryLink = styled(MenuPrimaryLink)`

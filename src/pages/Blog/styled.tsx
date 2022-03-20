@@ -13,7 +13,6 @@ export const BlogContainer = styled.div`
 `;
 
 export const BlogPostContainer = styled.div`
-  //background-image: url(${speckles.MILK});
   background-image: url(${speckles.BASIC});
   background-color: ${solids.MILK};
   display: flex;
@@ -21,7 +20,6 @@ export const BlogPostContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  padding-bottom: 10vh;
 `;
 
 export const BlogPostContentWrapper = styled.div`
@@ -30,6 +28,7 @@ export const BlogPostContentWrapper = styled.div`
   padding-top: 20vh;
   width: 1280px;
   max-width: 80%;
+  margin-bottom: 5vh;
 `;
 
 export const BlogContentWrapper = styled.div`
@@ -60,17 +59,21 @@ export const TitleContainer = styled.div`
 `;
 
 export const CategoryText = styled.span`
-  font-weight: 600;
-  font-size: 1.25em;
+  background-color: ${solids.DARK_KNIGHT};
+  color: white;
+  border-radius: 2em;
+  padding: 0.5em 1em;
+  font-weight: 400;
   margin-right: 1em;
+  margin-top: 20px;
 `;
 
 export const Tag = styled.span`
   background-image: url(${textures.PINK_STARBURST});
-  background-color: gray;
   border-radius: 2em;
   padding: 0.5em 1em;
   margin-right: 1em;
+  margin-top: 20px;
 `;
 
 export const Divider = styled.span`
@@ -78,4 +81,36 @@ export const Divider = styled.span`
   height: 1em;
   width: 100%;
   margin: 2em 0;
+`;
+
+export const CommentContainer = styled.a`
+  display: inline-flex;
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 10px;
+  padding: 5px 10px;
+  width: fit-content;
+  margin-top: 20px;
+`;
+
+export const SearchInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: fit-content;
+`;
+
+export const SearchInput = styled.input`
+  background-color: transparent;
+  border: solid ${solids.DARK_KNIGHT};
+  border-width: 0 0 2px;
+  padding: 10px 20px 10px 10px;
+
+  font-size: 24px;
+
+  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  &:focus {
+    outline: none;
+  }
 `;

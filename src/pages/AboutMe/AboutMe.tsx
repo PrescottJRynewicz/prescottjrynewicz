@@ -5,6 +5,7 @@ import { AboutMeSectionOne } from '/src/pages/AboutMe/SectionOne/AboutMeSectionO
 import { AboutMeSectionTwo } from '/src/pages/AboutMe/PhotoFirstSections/AboutMeSectionTwo';
 import { AboutMeSectionThree } from '/src/pages/AboutMe/SectionThree/AboutMeSectionThree';
 import { AboutMeSectionFour } from '/src/pages/AboutMe/PhotoFirstSections/AboutMeSectionFour';
+import { Footer } from '/src/components/Footer/Footer';
 
 export function AboutMe() {
   return (
@@ -23,6 +24,7 @@ export function AboutMe() {
       <AboutMeSectionTwo />
       <AboutMeSectionThree />
       <AboutMeSectionFour />
+      <Footer />
     </AboutMeContainer>
   );
 }
