@@ -13,6 +13,7 @@ const Container = styled.div`
   max-width: 100%;
 
   min-height: fit-content;
+  padding: 2em;
   border-radius: 2em;
   border: 5px solid ${solids.PINK_STARBURST};
   margin-bottom: 40px;
