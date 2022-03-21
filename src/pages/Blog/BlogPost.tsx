@@ -44,7 +44,7 @@ const UpvoteIcon = styled(ThumbsUp)`
 
 export const BlogPost = ({ post, pageData }: BlogPostProps) => {
   const [upvotes, setUpvotes] = useState(
-    (pageData.properties?.Upvotes?.number as number) || 0
+    (pageData?.properties?.Upvotes?.number as number) || 0
   );
   const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
 
