@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { NotionRenderer } from 'react-notion-x';
 import { ExtendedRecordMap } from 'notion-types';
 import {
@@ -7,35 +7,82 @@ import {
   CategoryText,
   CommentContainer,
   Divider,
+  LikeContainer,
   PostCoverContainer,
   Tag,
   TitleContainer,
+  TitleRow,
+  TitleText,
 } from '/src/pages/Blog/styled';
-import { MessageCircle } from 'react-feather';
+import { MessageCircle, ThumbsUp } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
-import {
-  Emoji,
-  MultiSelectType,
-  NotionPage,
-  PageCover,
-  Properties,
-  RichTextType,
-  TitleType,
-} from '/src/types/cms/properties';
+import { NotionPage, PageCover } from '/src/types/cms/properties';
 import Image from 'next/image';
-import { speckles } from '/design-system/colors';
+import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
+import { getApiUrl } from '/src/utils/url/getApiUrl';
+import { throttle } from '/src/utils/throttle';
+import { animateElement } from '/src/utils/animations/animate';
+import styled from 'styled-components';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
   pageData: NotionPage;
 };
 
+const getVotedLocalStorageKey = (pageId: string) => `${pageId}:voted`;
+
+const UpvoteIcon = styled(ThumbsUp)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const BlogPost = ({ post, pageData }: BlogPostProps) => {
+  const [upvotes, setUpvotes] = useState(
+    (pageData?.properties?.Upvotes?.number as number) || 0
+  );
+  const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
+
+  useEffect(() => {
+    // Set the state of the has voted feature when on the client
+    if (typeof window !== 'undefined') {
+      setHasUpvoted(
+        Boolean(localStorage.getItem(getVotedLocalStorageKey(pageData.id)))
+      );
+    }
+  }, []);
+
+  const updateLikes = useCallback(
+    throttle(1000, async () => {
+      const thumbsUp = document.getElementById('ThumbsUpButton');
+
+      animateElement({
+        node: thumbsUp as HTMLElement,
+        removeClassOnComplete: true,
+        // This references the just add water animation
+        // stylesheet linked in the document head
+        animationClassNames: ['animate__animated', 'animate__wobble'],
+      });
+
+      const currentUpvotes = upvotes;
+
+      setUpvotes(currentUpvotes + 1);
+      setHasUpvoted(true);
+      localStorage.setItem(getVotedLocalStorageKey(pageData.id), 'true');
+
+      fetch(getApiUrl(`blog/posts/${pageData.id}/like`), {
+        method: 'POST',
+        body: JSON.stringify({ upvotes: currentUpvotes + 1 }),
+      });
+    }),
+    [upvotes]
+  );
+
   if (!pageData || !post || !pageData?.cover?.type) {
     // TODO: Add 404
     return <></>;
@@ -46,13 +93,11 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
     url: speckles.PINK_STARBURST,
   };
 
-  const title = pageData.properties[Properties.Title] as TitleType;
-  const subtitle = pageData.properties[Properties.Subtitle] as RichTextType;
-  const tags = pageData.properties[Properties.Tags] as MultiSelectType;
-  const categories = pageData.properties[
-    Properties.Categories
-  ] as MultiSelectType;
-  const icon = pageData.icon as Emoji;
+  const title = pageData.properties.Title;
+  const subtitle = pageData.properties.Subtitle;
+  const tags = pageData.properties.Tags;
+  const categories = pageData.properties.Categories;
+  const { icon } = pageData;
 
   return (
     <>
@@ -63,6 +108,7 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
           content={subtitle.rich_text.map((item) => item.plain_text).join()}
         />
         <link rel="icon" href="/favicon.png" />
+
         <meta property="og:image" content={url} />
         <meta
           name="twitter:title"
@@ -88,16 +134,29 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             />
           </PostCoverContainer>
           <TitleContainer>
-            <Header3>
-              {icon?.emoji}
-              {title.title
-                .map((item) => item.plain_text)
-                .join()
-                .toUpperCase()}
-            </Header3>
-            <SubHeader1>
-              {subtitle.rich_text.map((item) => item.plain_text).join()}
-            </SubHeader1>
+            <TitleRow>
+              <TitleText>
+                <Header3>
+                  {icon?.emoji}{' '}
+                  {title.title
+                    .map((item) => item.plain_text)
+                    .join()
+                    .toUpperCase()}
+                </Header3>
+                <SubHeader1>
+                  {subtitle.rich_text.map((item) => item.plain_text).join()}
+                </SubHeader1>
+              </TitleText>
+              <LikeContainer>
+                <UpvoteIcon
+                  id="ThumbsUpButton"
+                  onClick={updateLikes}
+                  color={hasUpvoted ? solids.PINK_STARBURST : 'black'}
+                  fill={hasUpvoted ? solids.PINK_STARBURST : 'transparent'}
+                />
+                <SubHeader3>{upvotes}</SubHeader3>
+              </LikeContainer>
+            </TitleRow>
             <div
               style={{
                 display: 'flex',
@@ -118,9 +177,13 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
                   <Tag>{tag.name}</Tag>
                 ))}
               </div>
-              <CommentContainer href={pageData.url} target="_blank">
+              <CommentContainer
+                href={pageData.url
+                  .replace('www', 'prescottjr')
+                  .replace('.so/', '.site/')}
+                target="_blank">
                 <MessageCircle style={{ marginRight: '10px' }} />
-                <SubHeader3>Head over to the CMS to comment!</SubHeader3>
+                <SubHeader3>Leave a comment on Notion!</SubHeader3>
               </CommentContainer>
             </div>
           </TitleContainer>

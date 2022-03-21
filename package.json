@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"docker-compose up mongo\" \"npm-watch graph-type-gen\" \"next dev\"",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
+    "build": "NEXT_PUBLIC_WEBSITE_URL=\"https://www.prescottjr.com\" next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
