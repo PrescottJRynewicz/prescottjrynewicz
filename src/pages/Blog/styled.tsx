@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { solids, speckles, textures } from '/design-system/colors';
+import { Header3 } from '/design-system/typography';
 
 const fadeIn = keyframes`
   to {
@@ -56,6 +57,25 @@ export const PostCoverContainer = styled.div`
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const TitleText = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const TitleRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: ${Header3};
+`;
+
+export const LikeContainer = styled.div`
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  margin: 1em 0 0 10px;
 `;
 
 export const CategoryText = styled.span`

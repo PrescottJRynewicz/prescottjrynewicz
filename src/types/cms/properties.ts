@@ -8,6 +8,7 @@ export type CmsProperties =
   | 'Published'
   | 'Created'
   | 'Updated'
+  | 'Upvotes'
   | 'Author';
 
 export const Properties: Record<CmsProperties, CmsProperties> = {
@@ -19,6 +20,7 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Categories: 'Categories',
   Updated: 'Updated',
   Published: 'Published',
+  Upvotes: 'Upvotes',
 };
 
 export const PropertyMap: Record<
@@ -29,6 +31,7 @@ export const PropertyMap: Record<
   | 'date'
   | 'created_time'
   | 'last_edited_time'
+  | 'number'
   | 'people'
 > = {
   Title: 'title',
@@ -39,6 +42,7 @@ export const PropertyMap: Record<
   Created: 'created_time',
   Updated: 'last_edited_time',
   Author: 'people',
+  Upvotes: 'number',
 } as const;
 
 export type NotionTypeHelper<T> = Extract<T, { parent: {} }>;
@@ -52,6 +56,10 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
     Subtitle: Extract<
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
+    >;
+    Upvotes: Extract<
+      BaseNotionPage['properties']['number'],
+      { type: 'number' }
     >;
     Tags: Extract<
       BaseNotionPage['properties']['multi_select'],

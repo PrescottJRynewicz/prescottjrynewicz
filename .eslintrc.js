@@ -16,6 +16,7 @@ module.exports = {
   plugins: ['react', 'prettier', '@typescript-eslint'],
   rules: {
     'no-return-await': 'off',
+    'no-nested-ternary': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
