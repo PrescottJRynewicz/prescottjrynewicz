@@ -25,7 +25,7 @@ export const Footer = () => (
             <Link href="/" passHref>
               <MenuPrimaryLink>Home</MenuPrimaryLink>
             </Link>
-            <Link href="/about-me" passHref>
+            <Link href="/blog/about-me" passHref>
               <MenuPrimaryLink>About Me</MenuPrimaryLink>
             </Link>
             <Link href="/blog" passHref>

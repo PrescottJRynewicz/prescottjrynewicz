@@ -83,14 +83,14 @@ export default function Home() {
           <Title>PRESCOTT</Title>
           <Title>RYNEWICZ</Title>
           <SubTitle>
-            A bicycle, coffee, and people loving software engineer
+            A bicycle, coffee, and people-loving software engineer.
           </SubTitle>
           <NavContainer>
             <PrimaryButton
               useConfetti
               simultaneous
               confettiDuration={2000}
-              onClick={handleNav('/about-me')}>
+              onClick={handleNav('/blog/about-me')}>
               About me
             </PrimaryButton>
             <PrimaryButton

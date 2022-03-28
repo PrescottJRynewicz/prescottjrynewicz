@@ -8,7 +8,8 @@ import {
   CommentContainer,
   Divider,
   LikeContainer,
-  PostCoverContainer,
+  PostCover,
+  PublishedOnContainer,
   Tag,
   TitleContainer,
   TitleRow,
@@ -18,7 +19,6 @@ import { MessageCircle, ThumbsUp } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
 import { NotionPage, PageCover } from '/src/types/cms/properties';
-import Image from 'next/image';
 import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
@@ -54,8 +54,12 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
       setHasUpvoted(
         Boolean(localStorage.getItem(getVotedLocalStorageKey(pageData.id)))
       );
+
+      fetch(getApiUrl(`blog/posts/${pageData.id}/view`), {
+        method: 'POST',
+      });
     }
-  }, []);
+  }, [pageData?.id]);
 
   const updateLikes = useCallback(
     throttle(1000, async () => {
@@ -122,17 +126,11 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
       <PeekABoo useConfetti animationDelay={2} />
       <BlogPostContainer>
         <BlogPostContentWrapper>
-          <PostCoverContainer>
-            <Image
-              src={url}
-              layout="fill"
-              objectFit="cover"
-              priority
-              quality={100}
-              placeholder="blur"
-              blurDataURL={speckles.PINK_STARBURST}
-            />
-          </PostCoverContainer>
+          <PostCover
+            src={url}
+            alt="Cover Photo"
+            style={{ objectFit: 'cover' }}
+          />
           <TitleContainer>
             <TitleRow>
               <TitleText>
@@ -157,6 +155,17 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
                 <SubHeader3>{upvotes}</SubHeader3>
               </LikeContainer>
             </TitleRow>
+            <PublishedOnContainer>
+              Published On{' '}
+              {new Date(
+                pageData.properties.Published.date?.start || new Date()
+              ).toLocaleDateString('en-US', { dateStyle: 'medium' })}
+              {pageData.properties?.Updated?.last_edited_time &&
+                `  (Updated On ${new Date(
+                  pageData.properties?.Updated?.last_edited_time
+                ).toLocaleDateString('en-US', { dateStyle: 'medium' })})`}{' '}
+              · {(pageData.properties.Views?.number || 1) + 1} Views
+            </PublishedOnContainer>
             <div
               style={{
                 display: 'flex',

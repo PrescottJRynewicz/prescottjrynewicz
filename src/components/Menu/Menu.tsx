@@ -3,10 +3,8 @@ import Link from 'next/link';
 import Modal from 'react-modal';
 import { solids } from '/design-system/colors';
 import {
-  MenuDivider,
   MenuPrimaryLink,
   HamburgerBorder,
-  MenuSecondaryLink,
   MenuButton,
   HamburgerContainer,
 } from '/src/components/Menu/styled';
@@ -62,22 +60,22 @@ export function Menu() {
           <Link href="/" passHref>
             <MenuPrimaryLink>Home</MenuPrimaryLink>
           </Link>
-          <Link href="/about-me" passHref>
+          <Link href="/blog/about-me" passHref>
             <MenuPrimaryLink>About Me</MenuPrimaryLink>
           </Link>
           <Link href="/blog" passHref>
             <MenuPrimaryLink>Blog</MenuPrimaryLink>
           </Link>
-          <MenuDivider />
-          <Link href="/about-me#cycling" passHref>
-            <MenuSecondaryLink>Cycling</MenuSecondaryLink>
-          </Link>
-          <Link href="/about-me#coffee" passHref>
-            <MenuSecondaryLink>Coffee</MenuSecondaryLink>
-          </Link>
-          <Link href="/about-me#code" passHref>
-            <MenuSecondaryLink>Code</MenuSecondaryLink>
-          </Link>
+          {/* <MenuDivider /> */}
+          {/* <Link href="/about-me#cycling" passHref> */}
+          {/*  <MenuSecondaryLink>Cycling</MenuSecondaryLink> */}
+          {/* </Link> */}
+          {/* <Link href="/about-me#coffee" passHref> */}
+          {/*  <MenuSecondaryLink>Coffee</MenuSecondaryLink> */}
+          {/* </Link> */}
+          {/* <Link href="/about-me#code" passHref> */}
+          {/*  <MenuSecondaryLink>Code</MenuSecondaryLink> */}
+          {/* </Link> */}
         </HamburgerBorder>
       </Modal>
       <HamburgerContainer>

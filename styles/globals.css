@@ -36,3 +36,8 @@ button:hover {
     text-decoration: underline;
     cursor: pointer;
 }
+
+.notion-page {
+    font-family: "Avenir Next" !important;
+    font-weight: 400;
+}

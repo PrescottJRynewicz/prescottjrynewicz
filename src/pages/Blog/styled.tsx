@@ -54,6 +54,20 @@ export const PostCoverContainer = styled.div`
   }
 `;
 
+export const PostCover = styled.img`
+  position: relative;
+  border-radius: 40px;
+  border: solid 3px ${solids.PINK_STARBURST};
+  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+
+  @media (max-width: 700px) {
+    height: 300px;
+  }
+`;
+
 export const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,6 +76,12 @@ export const TitleContainer = styled.div`
 export const TitleText = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+export const PublishedOnContainer = styled.div`
+  color: ${solids.DARK_KNIGHT};
+  font-family: 'Avenir Next';
+  font-weight: 600;
 `;
 
 export const TitleRow = styled.div`
