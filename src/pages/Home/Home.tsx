@@ -90,7 +90,7 @@ export default function Home() {
               useConfetti
               simultaneous
               confettiDuration={2000}
-              onClick={handleNav('/about-me')}>
+              onClick={handleNav('/blog/about-me')}>
               About me
             </PrimaryButton>
             <PrimaryButton

@@ -9,6 +9,7 @@ export type CmsProperties =
   | 'Created'
   | 'Updated'
   | 'Upvotes'
+  | 'Views'
   | 'Author';
 
 export const Properties: Record<CmsProperties, CmsProperties> = {
@@ -21,29 +22,8 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Updated: 'Updated',
   Published: 'Published',
   Upvotes: 'Upvotes',
+  Views: 'Views',
 };
-
-export const PropertyMap: Record<
-  CmsProperties,
-  | 'title'
-  | 'rich_text'
-  | 'multi_select'
-  | 'date'
-  | 'created_time'
-  | 'last_edited_time'
-  | 'number'
-  | 'people'
-> = {
-  Title: 'title',
-  Subtitle: 'rich_text',
-  Tags: 'multi_select',
-  Categories: 'multi_select',
-  Published: 'date',
-  Created: 'created_time',
-  Updated: 'last_edited_time',
-  Author: 'people',
-  Upvotes: 'number',
-} as const;
 
 export type NotionTypeHelper<T> = Extract<T, { parent: {} }>;
 
@@ -61,6 +41,7 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       BaseNotionPage['properties']['number'],
       { type: 'number' }
     >;
+    Views: Extract<BaseNotionPage['properties']['number'], { type: 'number' }>;
     Tags: Extract<
       BaseNotionPage['properties']['multi_select'],
       { type: 'multi_select' }
@@ -82,18 +63,5 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
   };
 };
 export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
-export type TitleType = Extract<
-  BaseNotionPage['properties']['title'],
-  { type: 'title' }
->;
 
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
-
-export type RichTextType = Extract<
-  BaseNotionPage['properties']['rich_text'],
-  { type: 'rich_text' }
->;
-export type MultiSelectType = Extract<
-  BaseNotionPage['properties']['multi_select'],
-  { type: 'multi_select' }
->;
