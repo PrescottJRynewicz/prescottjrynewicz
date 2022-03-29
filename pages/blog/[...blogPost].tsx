@@ -7,19 +7,21 @@ import {
 import fetch from 'node-fetch';
 import { BlogPostGetResponse } from '/src/types/api/blog/posts';
 import { getApiUrl } from '/src/utils/url/getApiUrl';
-import { BlogGetResponse } from '/src/types/api/blog';
+import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 
 export default BlogPost;
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const url = getApiUrl(`blog`);
+  // const url = getApiUrl(`blog`);
 
-  const rawResult = await fetch(url, {
-    method: 'POST',
-  });
+  // const rawResult = await fetch(url, {
+  //   method: 'POST',
+  // });
 
-  const blogs: BlogGetResponse =
-    (await rawResult.json()) as unknown as BlogGetResponse;
+  // const blogs: BlogGetResponse =
+  //   (await rawResult.json()) as unknown as BlogGetResponse;
+
+  const blogs = await getBlogPosts({});
 
   const result = {
     paths: blogs.posts.map((post) => ({
