@@ -128,7 +128,14 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
       <BlogPostContainer>
         <BlogPostContentWrapper>
           <ImageWrap>
-            <Image src={url} layout="fill" quality={10} objectFit="cover" />
+            <Image
+              src={url}
+              placeholder="blur"
+              blurDataURL={speckles.PAPER}
+              layout="fill"
+              quality={100}
+              objectFit="cover"
+            />
           </ImageWrap>
           <TitleContainer>
             <TitleRow>
