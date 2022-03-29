@@ -7,14 +7,15 @@ import {
   CategoryText,
   CommentContainer,
   Divider,
+  ImageWrap,
   LikeContainer,
-  PostCover,
   PublishedOnContainer,
   Tag,
   TitleContainer,
   TitleRow,
   TitleText,
 } from '/src/pages/Blog/styled';
+import Image from 'next/image';
 import { MessageCircle, ThumbsUp } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
@@ -126,11 +127,9 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
       <PeekABoo useConfetti animationDelay={2} />
       <BlogPostContainer>
         <BlogPostContentWrapper>
-          <PostCover
-            src={url}
-            alt="Cover Photo"
-            style={{ objectFit: 'cover' }}
-          />
+          <ImageWrap>
+            <Image src={url} layout="fill" quality={10} objectFit="cover" />
+          </ImageWrap>
           <TitleContainer>
             <TitleRow>
               <TitleText>

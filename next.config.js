@@ -3,11 +3,6 @@ module.exports = {
 
   images: {
     minimumCacheTTL: 60,
-    // This is used for image sizing when optimizing next images
-    // Image sizes default to 100vw, and we almost never use
-    // full width images. And if we do, it is probably a specific
-    // use case
-    deviceSizes: [640],
     domains: [
       'www.notion.so',
       's3.us-west-2.amazonaws.com',

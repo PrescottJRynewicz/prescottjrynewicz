@@ -12,17 +12,17 @@ const api = new NotionAPI({
   authToken: notionUserTokenV2,
 });
 
+const notion = new Client({
+  auth: notionAPIKey,
+  notionVersion: '2021-05-13',
+});
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<BlogPostGetResponse | { error: string }>
 ) {
   try {
     const postName = (req.query.postId as string).replace(/-/g, ' ');
-
-    const notion = new Client({
-      auth: notionAPIKey,
-      notionVersion: '2021-05-13',
-    });
 
     const postQuery = await notion.databases.query({
       database_id: blogDatbaseId as string,

@@ -40,31 +40,19 @@ export const BlogContentWrapper = styled.div`
   max-width: 80%;
 `;
 
-export const PostCoverContainer = styled.div`
-  position: relative;
-  border-radius: 30px;
-  border: solid 3px ${solids.PINK_STARBURST};
-  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
-  overflow: hidden;
+export const ImageWrap = styled.span`
   width: 100%;
   height: 500px;
+  position: relative;
 
   @media (max-width: 700px) {
     height: 300px;
   }
-`;
 
-export const PostCover = styled.img`
-  position: relative;
-  border-radius: 40px;
-  border: solid 3px ${solids.PINK_STARBURST};
-  box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
-  overflow: hidden;
-  width: 100%;
-  height: 500px;
-
-  @media (max-width: 700px) {
-    height: 300px;
+  & > span {
+    border-radius: 30px;
+    border: solid 3px ${solids.PINK_STARBURST} !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `;
 
