@@ -4,16 +4,16 @@ import { NotionPage, Properties } from '/src/types/cms/properties';
 
 const notionAPIKey = process.env.NOTION_API_KEY;
 
+const notion = new Client({
+  auth: notionAPIKey,
+  notionVersion: '2021-05-13',
+});
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const pageId = req.query.postId as string;
-
-  const notion = new Client({
-    auth: notionAPIKey,
-    notionVersion: '2021-05-13',
-  });
 
   const pageData = (await notion.pages.retrieve({
     page_id: pageId,

@@ -10,6 +10,7 @@ export type CmsProperties =
   | 'Updated'
   | 'Upvotes'
   | 'Views'
+  | 'Cache'
   | 'Author';
 
 export const Properties: Record<CmsProperties, CmsProperties> = {
@@ -23,6 +24,7 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Published: 'Published',
   Upvotes: 'Upvotes',
   Views: 'Views',
+  Cache: 'Cache',
 };
 
 export type NotionTypeHelper<T> = Extract<T, { parent: {} }>;
@@ -37,6 +39,11 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
     >;
+    Cache: Extract<
+      BaseNotionPage['properties']['rich_text'],
+      { type: 'rich_text' }
+    >;
+
     Upvotes: Extract<
       BaseNotionPage['properties']['number'],
       { type: 'number' }

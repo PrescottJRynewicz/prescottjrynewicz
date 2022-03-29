@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { NotionRenderer } from 'react-notion-x';
-import { ExtendedRecordMap } from 'notion-types';
+import { ExtendedRecordMap, PreviewImage } from 'notion-types';
 import {
   BlogPostContainer,
   BlogPostContentWrapper,
@@ -33,6 +33,7 @@ import styled from 'styled-components';
 export type BlogPostProps = {
   post: ExtendedRecordMap;
   pageData: NotionPage;
+  coverBlurUrl?: PreviewImage;
 };
 
 const getVotedLocalStorageKey = (pageId: string) => `${pageId}:voted`;
@@ -43,11 +44,13 @@ const UpvoteIcon = styled(ThumbsUp)`
   }
 `;
 
-export const BlogPost = ({ post, pageData }: BlogPostProps) => {
+export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
   const [upvotes, setUpvotes] = useState(
     (pageData?.properties?.Upvotes?.number as number) || 0
   );
   const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
+
+  console.log(post?.preview_images);
 
   useEffect(() => {
     // Set the state of the has voted feature when on the client
@@ -131,10 +134,10 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             <Image
               src={url}
               placeholder="blur"
-              blurDataURL={speckles.MILK}
+              blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
               layout="fill"
               // tested between 25-100. Did not notice a significant difference until 25
-              quality={25}
+              quality={100}
               objectFit="cover"
             />
           </ImageWrap>
