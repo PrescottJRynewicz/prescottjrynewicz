@@ -14,7 +14,7 @@ export const BlogContainer = styled.div`
 `;
 
 export const BlogPostContainer = styled.div`
-  background-image: url(${speckles.BASIC});
+  background-image: url(${speckles.BASIC_LOW});
   display: flex;
   flex-direction: column;
   align-items: center;
