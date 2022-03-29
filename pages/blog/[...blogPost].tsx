@@ -4,22 +4,22 @@ import {
   GetStaticPropsContext,
   GetStaticPropsResult,
 } from 'next';
-import fetch from 'node-fetch';
-import { BlogPostGetResponse } from '/src/types/api/blog/posts';
-import { getApiUrl } from '/src/utils/url/getApiUrl';
-import { BlogGetResponse } from '/src/types/api/blog';
+import { getBlogPosts } from '/src/fetchers/getBlogPosts';
+import { getBlogPost } from '/src/fetchers/getPost';
 
 export default BlogPost;
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  const url = getApiUrl(`blog`);
+  // const url = getApiUrl(`blog`);
 
-  const rawResult = await fetch(url, {
-    method: 'POST',
-  });
+  // const rawResult = await fetch(url, {
+  //   method: 'POST',
+  // });
 
-  const blogs: BlogGetResponse =
-    (await rawResult.json()) as unknown as BlogGetResponse;
+  // const blogs: BlogGetResponse =
+  //   (await rawResult.json()) as unknown as BlogGetResponse;
+
+  const blogs = await getBlogPosts({});
 
   const result = {
     paths: blogs.posts.map((post) => ({
@@ -43,14 +43,22 @@ export async function getStaticProps(
 ): Promise<GetStaticPropsResult<BlogPostProps>> {
   const postName = context.params?.blogPost?.[0];
 
-  const url = getApiUrl(`blog/posts/${postName}`);
+  if (!postName) {
+    return {
+      notFound: true,
+    };
+  }
 
-  const rawResult = await fetch(url, {
-    method: 'POST',
-  });
+  // const url = getApiUrl(`blog/posts/${postName}`);
+  //
+  // const rawResult = await fetch(url, {
+  //   method: 'POST',
+  // });
+  //
+  // const blogPost: BlogPostGetResponse =
+  //   (await rawResult.json()) as unknown as BlogPostGetResponse;
 
-  const blogPost: BlogPostGetResponse =
-    (await rawResult.json()) as unknown as BlogPostGetResponse;
+  const blogPost = await getBlogPost({ name: postName });
 
   return {
     props: {
