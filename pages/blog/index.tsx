@@ -7,15 +7,6 @@ export default Blog;
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<BlogStaticProps>
 > {
-  // const url = getApiUrl(`blog`);
-  //
-  // const rawResult = await fetch(`${url}`, {
-  //   method: 'POST',
-  // });
-  //
-  // const blogPosts: BlogGetResponse =
-  //   (await rawResult.json()) as unknown as BlogGetResponse;
-
   const blogPosts = await getBlogPosts({});
 
   return {

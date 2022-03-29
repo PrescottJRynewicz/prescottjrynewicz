@@ -3,15 +3,6 @@ import { GetServerSideProps } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // const url = getApiUrl(`blog`);
-
-  // const rawResult = await fetch(`${url}`, {
-  //   method: 'POST',
-  // });
-  //
-  // const blogPosts: BlogGetResponse =
-  //   (await rawResult.json()) as unknown as BlogGetResponse;
-
   const blogPosts = await getBlogPosts({});
 
   const routes: ISitemapField[] = blogPosts.posts.map((post) => ({
