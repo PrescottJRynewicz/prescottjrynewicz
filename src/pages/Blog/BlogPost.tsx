@@ -131,7 +131,7 @@ export const BlogPost = ({ post, pageData }: BlogPostProps) => {
             <Image
               src={url}
               placeholder="blur"
-              blurDataURL={speckles.PAPER}
+              blurDataURL={speckles.MILK}
               layout="fill"
               // tested between 25-100. Did not notice a significant difference until 25
               quality={25}

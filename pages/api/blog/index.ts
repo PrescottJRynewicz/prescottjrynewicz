@@ -98,6 +98,6 @@ export default async function handler(
     console.log(error);
 
     res.status(500);
-    throw new Error('got em');
+    throw error;
   }
 }
