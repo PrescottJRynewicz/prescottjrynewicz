@@ -10,15 +10,6 @@ import { getBlogPost } from '/src/fetchers/getPost';
 export default BlogPost;
 
 export async function getStaticPaths(): Promise<GetStaticPathsResult> {
-  // const url = getApiUrl(`blog`);
-
-  // const rawResult = await fetch(url, {
-  //   method: 'POST',
-  // });
-
-  // const blogs: BlogGetResponse =
-  //   (await rawResult.json()) as unknown as BlogGetResponse;
-
   const blogs = await getBlogPosts({});
 
   const result = {
@@ -48,15 +39,6 @@ export async function getStaticProps(
       notFound: true,
     };
   }
-
-  // const url = getApiUrl(`blog/posts/${postName}`);
-  //
-  // const rawResult = await fetch(url, {
-  //   method: 'POST',
-  // });
-  //
-  // const blogPost: BlogPostGetResponse =
-  //   (await rawResult.json()) as unknown as BlogPostGetResponse;
 
   const blogPost = await getBlogPost({ name: postName });
 
