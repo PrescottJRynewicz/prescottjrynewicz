@@ -34,7 +34,7 @@ export const Code = ({
     <Parent>
       <CodeBlock
         text={code}
-        language={language}
+        language={language.toLowerCase() === 'plain text' ? 'text' : language}
         showLineNumbers
         theme={dracula}
       />
