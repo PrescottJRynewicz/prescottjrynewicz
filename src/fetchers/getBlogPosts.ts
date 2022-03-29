@@ -16,8 +16,6 @@ export async function getBlogPosts({
 }: {
   category?: string;
 }): Promise<BlogGetResponse> {
-  console.log('here');
-
   try {
     if (!blogDatbaseId) {
       throw new Error('No Blog Database ID');
