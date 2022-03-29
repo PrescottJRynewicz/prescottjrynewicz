@@ -1,7 +1,7 @@
 import React from 'react';
 import Mermaid from '/src/pages/Blog/components/Mermaid';
 import styled from 'styled-components';
-import { CodeBlock, dracula } from 'react-code-blocks';
+import { CodeBlock, dracula, tomorrowNightEighties } from 'react-code-blocks';
 
 const Container = styled.span`
   width: 100%;
@@ -36,7 +36,7 @@ export const Code = ({
         text={code}
         language={language.toLowerCase() === 'plain text' ? 'text' : language}
         showLineNumbers
-        theme={dracula}
+        theme={tomorrowNightEighties}
       />
     </Parent>
   );

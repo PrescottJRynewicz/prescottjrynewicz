@@ -49,3 +49,7 @@ button:hover {
 .notion-table-of-contents {
     color: rgba(0,0,0,0.9) !important;
 }
+
+.notion-list-numbered li {
+    padding: 0;
+}
