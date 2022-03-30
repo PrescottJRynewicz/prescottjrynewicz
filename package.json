@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"docker-compose up mongo\" \"npm-watch graph-type-gen\" \"next dev\"",
+    "dev": "next dev",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "NEXT_PUBLIC_WEBSITE_URL=\"https://www.prescottjr.com\" next build",
     "postbuild": "next-sitemap",
@@ -14,18 +14,12 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.10",
     "@notionhq/client": "^1.0.4",
-    "apollo-server-micro": "^3.6.7",
     "fast-memoize": "^2.5.2",
     "got": "^12.0.3",
-    "graphql": "^16.3.0",
     "lqip-modern": "^1.2.0",
     "mermaid": "^8.14.0",
-    "micro": "^9.3.4",
-    "mongodb": "^4.4.1",
     "next": "^12.1.2",
-    "next-auth": "^4.3.1",
     "next-sitemap": "^2.5.15",
     "node-fetch": "^3.2.3",
     "notion-client": "^6.0.23",
@@ -46,12 +40,6 @@
     "ts-essentials": "^9.1.2"
   },
   "devDependencies": {
-    "@graphql-codegen/add": "^3.1.1",
-    "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/typescript": "2.4.8",
-    "@graphql-codegen/typescript-operations": "2.3.5",
-    "@graphql-codegen/typescript-react-apollo": "3.2.11",
-    "@graphql-codegen/typescript-resolvers": "2.6.1",
     "@types/lqip-modern": "^1.1.2",
     "@types/mermaid": "^8.2.9",
     "@types/react": "17.0.43",
@@ -59,7 +47,6 @@
     "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
-    "concurrently": "^7.0.0",
     "eslint": "8.12.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "12.1.2",
@@ -70,17 +57,7 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.4.0",
     "npm-check-updates": "^12.5.4",
-    "npm-watch": "^0.11.0",
     "prettier": "^2.6.1",
     "typescript": "^4.6.3"
-  },
-  "watch": {
-    "graph-type-gen": {
-      "patterns": [
-        "*"
-      ],
-      "extensions": "graphql,yml",
-      "quiet": false
-    }
   }
 }
