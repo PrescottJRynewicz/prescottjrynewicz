@@ -210,6 +210,7 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
           <Divider />
           <NotionRenderer
             recordMap={post}
+            previewImages
             components={{
               code: Code,
             }}
