@@ -63,8 +63,11 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>PJR</title>
-        <meta name="description" content="Prescott's Playground 🎢" />
+        <title>Prescott J. Rynewicz</title>
+        <meta
+          name="description"
+          content="Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions. "
+        />
         <link rel="icon" href="/favicon.png" />
         <meta property="og:image" content="/site-image.png" />
         <meta name="twitter:title" content="PrescottJR" />
