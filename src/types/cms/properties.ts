@@ -1,4 +1,7 @@
-import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
+import {
+  GetBlockResponse,
+  GetPageResponse,
+} from '@notionhq/client/build/src/api-endpoints';
 
 export type CmsProperties =
   | 'Title'
@@ -10,7 +13,6 @@ export type CmsProperties =
   | 'Updated'
   | 'Upvotes'
   | 'Views'
-  | 'Cache'
   | 'Author';
 
 export const Properties: Record<CmsProperties, CmsProperties> = {
@@ -24,7 +26,6 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Published: 'Published',
   Upvotes: 'Upvotes',
   Views: 'Views',
-  Cache: 'Cache',
 };
 
 export type NotionTypeHelper<T> = Extract<T, { parent: {} }>;
@@ -36,10 +37,6 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
   properties: {
     Title: Extract<BaseNotionPage['properties']['title'], { type: 'title' }>;
     Subtitle: Extract<
-      BaseNotionPage['properties']['rich_text'],
-      { type: 'rich_text' }
-    >;
-    Cache: Extract<
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
     >;
@@ -72,3 +69,5 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
 export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
+
+export type ParagraphBlock = Extract<GetBlockResponse, { type: 'paragraph' }>;

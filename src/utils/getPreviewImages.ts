@@ -7,33 +7,37 @@ import { getPageImageUrls, normalizeUrl } from 'notion-utils';
 
 import { mapImageUrl } from './mapImageUrl';
 
-// NOTE: this is just an example of how to pre-compute preview images.
-// Depending on how many images you're working with, this can potentially be
-// very expensive to recompute, so in production we recommend that you cache
-// the preview image results in a key-value database of your choosing.
-// If you're not sure where to start, check out https://github.com/jaredwray/keyv
-
+/**
+ * This function is inspired by https://github.com/transitive-bullshit/nextjs-notion-starter-kit/blob/85e2336a6f361887a3c2650d413ae52ea1262076/lib/preview-images.ts#L9
+ *
+ * It will take an initial record map of notion blocks, and create base64
+ * blur image preview for each one.
+ *
+ * @param recordMap
+ * @param cache
+ */
 export async function getPreviewImageMap(
   recordMap: ExtendedRecordMap,
   cache: Record<string, PreviewImage>
-): Promise<{ previewImagesMap: PreviewImageMap; shouldUpdateCache: boolean }> {
+): Promise<{
+  previewImagesMap: PreviewImageMap;
+  newCache: Record<string, PreviewImage>;
+}> {
   const urls: string[] = getPageImageUrls(recordMap, {
     mapImageUrl,
   }).filter(Boolean);
 
-  let shouldUpdateCache = false;
+  const newCache: Record<string, PreviewImage> = {};
 
   const map = await pMap(
     urls,
     async (url) => {
       const cacheKey = normalizeUrl(url);
       const previewImage = await getPreviewImage(url, { cacheKey }, cache);
-      if (previewImage?.dataURIBase64 !== cache[cacheKey]?.dataURIBase64) {
-        if (previewImage) {
-          cache[cacheKey] = previewImage;
-          shouldUpdateCache = true;
-        }
+      if (previewImage) {
+        newCache[cacheKey] = previewImage;
       }
+
       return [cacheKey, previewImage];
     },
     {
@@ -41,13 +45,9 @@ export async function getPreviewImageMap(
     }
   );
 
-  if (shouldUpdateCache) {
-    console.log('should update cache here');
-  }
-
   const previewImagesMap: PreviewImageMap = Object.fromEntries(map);
 
-  return { previewImagesMap, shouldUpdateCache };
+  return { previewImagesMap, newCache };
 }
 
 async function createPreviewImage(
@@ -56,13 +56,9 @@ async function createPreviewImage(
   cache: Record<string, PreviewImage>
 ): Promise<PreviewImage | null> {
   try {
-    try {
-      const cachedPreviewImage = cache[cacheKey];
-      if (cachedPreviewImage) {
-        return cachedPreviewImage;
-      }
-    } catch {
-      // ignore redis errors
+    const cachedPreviewImage = cache[cacheKey];
+    if (cachedPreviewImage) {
+      return cachedPreviewImage;
     }
 
     const { body } = await got(url, { responseType: 'buffer' });

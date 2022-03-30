@@ -14,7 +14,8 @@ import { speckles } from '/design-system/colors';
 import { PageCover } from '/src/types/cms/properties';
 import { normalizeUrl } from 'notion-utils';
 import { PreviewImage } from 'notion-types';
-import { updateImageCache } from '/src/fetchers/updateImageCache';
+import { getImageCache } from '/src/fetchers/getImageCache';
+import { setImageCache } from '/src/fetchers/setImageCache';
 
 export default BlogPost;
 
@@ -49,61 +50,67 @@ export async function getStaticProps(
     };
   }
 
-  const blogPost = await getBlogPost({ name: postName });
-
-  const { post, pageData } = blogPost;
-
-  let cache: Record<string, PreviewImage> = {};
-
   try {
-    const cacheString = pageData.properties.Cache?.rich_text
-      .map((item) => item.plain_text)
-      .join();
+    const blogPost = await getBlogPost({ name: postName });
 
-    cache = JSON.parse(cacheString);
-  } catch (err) {
-    cache = {};
-  }
+    const { post, pageData } = blogPost;
 
-  const { previewImagesMap, shouldUpdateCache } = await getPreviewImageMap(
-    post,
-    cache
-  );
+    let cache: Record<string, PreviewImage> = {};
 
-  const coverPhoto = pageData.cover as PageCover;
-  const { url } = coverPhoto?.[coverPhoto?.type] || {
-    url: speckles.PINK_STARBURST,
-  };
-
-  const coverCacheKey = normalizeUrl(url);
-  const coverPreview = await getPreviewImage(
-    url,
-    { cacheKey: coverCacheKey },
-    cache
-  );
-
-  post.preview_images = previewImagesMap;
-
-  if (
-    shouldUpdateCache ||
-    coverPreview?.dataURIBase64 !== cache[coverCacheKey]?.dataURIBase64
-  ) {
-    // should update cache here.
-    console.log('going to update cache');
-
-    if (coverPreview) {
-      cache[coverCacheKey] = { ...coverPreview };
+    const { combinedText, blockIds } = await getImageCache(pageData.id);
+    try {
+      cache = JSON.parse(combinedText);
+    } catch (err) {
+      cache = {};
     }
 
-    updateImageCache(cache, pageData.id);
-  }
-
-  return {
-    props: {
+    const { previewImagesMap, newCache } = await getPreviewImageMap(
       post,
-      pageData,
-      coverBlurUrl: coverPreview || undefined,
-    },
-    revalidate: 10,
-  };
+      cache
+    );
+
+    const coverPhoto = pageData.cover as PageCover;
+    const { url } = coverPhoto?.[coverPhoto?.type] || {
+      url: speckles.MILK,
+    };
+
+    const coverCacheKey = normalizeUrl(url);
+    const coverPreview = await getPreviewImage(
+      url,
+      { cacheKey: coverCacheKey },
+      cache
+    );
+
+    newCache[coverCacheKey] = coverPreview as PreviewImage;
+
+    post.preview_images = previewImagesMap;
+
+    const newCacheString = Object.entries(newCache)
+      .map((value) => value)
+      .sort()
+      .toString();
+    const oldCacheString = Object.entries(cache)
+      .map((value) => value)
+      .sort()
+      .toString();
+
+    if (oldCacheString !== newCacheString) {
+      setImageCache(newCache, blockIds, pageData.id).catch(console.error);
+    }
+
+    return {
+      props: {
+        post,
+        pageData,
+        coverBlurUrl: coverPreview || undefined,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.log('error getting static props');
+
+    return {
+      notFound: true,
+    };
+  }
 }
