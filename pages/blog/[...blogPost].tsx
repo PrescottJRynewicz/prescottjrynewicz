@@ -6,6 +6,7 @@ import {
 } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { getBlogPost } from '/src/fetchers/getPost';
+import { imageBlurCaching } from '/src/fetchers/imageBlurCaching';
 
 export default BlogPost;
 
@@ -40,12 +41,31 @@ export async function getStaticProps(
     };
   }
 
-  const blogPost = await getBlogPost({ name: postName });
+  try {
+    const blogPost = await getBlogPost({ name: postName });
 
-  return {
-    props: {
-      ...blogPost,
-    },
-    revalidate: 10,
-  };
+    const { post, pageData } = blogPost;
+
+    const { previewImagesMap, coverPreview } = await imageBlurCaching({
+      post,
+      pageData,
+    });
+
+    post.preview_images = previewImagesMap;
+
+    return {
+      props: {
+        post,
+        pageData,
+        coverBlurUrl: coverPreview || undefined,
+      },
+      revalidate: 10,
+    };
+  } catch (error) {
+    console.log('error getting static props');
+
+    return {
+      notFound: true,
+    };
+  }
 }

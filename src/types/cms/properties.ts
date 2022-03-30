@@ -1,4 +1,7 @@
-import { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
+import {
+  GetBlockResponse,
+  GetPageResponse,
+} from '@notionhq/client/build/src/api-endpoints';
 
 export type CmsProperties =
   | 'Title'
@@ -37,6 +40,7 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
     >;
+
     Upvotes: Extract<
       BaseNotionPage['properties']['number'],
       { type: 'number' }
@@ -65,3 +69,5 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
 export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
+
+export type ParagraphBlock = Extract<GetBlockResponse, { type: 'paragraph' }>;

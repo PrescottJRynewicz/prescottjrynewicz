@@ -43,7 +43,7 @@ button:hover {
 }
 
 .notion-callout {
-    --notion-gray_background_co: white;
+    --notion-gray_background_co: rgb(241, 241, 239);
 }
 
 .notion-table-of-contents {
