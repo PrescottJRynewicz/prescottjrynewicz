@@ -135,7 +135,7 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
               blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
               layout="fill"
               // tested between 25-100. Did not notice a significant difference until 25
-              quality={100}
+              quality={25}
               objectFit="cover"
             />
           </ImageWrap>
