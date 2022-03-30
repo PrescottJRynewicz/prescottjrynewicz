@@ -50,8 +50,6 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
   );
   const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
 
-  console.log(post?.preview_images);
-
   useEffect(() => {
     // Set the state of the has voted feature when on the client
     if (typeof window !== 'undefined') {
@@ -212,7 +210,7 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
             recordMap={post}
             previewImages
             components={{
-              code: Code,
+              Code,
             }}
           />
         </BlogPostContentWrapper>

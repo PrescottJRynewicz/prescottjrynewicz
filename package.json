@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
-    "@notionhq/client": "^1.0.2",
+    "@notionhq/client": "^1.0.4",
     "@reonomy/react-confetti-explosion": "^1.0.3",
     "apollo-server-micro": "^3.0.1",
     "fast-memoize": "^2.5.2",
@@ -38,7 +38,7 @@
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
     "react-modal": "^3.14.3",
-    "react-notion-x": "^4.16.2",
+    "react-notion-x": "^6.0.22",
     "react-spring": "^9.2.4",
     "styled-components": "^5.3.0",
     "swr": "^0.5.6",

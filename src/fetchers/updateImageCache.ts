@@ -6,7 +6,6 @@ const notionAPIKey = process.env.NOTION_API_KEY;
 
 const notion = new Client({
   auth: notionAPIKey,
-  notionVersion: '2021-05-13',
 });
 
 export async function updateImageCache(

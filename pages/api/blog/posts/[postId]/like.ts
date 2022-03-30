@@ -14,7 +14,6 @@ export default async function handler(
 
   const notion = new Client({
     auth: notionAPIKey,
-    notionVersion: '2021-05-13',
   });
 
   const pageData = (await notion.pages.retrieve({

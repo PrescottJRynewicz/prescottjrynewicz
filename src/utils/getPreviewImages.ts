@@ -59,7 +59,6 @@ async function createPreviewImage(
     try {
       const cachedPreviewImage = cache[cacheKey];
       if (cachedPreviewImage) {
-        console.log('using cache');
         return cachedPreviewImage;
       }
     } catch {
