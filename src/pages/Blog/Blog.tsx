@@ -34,7 +34,7 @@ const CategoryLink = styled.a`
   }
 `;
 
-export const Blog = (props: BlogStaticProps) => {
+export function Blog(props: BlogStaticProps) {
   const isCategoryPage = !!props.category;
 
   return (
@@ -108,4 +108,4 @@ export const Blog = (props: BlogStaticProps) => {
       <Footer />
     </BlogContainer>
   );
-};
+}

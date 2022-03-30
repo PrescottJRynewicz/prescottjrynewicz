@@ -17,7 +17,7 @@ import {
 } from '/src/pages/AboutMe/SectionOne/styled';
 import { useRouter } from 'next/router';
 
-export const AboutMeSectionOne = () => {
+export function AboutMeSectionOne() {
   const router = useRouter();
 
   const handleNav = useCallback(
@@ -82,4 +82,4 @@ export const AboutMeSectionOne = () => {
       </ContentContainer>
     </TopSectionContainer>
   );
-};
+}

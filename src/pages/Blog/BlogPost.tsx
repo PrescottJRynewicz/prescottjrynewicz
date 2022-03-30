@@ -91,7 +91,7 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
 
   if (!pageData || !post || !pageData?.cover?.type) {
     // TODO: Add 404
-    return <></>;
+    return null;
   }
 
   const coverPhoto = pageData.cover as PageCover;
