@@ -44,7 +44,7 @@ const UpvoteIcon = styled(ThumbsUp)`
   }
 `;
 
-export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
+export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
   const [upvotes, setUpvotes] = useState(
     (pageData?.properties?.Upvotes?.number as number) || 0
   );
@@ -52,7 +52,7 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
 
   useEffect(() => {
     // Set the state of the has voted feature when on the client
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && pageData?.id) {
       setHasUpvoted(
         Boolean(localStorage.getItem(getVotedLocalStorageKey(pageData.id)))
       );
@@ -91,7 +91,7 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
 
   if (!pageData || !post || !pageData?.cover?.type) {
     // TODO: Add 404
-    return <></>;
+    return null;
   }
 
   const coverPhoto = pageData.cover as PageCover;
@@ -218,4 +218,4 @@ export const BlogPost = ({ post, pageData, coverBlurUrl }: BlogPostProps) => {
       </BlogPostContainer>
     </>
   );
-};
+}

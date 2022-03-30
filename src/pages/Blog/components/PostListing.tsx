@@ -62,31 +62,35 @@ const TagContainer = styled(PillContainer)`
   margin-top: 0;
 `;
 
-export const PostListing = ({ post }: { post: NotionPage }) => (
-  <Container>
-    <TitleContainer>
-      <SubHeaderOne>
-        {post.icon.emoji}{' '}
-        {post.properties.Title.title.map((item) => item.plain_text).join()}
-        {'  '}
-      </SubHeaderOne>
-      <SubHeader1Light>
-        {' '}
-        {new Date(post.properties.Created.created_time).toDateString()}
-      </SubHeader1Light>
-    </TitleContainer>
-    <SubHeaderTwo style={{ color: solids.PINK_STARBURST }}>
-      {post.properties.Subtitle.rich_text.map((item) => item.plain_text).join()}
-    </SubHeaderTwo>
-    <PillContainer>
-      {post.properties.Categories.multi_select.map((cat) => (
-        <CategoryText key={cat.name}>{cat.name}</CategoryText>
-      ))}
-      <TagContainer>
-        {post.properties.Tags.multi_select.map((tag) => (
-          <Tag key={tag.name}>{tag.name}</Tag>
+export function PostListing({ post }: { post: NotionPage }) {
+  return (
+    <Container>
+      <TitleContainer>
+        <SubHeaderOne>
+          {post.icon.emoji}{' '}
+          {post.properties.Title.title.map((item) => item.plain_text).join()}
+          {'  '}
+        </SubHeaderOne>
+        <SubHeader1Light>
+          {' '}
+          {new Date(post.properties.Created.created_time).toDateString()}
+        </SubHeader1Light>
+      </TitleContainer>
+      <SubHeaderTwo style={{ color: solids.PINK_STARBURST }}>
+        {post.properties.Subtitle.rich_text
+          .map((item) => item.plain_text)
+          .join()}
+      </SubHeaderTwo>
+      <PillContainer>
+        {post.properties.Categories.multi_select.map((cat) => (
+          <CategoryText key={cat.name}>{cat.name}</CategoryText>
         ))}
-      </TagContainer>
-    </PillContainer>
-  </Container>
-);
+        <TagContainer>
+          {post.properties.Tags.multi_select.map((tag) => (
+            <Tag key={tag.name}>{tag.name}</Tag>
+          ))}
+        </TagContainer>
+      </PillContainer>
+    </Container>
+  );
+}

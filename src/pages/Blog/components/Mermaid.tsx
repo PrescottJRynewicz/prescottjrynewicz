@@ -4,8 +4,6 @@ import { fonts } from '/design-system/typography';
 
 mermaid.initialize({
   startOnLoad: true,
-  theme: 'neutral',
-  securityLevel: 'loose',
   fontFamily: `${fonts.Brandon} !important `,
 });
 

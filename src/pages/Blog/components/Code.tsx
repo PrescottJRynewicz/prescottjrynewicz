@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Mermaid from '/src/pages/Blog/components/Mermaid';
 import styled from 'styled-components';
 import { CodeBlock, dracula, tomorrowNightEighties } from 'react-code-blocks';
@@ -14,9 +14,11 @@ const MermaidContainer = styled.span`
   border-radius: 5px;
 `;
 
-const Parent: React.FC = ({ children }) => <Container>{children}</Container>;
+function Parent({ children }: { children: ReactNode }) {
+  return <Container>{children}</Container>;
+}
 
-export const Code = ({ block }: { block: Block }) => {
+export function Code({ block }: { block: Block }) {
   const { title, language } = (block as CodeBlockType).properties;
 
   if (language && language[0] && language[0][0]) {
@@ -50,4 +52,4 @@ export const Code = ({ block }: { block: Block }) => {
     );
   }
   return null;
-};
+}

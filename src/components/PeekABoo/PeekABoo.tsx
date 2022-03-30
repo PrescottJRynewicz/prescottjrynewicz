@@ -41,11 +41,13 @@ const CustomImage = styled(Image)`
   border-radius: 100px;
 `;
 
-export const PeekABoo = (
+export function PeekABoo(
   props: React.ComponentProps<typeof NakedButton> &
     Props & { ref?: RefObject<HTMLButtonElement> }
-) => (
-  <PeekABooWrapper {...props}>
-    <CustomImage src="/peek-a-boo.png" layout="fill" quality={5} />
-  </PeekABooWrapper>
-);
+) {
+  return (
+    <PeekABooWrapper {...props}>
+      <CustomImage src="/peek-a-boo.png" layout="fill" quality={5} />
+    </PeekABooWrapper>
+  );
+}
