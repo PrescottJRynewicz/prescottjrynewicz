@@ -1,6 +1,0 @@
-
-
-enum DbCollections {
-    Users
-    VerificationRequests
-}
