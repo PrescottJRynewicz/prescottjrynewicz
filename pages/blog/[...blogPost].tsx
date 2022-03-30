@@ -6,7 +6,7 @@ import {
 } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { getBlogPost } from '/src/fetchers/getPost';
-import { imageBlurCaching } from '/src/fetchers/imageBlugCaching';
+import { imageBlurCaching } from '/src/fetchers/imageBlurCaching';
 
 export default BlogPost;
 
