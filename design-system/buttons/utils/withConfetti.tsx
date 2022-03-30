@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useCallback } from 'react';
 import { useStateRef } from '/src/hooks/useStateRef';
-import ConfettiExplosion from '@reonomy/react-confetti-explosion';
+import ConfettiExplosion from 'react-confetti-explosion';
 import { StyledComponent } from 'styled-components';
 
 /**
