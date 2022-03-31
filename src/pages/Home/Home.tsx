@@ -103,8 +103,6 @@ export default function Home() {
               onClick={handleNav('/blog')}>
               Blog
             </PrimaryButton>
-            {/* <PrimaryButton useConfetti>Business</PrimaryButton> */}
-            {/* <PrimaryButton useConfetti>Casual</PrimaryButton> */}
           </NavContainer>
         </TitleContainer>
       </Container>
