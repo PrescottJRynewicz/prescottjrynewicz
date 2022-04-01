@@ -13,6 +13,7 @@ export type CmsProperties =
   | 'Updated'
   | 'Upvotes'
   | 'Views'
+  | 'CacheId'
   | 'Author';
 
 export const Properties: Record<CmsProperties, CmsProperties> = {
@@ -25,6 +26,7 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Updated: 'Updated',
   Published: 'Published',
   Upvotes: 'Upvotes',
+  CacheId: 'CacheId',
   Views: 'Views',
 };
 
@@ -40,7 +42,6 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
     >;
-
     Upvotes: Extract<
       BaseNotionPage['properties']['number'],
       { type: 'number' }
@@ -64,6 +65,10 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       { type: 'last_edited_time' }
     >;
     Author: Extract<BaseNotionPage['properties']['people'], { type: 'people' }>;
+    CacheId: Extract<
+      BaseNotionPage['properties']['rich_text'],
+      { type: 'rich_text' }
+    >;
   };
 };
 export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
@@ -71,3 +76,7 @@ export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
 
 export type ParagraphBlock = Extract<GetBlockResponse, { type: 'paragraph' }>;
+export type RichTextProperty = Extract<
+  BaseNotionPage['properties']['rich_text'],
+  { type: 'rich_text' }
+>;
