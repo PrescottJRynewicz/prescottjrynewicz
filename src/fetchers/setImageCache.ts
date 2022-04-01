@@ -57,6 +57,9 @@ export async function setImageCache(
       }
     }
 
+    // Remove excess blocks still remaining.
+    // This covers the use case if a post removes images.
+    // Dangling strings will create improperly formatted JSONs.
     if (blockIds.length > cacheChunks.length) {
       for (
         let index = cacheChunks.length;
