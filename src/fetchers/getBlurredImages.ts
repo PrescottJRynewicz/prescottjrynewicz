@@ -52,6 +52,7 @@ export async function getBlurredImages({
     .toString();
 
   if (oldCacheString !== newCacheString) {
+    console.log('updating image cache for page', pageData.id);
     setImageCache(newCache, blockIds, pageData).catch(console.error);
   }
 
