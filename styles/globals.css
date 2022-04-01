@@ -40,6 +40,7 @@ button:hover {
 .notion-page {
     font-family: sans-serif !important;
     font-weight: 400;
+
 }
 
 .notion-callout {
@@ -56,4 +57,9 @@ button:hover {
 
 code {
     font-family: monospace !important;
+}
+
+
+.notion-simple-table td {
+    border: 2px solid darkslategray !important;
 }
