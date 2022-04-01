@@ -17,21 +17,14 @@ import { setImageCache } from '/src/fetchers/setImageCache';
  * @param post
  * @param pageData
  */
-export async function imageBlurCaching({
+export async function getBlurredImages({
   post,
   pageData,
 }: {
   post: ExtendedRecordMap;
   pageData: NotionPage;
 }) {
-  let cache: Record<string, PreviewImage> = {};
-
-  const { combinedText, blockIds } = await getImageCache(pageData.id);
-  try {
-    cache = JSON.parse(combinedText);
-  } catch (err) {
-    cache = {};
-  }
+  const { cache, blockIds } = await getImageCache(pageData);
 
   const { previewImagesMap, newCache } = await getPreviewImageMap(post, cache);
 
@@ -59,7 +52,7 @@ export async function imageBlurCaching({
     .toString();
 
   if (oldCacheString !== newCacheString) {
-    setImageCache(newCache, blockIds, pageData.id).catch(console.error);
+    setImageCache(newCache, blockIds, pageData).catch(console.error);
   }
 
   return {

@@ -1,7 +1,7 @@
 import { PreviewImage } from 'notion-types';
 import { Client } from '@notionhq/client';
 import { chunk } from '/src/utils/chunk';
-import { ParagraphBlock } from '/src/types/cms/properties';
+import { NotionPage, ParagraphBlock } from '/src/types/cms/properties';
 import { getKeyBlock } from '/src/fetchers/getKeyBlock';
 
 const notionAPIKey = process.env.NOTION_API_KEY;
@@ -19,10 +19,10 @@ const notion = new Client({
 export async function setImageCache(
   cache: Record<string, PreviewImage>,
   blockIds: string[],
-  postId: string
+  pageData: NotionPage
 ) {
   try {
-    const keyBlock: ParagraphBlock = await getKeyBlock(postId);
+    const keyBlock: ParagraphBlock = await getKeyBlock(pageData);
 
     const cacheString = JSON.stringify(cache);
 

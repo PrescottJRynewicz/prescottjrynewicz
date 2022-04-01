@@ -6,7 +6,7 @@ import {
 } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { getBlogPost } from '/src/fetchers/getPost';
-import { imageBlurCaching } from '/src/fetchers/imageBlurCaching';
+import { getBlurredImages } from '/src/fetchers/getBlurredImages';
 
 export default BlogPost;
 
@@ -46,7 +46,7 @@ export async function getStaticProps(
 
     const { post, pageData } = blogPost;
 
-    const { previewImagesMap, coverPreview } = await imageBlurCaching({
+    const { previewImagesMap, coverPreview } = await getBlurredImages({
       post,
       pageData,
     });
@@ -63,6 +63,7 @@ export async function getStaticProps(
     };
   } catch (error) {
     console.log('error getting static props');
+    console.log(error);
 
     return {
       notFound: true,

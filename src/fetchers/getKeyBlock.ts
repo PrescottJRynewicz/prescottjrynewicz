@@ -1,5 +1,10 @@
-import { ParagraphBlock } from '/src/types/cms/properties';
+import {
+  NotionPage,
+  ParagraphBlock,
+  Properties,
+} from '/src/types/cms/properties';
 import { Client } from '@notionhq/client';
+import { combineRichText } from '/src/utils/combineRichText';
 
 const imageCachePageId = process.env.IMAGE_CACHE_PAGE_ID as string;
 const notionAPIKey = process.env.NOTION_API_KEY;
@@ -14,30 +19,25 @@ const notion = new Client({
  * It will search through the image cache page, and find the block
  * @param postId
  */
-export async function getKeyBlock(postId: string) {
-  let iterations = 0;
-  let hasMore = true;
-  let nextCursor: string | undefined;
+export async function getKeyBlock(pageData: NotionPage) {
+  const postId = pageData.id;
 
-  while (hasMore && iterations <= 100) {
-    // eslint-disable-next-line no-await-in-loop
-    const results = await notion.blocks.children.list({
-      block_id: imageCachePageId,
-      start_cursor: nextCursor,
-    });
+  const upToDatePageData = (await notion.pages.retrieve({
+    page_id: postId,
+  })) as NotionPage;
 
-    const foundBlock = (results.results as ParagraphBlock[]).find(
-      (block) =>
-        block.paragraph.rich_text.map((item) => item.plain_text).join('') ===
-        postId
-    );
-    if (foundBlock) {
-      return foundBlock as ParagraphBlock;
+  const cacheId = combineRichText(upToDatePageData?.properties?.CacheId);
+
+  if (cacheId) {
+    const keyBlock = (await notion.blocks
+      .retrieve({
+        block_id: cacheId,
+      })
+      .catch(() => null)) as ParagraphBlock;
+
+    if (keyBlock && !keyBlock?.archived) {
+      return keyBlock as ParagraphBlock;
     }
-
-    iterations += 1;
-    nextCursor = results.next_cursor || undefined;
-    hasMore = results.has_more;
   }
 
   // if we are here, we do not have a key block
@@ -57,5 +57,21 @@ export async function getKeyBlock(postId: string) {
     ],
   });
 
-  return result.results[0] as ParagraphBlock;
+  const keyBlock = result.results[0] as ParagraphBlock;
+
+  await notion.pages.update({
+    page_id: postId,
+    properties: {
+      [Properties.CacheId]: {
+        type: 'rich_text',
+        rich_text: [
+          {
+            text: { content: keyBlock.id },
+          },
+        ],
+      },
+    },
+  });
+
+  return keyBlock;
 }

@@ -1,7 +1,8 @@
 import { Client } from '@notionhq/client';
-import { ParagraphBlock } from '/src/types/cms/properties';
+import { NotionPage, ParagraphBlock } from '/src/types/cms/properties';
 import { getKeyBlock } from '/src/fetchers/getKeyBlock';
 import { paginateNotion } from '/src/utils/paginateNotion';
+import { PreviewImage } from 'notion-types';
 
 const notionAPIKey = process.env.NOTION_API_KEY;
 
@@ -14,10 +15,10 @@ const notion = new Client({
  * @param postId
  */
 export async function getImageCache(
-  postId: string
-): Promise<{ blockIds: string[]; combinedText: string }> {
+  pageData: NotionPage
+): Promise<{ blockIds: string[]; cache: Record<string, PreviewImage> }> {
   try {
-    const keyBlock: ParagraphBlock = await getKeyBlock(postId);
+    const keyBlock: ParagraphBlock = await getKeyBlock(pageData);
 
     if (keyBlock.has_children) {
       const { results: blocks } = await paginateNotion<
@@ -35,12 +36,18 @@ export async function getImageCache(
         )
         .join('');
 
-      return { blockIds, combinedText };
+      try {
+        return { blockIds, cache: JSON.parse(combinedText) };
+      } catch (error) {
+        console.log('error unserializing image cache');
+        console.log(error);
+      }
     }
 
-    return { blockIds: [], combinedText: '' };
+    return { blockIds: [], cache: {} };
   } catch (error) {
     console.log('error fetching image cache');
-    return { blockIds: [], combinedText: '' };
+    console.log(error);
+    return { blockIds: [], cache: {} };
   }
 }
