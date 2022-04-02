@@ -30,12 +30,17 @@ import { throttle } from '/src/utils/throttle';
 import { animateElement } from '/src/utils/animations/animate';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
   pageData: NotionPage;
   coverBlurUrl?: PreviewImage;
 };
+
+const fetcher = (...args: any[]) =>
+  // @ts-ignore
+  fetch(...args).then(async (res) => await res.json());
 
 const getVotedLocalStorageKey = (pageId: string) => `${pageId}:voted`;
 
@@ -49,9 +54,26 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
   const [upvotes, setUpvotes] = useState(
     (pageData?.properties?.Upvotes?.number as number) || 0
   );
+  const [views, setViews] = useState(
+    (pageData?.properties?.Views?.number as number) || 0
+  );
   const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
 
   const router = useRouter();
+
+  const results = useSWR<{ pageData: NotionPage }>(
+    getApiUrl(`blog/posts/${pageData?.id}`),
+    fetcher
+  );
+
+  useEffect(() => {
+    if (results?.data?.pageData?.properties?.Upvotes?.number) {
+      setUpvotes(results.data.pageData.properties.Upvotes.number);
+    }
+    if (results?.data?.pageData?.properties?.Views?.number) {
+      setViews(results.data.pageData.properties.Views.number);
+    }
+  }, [results?.data?.pageData]);
 
   useEffect(() => {
     // Set the state of the has voted feature when on the client
@@ -183,7 +205,7 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
                 `  (Updated On ${new Date(
                   pageData.properties?.Updated?.last_edited_time
                 ).toLocaleDateString('en-US', { dateStyle: 'medium' })})`}{' '}
-              · {(pageData.properties.Views?.number || 1) + 1} Views
+              · {(views || 1) + 1} Views
             </PublishedOnContainer>
             <div
               style={{

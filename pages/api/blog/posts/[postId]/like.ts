@@ -4,6 +4,10 @@ import { NotionPage, Properties } from '/src/types/cms/properties';
 
 const notionAPIKey = process.env.NOTION_API_KEY;
 
+const notion = new Client({
+  auth: notionAPIKey,
+});
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -11,10 +15,6 @@ export default async function handler(
   const pageId = req.query.postId as string;
   const body = JSON.parse(req.body);
   const { upvotes } = body;
-
-  const notion = new Client({
-    auth: notionAPIKey,
-  });
 
   const pageData = (await notion.pages.retrieve({
     page_id: pageId,
