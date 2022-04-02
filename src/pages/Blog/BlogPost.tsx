@@ -25,10 +25,11 @@ import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
-import { getApiUrl } from '/src/utils/url/getApiUrl';
+import { getApiUrl, getUrl } from '/src/utils/url/getApiUrl';
 import { throttle } from '/src/utils/throttle';
 import { animateElement } from '/src/utils/animations/animate';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
@@ -49,6 +50,8 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
     (pageData?.properties?.Upvotes?.number as number) || 0
   );
   const [hasUpvoted, setHasUpvoted] = useState(Boolean(false));
+
+  const router = useRouter();
 
   useEffect(() => {
     // Set the state of the has voted feature when on the client
@@ -118,6 +121,9 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
           href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22100%22>${icon?.emoji}</text></svg>`}
         />
 
+        <meta name="robots" content="index, follow, all" />
+        <link rel="canonical" href={getUrl(router.asPath)} />
+
         <meta property="og:image" content={url} />
         <meta
           name="twitter:title"
@@ -145,16 +151,18 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
           <TitleContainer>
             <TitleRow>
               <TitleText>
-                <Header3>
-                  {icon?.emoji}{' '}
-                  {title.title
-                    .map((item) => item.plain_text)
-                    .join()
-                    .toUpperCase()}
-                </Header3>
-                <SubHeader1>
-                  {subtitle.rich_text.map((item) => item.plain_text).join()}
-                </SubHeader1>
+                <header>
+                  <Header3>
+                    {icon?.emoji}{' '}
+                    {title.title
+                      .map((item) => item.plain_text)
+                      .join()
+                      .toUpperCase()}
+                  </Header3>
+                  <SubHeader1>
+                    {subtitle.rich_text.map((item) => item.plain_text).join()}
+                  </SubHeader1>
+                </header>
               </TitleText>
               <LikeContainer>
                 <UpvoteIcon

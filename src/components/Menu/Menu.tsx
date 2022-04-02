@@ -56,27 +56,19 @@ export function Menu() {
         shouldCloseOnOverlayClick
         style={customStyles}
         contentLabel="Example Modal">
-        <HamburgerBorder>
-          <Link href="/" passHref>
-            <MenuPrimaryLink>Home</MenuPrimaryLink>
-          </Link>
-          <Link href="/blog/about-me" passHref>
-            <MenuPrimaryLink>About Me</MenuPrimaryLink>
-          </Link>
-          <Link href="/blog" passHref>
-            <MenuPrimaryLink>Blog</MenuPrimaryLink>
-          </Link>
-          {/* <MenuDivider /> */}
-          {/* <Link href="/about-me#cycling" passHref> */}
-          {/*  <MenuSecondaryLink>Cycling</MenuSecondaryLink> */}
-          {/* </Link> */}
-          {/* <Link href="/about-me#coffee" passHref> */}
-          {/*  <MenuSecondaryLink>Coffee</MenuSecondaryLink> */}
-          {/* </Link> */}
-          {/* <Link href="/about-me#code" passHref> */}
-          {/*  <MenuSecondaryLink>Code</MenuSecondaryLink> */}
-          {/* </Link> */}
-        </HamburgerBorder>
+        <nav>
+          <HamburgerBorder>
+            <Link href="/" passHref>
+              <MenuPrimaryLink>Home</MenuPrimaryLink>
+            </Link>
+            <Link href="/blog/about-me" passHref>
+              <MenuPrimaryLink>About Me</MenuPrimaryLink>
+            </Link>
+            <Link href="/blog" passHref>
+              <MenuPrimaryLink>Blog</MenuPrimaryLink>
+            </Link>
+          </HamburgerBorder>
+        </nav>
       </Modal>
       <HamburgerContainer>
         <svg

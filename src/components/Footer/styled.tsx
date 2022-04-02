@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { solids, speckles } from '/design-system/colors';
 
-export const FooterContainer = styled.div`
+export const FooterContainer = styled.footer`
   align-items: center;
   background-image: url(${speckles.PINK_STARBURST});
   display: flex;
@@ -59,7 +59,7 @@ export const MainContent = styled.div`
   }
 `;
 
-export const MenuContainer = styled.div`
+export const MenuContainer = styled.nav`
   text-align: right;
   color: white;
   display: flex;

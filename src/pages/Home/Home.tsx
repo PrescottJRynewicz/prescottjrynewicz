@@ -16,6 +16,7 @@ import { useRouter } from 'next/router';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { animateElement } from '/src/utils/animations/animate';
 import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
+import { getUrl } from '/src/utils/url/getApiUrl';
 
 export default function Home() {
   const router = useRouter();
@@ -68,6 +69,9 @@ export default function Home() {
           name="description"
           content="Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions. "
         />
+        <meta name="robots" content="index, follow, all" />
+
+        <link rel="canonical" href={getUrl(router.asPath)} />
         <link rel="icon" href="/favicon.png" />
         <meta property="og:image" content="/site-image.png" />
         <meta name="twitter:title" content="PrescottJR" />
