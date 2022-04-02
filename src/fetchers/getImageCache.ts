@@ -1,5 +1,9 @@
 import { Client } from '@notionhq/client';
-import { NotionPage, ParagraphBlock } from '/src/types/cms/properties';
+import {
+  NotionPage,
+  ParagraphBlock,
+  Properties,
+} from '/src/types/cms/properties';
 import { getKeyBlock } from '/src/fetchers/getKeyBlock';
 import { paginateNotion } from '/src/utils/paginateNotion';
 import { PreviewImage } from 'notion-types';
@@ -42,6 +46,29 @@ export async function getImageCache(
         // TODO: Delete the cache here if we cannot serialize it.
         console.log('error unserializing image cache');
         console.log(error);
+        console.log('clearing cache due to serialization error');
+
+        // clear cache block id ref
+        await notion.pages.update({
+          page_id: pageData.id,
+          properties: {
+            [Properties.CacheId]: {
+              type: 'rich_text',
+              rich_text: [
+                {
+                  text: { content: '' },
+                },
+              ],
+            },
+          },
+        });
+
+        // remove the cache block
+        await notion.blocks.delete({
+          block_id: keyBlock.id,
+        });
+
+        console.log('cleared cache for page.');
       }
     }
 
