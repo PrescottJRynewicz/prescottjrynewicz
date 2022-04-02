@@ -44,7 +44,7 @@ export async function getImageCache(
         return { blockIds, cache: JSON.parse(combinedText) };
       } catch (error) {
         // TODO: Delete the cache here if we cannot serialize it.
-        console.log('error unserializing image cache');
+        console.log('error un-serializing image cache');
         console.log(error);
         console.log('clearing cache due to serialization error');
 
