@@ -12,7 +12,7 @@ export async function getStaticProps(): Promise<
   return {
     props: {
       posts: blogPosts.posts,
-      categories: blogPosts.categories,
+      topics: blogPosts.categories,
     },
     revalidate: 10,
   };

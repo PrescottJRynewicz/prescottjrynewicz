@@ -10,6 +10,7 @@ import {
 import { Header3, SubHeader3 } from '/design-system/typography';
 import Link from 'next/link';
 import { MenuPrimaryLink } from '/src/components/Menu/styled';
+import { GitHub, Instagram, Twitter } from 'react-feather';
 
 export function Footer() {
   return (
@@ -35,6 +36,30 @@ export function Footer() {
             </MenuContainer>
           </SplitRightContent>
         </MainContent>
+        <SubHeader3
+          style={{
+            textAlign: 'center',
+            color: 'white',
+            whiteSpace: 'pre-wrap',
+          }}>
+          <a
+            href="https://www.instagram.com/pjrynewicz/"
+            target="_blank"
+            rel="noreferrer">
+            <Instagram />
+          </a>
+          {'   '}
+          <a href="https://t.co/CHxOyZlIeJ" target="_blank" rel="noreferrer">
+            <Twitter />
+          </a>
+          {'   '}
+          <a
+            href="https://github.com/PrescottJRynewicz"
+            target="_blank"
+            rel="noreferrer">
+            <GitHub />
+          </a>
+        </SubHeader3>
         <SubHeader3 style={{ textAlign: 'center', color: 'white' }}>
           ©Prescott J. Rynewicz {new Date().getFullYear()}
         </SubHeader3>
