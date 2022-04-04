@@ -49,7 +49,10 @@ export function Footer() {
             <Instagram />
           </a>
           {'   '}
-          <a href="https://t.co/CHxOyZlIeJ" target="_blank" rel="noreferrer">
+          <a
+            href="https://twitter.com/prescott_ryno"
+            target="_blank"
+            rel="noreferrer">
             <Twitter />
           </a>
           {'   '}
