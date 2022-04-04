@@ -68,7 +68,7 @@ export async function getBlogPosts({
         database_id: blogDatbaseId,
         page_size: maxPageSize,
         filter,
-        sorts: [{ property: Properties.Published, direction: 'ascending' }],
+        sorts: [{ property: Properties.Published, direction: 'descending' }],
         start_cursor: nextCursor,
       })) as QueryResult;
 
