@@ -67,9 +67,13 @@ export function Blog(props: BlogStaticProps) {
             <>
               <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
                 I created this space to share my passions. I am a serial
-                hobbyist and crave sharing my excitement for these passions.
+                hobbyist and crave sharing my excitement for what I do.
               </SubHeader3>
-              <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
+              <SubHeader3
+                style={{
+                  color: 'rgba(55, 53, 47, 0.8)',
+                  marginBottom: '20px',
+                }}>
                 Thanks for reading 👋
               </SubHeader3>
             </>
