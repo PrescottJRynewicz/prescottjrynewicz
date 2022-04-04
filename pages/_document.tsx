@@ -44,6 +44,19 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
           />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-LB52865JDK"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LB52865JDK');`,
+            }}
+          />
         </Head>
         <body>
           <Main />
