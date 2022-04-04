@@ -10,7 +10,7 @@ import {
 import { Header3, SubHeader3 } from '/design-system/typography';
 import Link from 'next/link';
 import { MenuPrimaryLink } from '/src/components/Menu/styled';
-import { GitHub, Instagram, Twitter } from 'react-feather';
+import { GitHub, Instagram, Linkedin, Twitter } from 'react-feather';
 
 export function Footer() {
   return (
@@ -61,6 +61,13 @@ export function Footer() {
             target="_blank"
             rel="noreferrer">
             <GitHub />
+          </a>
+          {'   '}
+          <a
+            href="https://www.linkedin.com/in/prescott-rynewicz-36295182/"
+            target="_blank"
+            rel="noreferrer">
+            <Linkedin />
           </a>
         </SubHeader3>
         <SubHeader3 style={{ textAlign: 'center', color: 'white' }}>
