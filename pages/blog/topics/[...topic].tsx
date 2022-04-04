@@ -16,7 +16,7 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
     paths: blogs.categories
       ? blogs.categories.map((category) => ({
           params: {
-            category: [category],
+            topic: [category],
           },
         }))
       : [],
@@ -29,15 +29,15 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
 export async function getStaticProps(
   context: GetStaticPropsContext
 ): Promise<GetStaticPropsResult<BlogStaticProps>> {
-  const category = context?.params?.category?.[0];
+  const category = context?.params?.topic?.[0];
 
   const blogPosts = await getBlogPosts({ category });
 
   return {
     props: {
       posts: blogPosts.posts,
-      categories: blogPosts.categories || [],
-      category,
+      topics: blogPosts.categories || [],
+      topic: category,
     },
     revalidate: 10,
   };

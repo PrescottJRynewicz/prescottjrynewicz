@@ -10,17 +10,19 @@ import {
 import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
-import { Header1 } from '/design-system/typography';
+import { Header1, SubHeader3 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { solids } from '/design-system/colors';
 import { Footer } from '/src/components/Footer/Footer';
+import { getUrl } from '/src/utils/url/getApiUrl';
+import { useRouter } from 'next/router';
 
 export type BlogStaticProps = {
   posts: BlogGetResponse['posts'];
-  categories: string[];
-  category?: string;
+  topics: string[];
+  topic?: string;
 };
 
 const CategoryLink = styled.a`
@@ -35,14 +37,19 @@ const CategoryLink = styled.a`
 `;
 
 export function Blog(props: BlogStaticProps) {
-  const isCategoryPage = !!props.category;
+  const isCategoryPage = !!props.topic;
+  const router = useRouter();
 
   return (
     <BlogContainer>
       <Head>
-        <title>PJR - {isCategoryPage ? props.category : 'Blog'}</title>
+        <title>PJR - {isCategoryPage ? props.topic : 'Blog'}</title>
         <meta name="description" content="Prescott's Playground 🎢" />
-        <link rel="icon" href="/favicon.png" />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22100%22>📝</text></svg>"
+        />
+        <link rel="canonical" href={getUrl(router.asPath)} />
         <meta property="og:image" content="/site-image.png" />
         <meta name="twitter:title" content="PrescottJR" />
         <meta name="twitter:description" content="Prescott's Playground" />
@@ -54,15 +61,30 @@ export function Blog(props: BlogStaticProps) {
       <BlogPostContainer>
         <BlogContentWrapper>
           <Header1 style={{ marginBottom: '0px' }}>
-            {isCategoryPage ? props.category?.toUpperCase() : 'BLOG'}
+            {isCategoryPage ? props.topic?.toUpperCase() : 'BLOG'}
           </Header1>
+          {!isCategoryPage && (
+            <>
+              <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
+                I created this space to share my passions. I am a serial
+                hobbyist and crave sharing my excitement for what I do.
+              </SubHeader3>
+              <SubHeader3
+                style={{
+                  color: 'rgba(55, 53, 47, 0.8)',
+                  marginBottom: '20px',
+                }}>
+                Thanks for reading 👋
+              </SubHeader3>
+            </>
+          )}
           <div
             style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             {!isCategoryPage ? (
               <div style={{ whiteSpace: 'pre-wrap', minWidth: '100px' }}>
-                {(props.categories || []).map((category) => (
+                {(props.topics || []).map((category) => (
                   <>
-                    <Link passHref href={`/blog/category/${category}`}>
+                    <Link passHref href={`/blog/topics/${category}`}>
                       <CategoryLink>{category}</CategoryLink>
                     </Link>
                     {'          '}

@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   routes.push(
     ...blogPosts.categories.map((category) => ({
-      loc: `https://prescottjr.com/blog/category/${category}`,
+      loc: `https://prescottjr.com/blog/topics/${category}`,
       lastmod: new Date().toISOString(),
       priority: 0.7,
     }))
