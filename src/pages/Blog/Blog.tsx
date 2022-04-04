@@ -63,13 +63,17 @@ export function Blog(props: BlogStaticProps) {
           <Header1 style={{ marginBottom: '0px' }}>
             {isCategoryPage ? props.topic?.toUpperCase() : 'BLOG'}
           </Header1>
-          <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
-            I created this space to share my passions. I am a serial hobbyist
-            and crave sharing my excitement for these passions.
-          </SubHeader3>
-          <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
-            Thanks for reading 👋
-          </SubHeader3>
+          {!isCategoryPage && (
+            <>
+              <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
+                I created this space to share my passions. I am a serial
+                hobbyist and crave sharing my excitement for these passions.
+              </SubHeader3>
+              <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
+                Thanks for reading 👋
+              </SubHeader3>
+            </>
+          )}
           <div
             style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             {!isCategoryPage ? (
