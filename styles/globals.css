@@ -31,6 +31,12 @@ a {
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 700px) {
+    .notion-page code {
+        font-size: 12px !important;
+    }
+}
+
 
 button:hover {
     text-decoration: underline;
@@ -40,7 +46,6 @@ button:hover {
 .notion-page {
     font-family: sans-serif !important;
     font-weight: 400;
-
 }
 
 .notion-callout {
