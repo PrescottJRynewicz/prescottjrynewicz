@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import Mermaid from '/src/pages/Blog/components/Mermaid';
 import styled from 'styled-components';
-import { CodeBlock, dracula, tomorrowNightEighties } from 'react-code-blocks';
+import { CodeBlock, tomorrowNightEighties } from 'react-code-blocks';
 import { Block, CodeBlock as CodeBlockType } from 'notion-types';
 
 const Container = styled.span`
@@ -10,7 +10,8 @@ const Container = styled.span`
 
 const MermaidContainer = styled.span`
   width: 100%;
-  background-color: ${dracula.backgroundColor};
+  border: solid 3px black;
+  padding: 10px;
   border-radius: 5px;
 `;
 
