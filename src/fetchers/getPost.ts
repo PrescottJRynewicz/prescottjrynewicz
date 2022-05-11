@@ -20,7 +20,7 @@ export async function getBlogPost({
 }: {
   name: string;
 }): Promise<BlogPostGetResponse> {
-  const postName = (name as string).replace(/-/g, ' ');
+  const postName = (name as string).replace(/-/g, ' ').toLowerCase();
 
   const postQuery = await notion.databases.query({
     database_id: blogDatbaseId as string,
