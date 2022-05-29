@@ -150,6 +150,7 @@ export function useGraph({
 
         boxSelectionEnabled: false,
         layout: {
+          // @ts-ignore
           name: 'cola',
           randomize: true,
           infinite: true,
@@ -189,15 +190,7 @@ export function useGraph({
         .lock()
         .css({ width: 300, height: 300 });
 
-      // (async () => {
-      //   for (const node of nodes) {
-      //     await oneSecond();
-      //     console.log(node);
-      //     cytoscapeRef.current?.add({ group: 'nodes', data: node });
-      //   }
-      // })();
-
-      cytoscapeRef.current?.nodes().forEach(async (node) => {
+      cytoscapeRef.current?.nodes().map(async (node) => {
         const user = graph[node.id()];
         if (user) {
           const dimension =
