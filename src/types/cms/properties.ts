@@ -76,6 +76,7 @@ export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
 
 export type ParagraphBlock = Extract<GetBlockResponse, { type: 'paragraph' }>;
+export type ToggleBlock = Extract<GetBlockResponse, { type: 'toggle' }>;
 export type RichTextProperty = Extract<
   BaseNotionPage['properties']['rich_text'],
   { type: 'rich_text' }
