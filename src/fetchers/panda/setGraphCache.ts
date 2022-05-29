@@ -15,8 +15,10 @@ const notion = new Client({
 
 export async function setGraphCache({
   graphCache,
+  writeToLocal = false,
 }: {
   graphCache: GraphCache;
+  writeToLocal?: boolean;
 }) {
   try {
     const graphCachePage: NotionPage = (await notion.pages.retrieve({
@@ -50,13 +52,15 @@ export async function setGraphCache({
 
     const cacheString = JSON.stringify(graphCache);
 
-    try {
-      fs.writeFileSync(localFileCachePath, cacheString);
-      console.log('\tset local graph cache!');
-      return;
-    } catch (error) {
-      console.log('error writing to local file');
-      console.log(error);
+    if (writeToLocal) {
+      try {
+        fs.writeFileSync(localFileCachePath, cacheString);
+        console.log('\tset local graph cache!');
+        return;
+      } catch (error) {
+        console.log('error writing to local file');
+        console.log(error);
+      }
     }
 
     console.log('\tsetting remote cache...');

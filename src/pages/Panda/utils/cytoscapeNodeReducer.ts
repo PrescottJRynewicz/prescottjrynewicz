@@ -4,8 +4,8 @@ import { NodeDefinition } from 'cytoscape';
 export const cytoscapeNodeReducer =
   (graph: GraphCache) => (agg: NodeDefinition[], current: string) => {
     const user = graph[current];
-    agg.push({ data: { id: user.id } });
     if (user) {
+      agg.push({ data: { id: user.id } });
       agg.push(
         ...user.following.map((id) => ({
           data: { id },

@@ -1,7 +1,7 @@
 import { Client } from '@notionhq/client';
 import { NotionPage, ParagraphBlock } from '/src/types/cms/properties';
 import { paginateNotion } from '/src/utils/paginateNotion';
-import { GraphCache, localFileCachePath } from '/src/fetchers/panda/constants';
+import { GraphCache } from '/src/fetchers/panda/constants';
 import * as fs from 'fs';
 
 const notionAPIKey = process.env.NOTION_API_KEY;
@@ -11,13 +11,14 @@ const notion = new Client({
 });
 export async function populateGraphCache({
   graphCache,
+  localPath = '',
 }: {
   graphCache: GraphCache;
+  localPath?: string;
 }) {
-  const localString = fs.readFileSync(localFileCachePath).toString();
-
-  if (localString) {
+  if (localPath) {
     try {
+      const localString = fs.readFileSync(localPath).toString();
       const cache: GraphCache = JSON.parse(localString);
 
       Object.keys(cache).forEach((id) => {

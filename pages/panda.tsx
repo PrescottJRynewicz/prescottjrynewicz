@@ -8,7 +8,7 @@ export default Panda;
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<PandaProps>
 > {
-  const graphCache = minifyPandaGraph();
+  const graphCache = await minifyPandaGraph();
 
   const panda = graphCache[pandaUserId];
 

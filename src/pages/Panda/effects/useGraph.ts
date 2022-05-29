@@ -39,7 +39,7 @@ export function useGraph({
         .$id(panda.id)
         .position({ x: 500, y: 500 })
         .lock()
-        .css({ width: 300, height: 300 });
+        .css({ width: 300, height: 300, 'background-image': panda.base64Url });
 
       cytoscapeRef.current?.nodes().map(async (node) => {
         const user = graph[node.id()];
@@ -48,6 +48,7 @@ export function useGraph({
             user.id === pandaUserId ? 600 : Math.random() * 200 + 30;
 
           node.css({
+            'background-image': graph[node.id()].base64Url,
             width: dimension,
             height: dimension,
           });
