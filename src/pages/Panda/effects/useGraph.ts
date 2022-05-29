@@ -1,12 +1,14 @@
 import { MutableRefObject, useEffect } from 'react';
-import cytoscape, { Core, EdgeDefinition, NodeDefinition } from 'cytoscape';
+import cytoscape, { Core } from 'cytoscape';
 import cola from 'cytoscape-cola';
 import {
   GraphCache,
-  oneSecond,
+  wait,
   pandaUserId,
   UserEntry,
 } from '/src/fetchers/panda/constants';
+import { cytoscapeGraphSpec } from '/src/pages/Panda/utils/cytoscapeGraphSpec';
+import { getGraphNodesAndEdges } from '/src/pages/Panda/utils/getGraphNodesAndEdges';
 
 export function useGraph({
   graphRef,
@@ -20,164 +22,13 @@ export function useGraph({
   graph: GraphCache;
 }) {
   useEffect(() => {
-    const n0 = 50;
-    const n1 = 10;
-
-    const followerChunk = panda.followers.slice(0, n0);
-    const followingChunk = panda.following.slice(0, n0);
-
-    const nodes: NodeDefinition[] = [
-      {
-        data: {
-          id: panda.id,
-        },
-      },
-      ...followerChunk.reduce<NodeDefinition[]>((agg, current) => {
-        const user = graph[current];
-        agg.push({ data: { id: user.id } });
-        if (user) {
-          const followerSlice = user.followers.slice(0, n1);
-          const followingSlice = user.following.slice(0, n1);
-
-          agg.push(
-            ...followerSlice.map((id) => ({
-              data: { id },
-            }))
-          );
-          agg.push(
-            ...followingSlice.map((id) => ({
-              data: { id },
-            }))
-          );
-        }
-
-        return agg;
-      }, []),
-      ...followingChunk.reduce<NodeDefinition[]>((agg, current) => {
-        const user = graph[current];
-        agg.push({ data: { id: user.id } });
-        if (user) {
-          const followerSlice = user.followers.slice(0, n1);
-          const followingSlice = user.following.slice(0, n1);
-
-          agg.push(
-            ...followerSlice.map((id) => ({
-              data: { id },
-            }))
-          );
-          agg.push(
-            ...followingSlice.map((id) => ({
-              data: { id },
-            }))
-          );
-        }
-
-        return agg;
-      }, []),
-    ];
-    const edges: EdgeDefinition[] = [
-      ...followingChunk.reduce<EdgeDefinition[]>((agg, current) => {
-        const user = graph[current];
-        if (user) {
-          agg.push({
-            data: {
-              source: panda.id,
-              target: user.id,
-            },
-          });
-
-          const followerSlice = user.followers.slice(0, n1);
-          const followingSlice = user.following.slice(0, n1);
-
-          agg.push(
-            ...followerSlice.map((id) => ({
-              data: {
-                source: id,
-                target: user.id,
-              },
-            }))
-          );
-          agg.push(
-            ...followingSlice.map((id) => ({
-              data: {
-                source: user.id,
-                target: id,
-              },
-            }))
-          );
-        }
-        return agg;
-      }, []),
-      ...followerChunk.reduce<EdgeDefinition[]>((agg, current) => {
-        const user = graph[current];
-        if (user) {
-          agg.push({
-            data: {
-              source: panda.id,
-              target: user.id,
-            },
-          });
-
-          const followerSlice = user.followers.slice(0, n1);
-          const followingSlice = user.following.slice(0, n1);
-
-          agg.push(
-            ...followerSlice.map((id) => ({
-              data: {
-                source: id,
-                target: user.id,
-              },
-            }))
-          );
-          agg.push(
-            ...followingSlice.map((id) => ({
-              data: {
-                source: user.id,
-                target: id,
-              },
-            }))
-          );
-        }
-        return agg;
-      }, []),
-    ];
+    const { nodes, edges } = getGraphNodesAndEdges({ graph, panda });
 
     if (graphRef?.current) {
       cytoscape.use(cola);
-
       cytoscapeRef.current = cytoscape({
         container: graphRef.current,
-
-        boxSelectionEnabled: false,
-        layout: {
-          // @ts-ignore
-          name: 'cola',
-          randomize: true,
-          infinite: true,
-          fit: false,
-          nodeSpacing() {
-            return 50;
-          },
-        },
-        style: cytoscape
-          // @ts-ignore
-          .stylesheet()
-          .selector('node')
-          .css({
-            height: 200,
-            width: 200,
-            'background-fit': 'cover',
-            'border-color': '#000',
-            'border-width': 3,
-            'border-opacity': 1,
-          })
-          .selector('edge')
-          .css({
-            width: 2,
-            'target-arrow-shape': 'triangle',
-            'line-color': 'rbga(0,0,0,0.1)',
-            'target-arrow-color': '#000000',
-          }),
+        ...cytoscapeGraphSpec,
         elements: {
           nodes,
           edges,
@@ -197,7 +48,6 @@ export function useGraph({
             user.id === pandaUserId ? 600 : Math.random() * 200 + 30;
 
           node.css({
-            // 'background-image': user.imageUrl,
             width: dimension,
             height: dimension,
           });
@@ -205,7 +55,7 @@ export function useGraph({
       });
 
       (async () => {
-        await oneSecond();
+        await wait(100);
         cytoscapeRef.current
           ?.animation({
             fit: { padding: 10, eles: cytoscapeRef.current?.nodes() },

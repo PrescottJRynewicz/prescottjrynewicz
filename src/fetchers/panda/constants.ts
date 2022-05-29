@@ -26,7 +26,7 @@ export const pandaUserId = '3281746';
 
 export const localFileCachePath = '/Users/pjrynewicz/Desktop/graphCache.txt';
 
-export const oneSecond = () =>
+export const wait = (ms = 1000) =>
   new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(resolve, ms);
   });
