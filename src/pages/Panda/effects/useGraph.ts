@@ -3,12 +3,12 @@ import cytoscape, { Core } from 'cytoscape';
 import cola from 'cytoscape-cola';
 import {
   GraphCache,
-  wait,
   pandaUserId,
   UserEntry,
 } from '/src/fetchers/panda/constants';
 import { cytoscapeGraphSpec } from '/src/pages/Panda/utils/cytoscapeGraphSpec';
 import { getGraphNodesAndEdges } from '/src/pages/Panda/utils/getGraphNodesAndEdges';
+import { addNodeAnimation } from '/src/pages/Panda/utils/addNodeAnimation';
 
 export function useGraph({
   graphRef,
@@ -41,28 +41,32 @@ export function useGraph({
         .lock()
         .css({ width: 300, height: 300, 'background-image': panda.base64Url });
 
-      cytoscapeRef.current?.nodes().map(async (node) => {
-        const user = graph[node.id()];
-        if (user) {
-          const dimension =
-            user.id === pandaUserId ? 600 : Math.random() * 200 + 30;
+      cytoscapeRef.current?.minZoom(0.05);
+      cytoscapeRef.current?.maxZoom(0.5);
 
-          node.css({
-            'background-image': graph[node.id()].base64Url,
-            width: dimension,
-            height: dimension,
-          });
-        }
-      });
-
-      (async () => {
-        await wait(100);
+      cytoscapeRef.current?.ready(async () => {
         cytoscapeRef.current
           ?.animation({
             fit: { padding: 10, eles: cytoscapeRef.current?.nodes() },
           })
           .play();
-      })();
+
+        cytoscapeRef.current?.nodes().map(async (node) => {
+          const user = graph[node.id()];
+          if (user) {
+            const dimension =
+              user.id === pandaUserId ? 1000 : Math.random() * 200 + 30;
+
+            node.css({
+              'background-image': graph[node.id()].base64Url,
+              width: dimension,
+              height: dimension,
+            });
+
+            addNodeAnimation({ node });
+          }
+        });
+      });
     }
   }, []);
 }
