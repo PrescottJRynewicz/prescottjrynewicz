@@ -18,6 +18,7 @@ export const cytoscapeGraphSpec = {
     .stylesheet()
     .selector('node')
     .css({
+      opacity: 0,
       height: 200,
       width: 200,
       'background-fit': 'cover',
@@ -29,6 +30,6 @@ export const cytoscapeGraphSpec = {
       width: 2,
       'target-arrow-shape': 'triangle',
       'line-color': 'black',
-      opacity: 0.1,
+      opacity: 0,
     }),
 };

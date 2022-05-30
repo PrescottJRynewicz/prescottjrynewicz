@@ -1,14 +1,8 @@
-import { Core, NodeSingular } from 'cytoscape';
+import { NodeSingular } from 'cytoscape';
 import { solids } from '/design-system/colors';
 import { pandaUserId } from '/src/fetchers/panda/constants';
 
-export function addNodeAnimation({
-  node,
-  cytoscapeRef,
-}: {
-  node: NodeSingular;
-  cytoscapeRef: Core;
-}) {
+export function addNodeAnimation({ node }: { node: NodeSingular }) {
   const originalWidth = node.renderedWidth();
   const originalHeight = node.renderedHeight();
 
@@ -26,7 +20,7 @@ export function addNodeAnimation({
       easing: 'ease-in-sine',
     });
 
-    node.edgesWith(cytoscapeRef.nodes()).forEach((edge) => {
+    node.connectedEdges().forEach((edge) => {
       edge.css({
         width: 10,
         'line-color': solids.PINK_STARBURST,
@@ -48,7 +42,7 @@ export function addNodeAnimation({
       easing: 'ease-in-sine',
     });
 
-    node.edgesWith(cytoscapeRef.nodes()).forEach((edge) => {
+    node.connectedEdges().forEach((edge) => {
       edge.css({
         width: 2,
         'line-color': 'black',
