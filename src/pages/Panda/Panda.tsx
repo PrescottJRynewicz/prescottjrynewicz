@@ -2,11 +2,14 @@ import React, { MutableRefObject, useRef } from 'react';
 import { Core } from 'cytoscape';
 import { useGraph } from '/src/pages/Panda/effects/useGraph';
 import { GraphCache, UserEntry } from '/src/fetchers/panda/constants';
+import styled from 'styled-components';
 
 export type PandaProps = {
   panda: UserEntry;
   graph: GraphCache;
 };
+
+const Container = styled.div``;
 
 export function Panda({ panda, graph }: PandaProps) {
   const graphRef = useRef<HTMLDivElement>();
@@ -15,22 +18,16 @@ export function Panda({ panda, graph }: PandaProps) {
   useGraph({ graphRef, cytoscapeRef, panda, graph });
 
   return (
-    <div>
-      <h1>Panda</h1>
+    <Container>
       <div
         id="Rec-Graph"
         ref={graphRef as MutableRefObject<HTMLDivElement>}
         style={{
-          width: '95%',
-          height: '850px',
-          border: 'solid #FF037C 3px',
-          borderRadius: '10px',
-          marginBottom: '20px',
-          marginTop: '10px',
-          marginLeft: '30px',
-          marginRight: '30px',
+          backgroundColor: 'transparent',
+          width: '100vw',
+          height: '100vh',
         }}
       />
-    </div>
+    </Container>
   );
 }

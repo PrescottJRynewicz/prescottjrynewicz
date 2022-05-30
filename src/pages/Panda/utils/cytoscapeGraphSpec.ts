@@ -1,4 +1,5 @@
 import cytoscape from 'cytoscape';
+import { solids } from '/design-system/colors';
 
 export const cytoscapeGraphSpec = {
   boxSelectionEnabled: false,
@@ -20,15 +21,14 @@ export const cytoscapeGraphSpec = {
       height: 200,
       width: 200,
       'background-fit': 'cover',
-      'border-color': '#000',
-      'border-width': 3,
+      'border-color': solids.PINK_STARBURST,
+      'border-width': 5,
       'border-opacity': 1,
     })
     .selector('edge')
     .css({
       width: 2,
       'target-arrow-shape': 'triangle',
-      'line-color': 'rbga(0,0,0,0.1)',
-      'target-arrow-color': '#000000',
+      'line-color': solids.MIMOSA,
     }),
 };
