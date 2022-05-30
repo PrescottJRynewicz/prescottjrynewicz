@@ -15,11 +15,10 @@ export function addNodeAnimation({
   node.unlisten('mouseover');
   node.unlisten('mouseout');
   node.addListener('mouseover', () => {
-    const multiplier = node.id() === pandaUserId ? 1.2 : 2;
     node.animate({
       style: {
-        width: originalWidth * multiplier,
-        height: originalHeight * multiplier,
+        width: node.id() === pandaUserId ? originalWidth * 1.2 : 500,
+        height: node.id() === pandaUserId ? originalWidth * 1.2 : 500,
         'border-color': solids.PINK_STARBURST,
         'border-width': 20,
       },
