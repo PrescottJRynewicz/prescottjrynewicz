@@ -10,6 +10,7 @@ import {
 import { cytoscapeGraphSpec } from '/src/pages/Panda/utils/cytoscapeGraphSpec';
 import { getGraphNodesAndEdges } from '/src/pages/Panda/utils/getGraphNodesAndEdges';
 import { addNodeAnimation } from '/src/pages/Panda/utils/addNodeAnimation';
+import { getApiUrl } from '/src/utils/url/getApiUrl';
 
 export function useGraph({
   graphRef,
@@ -44,7 +45,8 @@ export function useGraph({
           width: 1000,
           height: 1000,
         })
-        .position({ x: 500, y: 500 });
+        .position({ x: 500, y: 500 })
+        .lock();
 
       cytoscapeRef.current?.minZoom(0.05);
       cytoscapeRef.current?.maxZoom(0.5);
@@ -67,9 +69,7 @@ export function useGraph({
             await waitFor(2000);
             if (user.id !== pandaUserId) {
               fetch(
-                `http://localhost:3000/api/images/proxy?imageUrl=${
-                  graph[node.id()].imageUrl
-                }`
+                getApiUrl(`images/proxy?imageUrl=${graph[node.id()].imageUrl}`)
               ).then(async (response) => {
                 const result = await response.text();
 
