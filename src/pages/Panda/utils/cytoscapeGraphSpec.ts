@@ -1,4 +1,5 @@
 import cytoscape from 'cytoscape';
+import { solids } from '/design-system/colors';
 
 export const cytoscapeGraphSpec = {
   boxSelectionEnabled: false,
@@ -20,9 +21,8 @@ export const cytoscapeGraphSpec = {
       height: 200,
       width: 200,
       'background-fit': 'cover',
-      'border-color': 'black',
+      'border-color': solids.DARK_KNIGHT,
       'border-width': 5,
-      'border-opacity': 1,
     })
     .selector('edge')
     .css({

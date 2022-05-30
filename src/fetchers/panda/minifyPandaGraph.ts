@@ -7,7 +7,7 @@ import fetch from 'node-fetch';
 import { populateGraphCache } from '/src/fetchers/panda/populateGraphCache';
 
 const n0 = 50;
-const n1 = 10;
+const n1 = 7;
 const jpgDataUrlPrefix = 'data:image/png;base64,';
 
 export async function minifyPandaGraph() {

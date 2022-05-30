@@ -38,7 +38,6 @@ export function useGraph({
       cytoscapeRef.current
         .$id(panda.id)
         .position({ x: 500, y: 500 })
-        .lock()
         .css({ width: 300, height: 300, 'background-image': panda.base64Url });
 
       cytoscapeRef.current?.minZoom(0.05);
@@ -63,7 +62,10 @@ export function useGraph({
               height: dimension,
             });
 
-            addNodeAnimation({ node });
+            addNodeAnimation({
+              node,
+              cytoscapeRef: cytoscapeRef.current as Core,
+            });
           }
         });
       });

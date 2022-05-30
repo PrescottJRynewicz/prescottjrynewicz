@@ -27,6 +27,7 @@ export async function populateGraphCache({
 
       console.log('graph cache populated from local');
       console.log('\tFound', Object.keys(graphCache).length, 'athletes!');
+      return graphCache;
     } catch (error) {
       console.log('unable to parse graphCache - attempting remote');
       console.log(error);
