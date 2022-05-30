@@ -13,22 +13,26 @@ export const cytoscapeEdgeReducer =
         },
       });
 
-      agg.push(
-        ...user.following.map((id) => ({
-          data: {
-            source: id,
-            target: user.id,
-          },
-        }))
-      );
-      agg.push(
-        ...user.followers.map((id) => ({
-          data: {
-            source: user.id,
-            target: id,
-          },
-        }))
-      );
+      user.following.forEach((id) => {
+        if (graph[id]) {
+          agg.push({
+            data: {
+              source: id,
+              target: user.id,
+            },
+          });
+        }
+      });
+      user.followers.forEach((id) => {
+        if (graph[id]) {
+          agg.push({
+            data: {
+              source: id,
+              target: user.id,
+            },
+          });
+        }
+      });
     }
     return agg;
   };

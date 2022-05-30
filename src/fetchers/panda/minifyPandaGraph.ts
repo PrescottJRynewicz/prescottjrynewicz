@@ -27,6 +27,8 @@ export async function minifyPandaGraph() {
   const followerSlice = panda.followers.slice(0, n0);
   const followingSlice = panda.following.slice(0, n0);
 
+  const userIdSet = new Set<string>();
+
   await Promise.allSettled([
     ...followerSlice.map(
       extractChildren({
@@ -34,6 +36,7 @@ export async function minifyPandaGraph() {
         newCache,
         continueTraversal: true,
         numberOfChildren: n1,
+        userIdSet,
       })
     ),
     ...followingSlice.map(
@@ -42,6 +45,7 @@ export async function minifyPandaGraph() {
         newCache,
         continueTraversal: true,
         numberOfChildren: n1,
+        userIdSet,
       })
     ),
   ]);
@@ -67,19 +71,19 @@ export async function minifyPandaGraph() {
   return newCache;
 }
 
-const userIdSet = new Set<string>();
-
 const extractChildren =
   ({
     graphCache,
     newCache,
     continueTraversal = false,
     numberOfChildren,
+    userIdSet,
   }: {
     graphCache: GraphCache;
     newCache: GraphCache;
     numberOfChildren: number;
     continueTraversal?: boolean;
+    userIdSet: Set<string>;
   }) =>
   async (followId: string) => {
     const user = graphCache[followId];
@@ -97,6 +101,7 @@ const extractChildren =
               newCache,
               numberOfChildren: 0,
               continueTraversal: false,
+              userIdSet,
             })
           );
           followerSlice.forEach(
@@ -105,6 +110,7 @@ const extractChildren =
               newCache,
               numberOfChildren: 0,
               continueTraversal: false,
+              userIdSet,
             })
           );
         }

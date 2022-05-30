@@ -6,16 +6,20 @@ export const cytoscapeNodeReducer =
     const user = graph[current];
     if (user) {
       agg.push({ data: { id: user.id } });
-      agg.push(
-        ...user.following.map((id) => ({
-          data: { id },
-        }))
-      );
-      agg.push(
-        ...user.followers.map((id) => ({
-          data: { id },
-        }))
-      );
+      user.following.forEach((id) => {
+        if (graph[id]) {
+          agg.push({
+            data: { id },
+          });
+        }
+      });
+      user.followers.forEach((id) => {
+        if (graph[id]) {
+          agg.push({
+            data: { id },
+          });
+        }
+      });
     }
 
     return agg;

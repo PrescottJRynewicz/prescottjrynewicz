@@ -30,5 +30,6 @@ export const cytoscapeGraphSpec = {
       width: 2,
       'target-arrow-shape': 'triangle',
       'line-color': solids.MIMOSA,
+      opacity: 0.1,
     }),
 };
