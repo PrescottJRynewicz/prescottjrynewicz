@@ -31,15 +31,12 @@ export function useGraph({
         },
       });
 
-      cytoscapeRef?.current
-        ?.$id(panda.id)
-        .css({
-          'background-image': '/panda.jpg',
-          opacity: 1,
-          width: 1000,
-          height: 1000,
-        })
-        .position({ x: 500, y: 500 });
+      cytoscapeRef?.current?.$id(panda.id).css({
+        'background-image': '/panda.jpg',
+        opacity: 1,
+        width: 1000,
+        height: 1000,
+      });
 
       cytoscapeRef.current?.minZoom(0.05);
       cytoscapeRef.current?.maxZoom(0.5);
