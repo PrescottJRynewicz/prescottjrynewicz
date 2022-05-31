@@ -18,7 +18,7 @@ export function addNodeAnimation({ node }: { node: NodeSingular }) {
         'border-color': solids.PINK_STARBURST,
         'border-width': 20,
       },
-      duration: 200,
+      duration: 400,
       easing: 'ease-in-sine',
     });
 
@@ -40,7 +40,7 @@ export function addNodeAnimation({ node }: { node: NodeSingular }) {
         'border-color': solids.DARK_KNIGHT,
         'border-width': 5,
       },
-      duration: 200,
+      duration: 400,
       easing: 'ease-in-sine',
     });
 

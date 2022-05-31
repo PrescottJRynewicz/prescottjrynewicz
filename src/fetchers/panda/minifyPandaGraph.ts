@@ -2,7 +2,7 @@ import { GraphCache, pandaUserId } from '/src/fetchers/panda/constants';
 import { populateGraphCache } from '/src/fetchers/panda/populateGraphCache';
 
 const n0 = 50;
-const n1 = 7;
+const n1 = 10;
 
 export async function minifyPandaGraph() {
   const graphCache: GraphCache = {};
