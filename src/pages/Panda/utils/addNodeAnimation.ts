@@ -23,10 +23,14 @@ export function addNodeAnimation({ node }: { node: NodeSingular }) {
     });
 
     node.connectedEdges().forEach((edge) => {
-      edge.css({
-        width: 10,
-        'line-color': solids.PINK_STARBURST,
-        opacity: 1,
+      edge.animate({
+        style: {
+          width: 10,
+          'line-color': solids.PINK_STARBURST,
+          opacity: 1,
+        },
+        duration: 400,
+        easing: 'ease-in-sine',
       });
     });
 
@@ -45,10 +49,14 @@ export function addNodeAnimation({ node }: { node: NodeSingular }) {
     });
 
     node.connectedEdges().forEach((edge) => {
-      edge.css({
-        width: 2,
-        'line-color': 'black',
-        opacity: 0.1,
+      edge.animate({
+        style: {
+          width: 2,
+          'line-color': 'black',
+          opacity: 0.1,
+        },
+        duration: 400,
+        easing: 'ease-in-sine',
       });
     });
 
