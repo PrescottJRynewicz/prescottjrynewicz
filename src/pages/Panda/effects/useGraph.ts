@@ -5,6 +5,7 @@ import { GraphCache, UserEntry } from '/src/fetchers/panda/constants';
 import { cytoscapeGraphSpec } from '/src/pages/Panda/utils/cytoscapeGraphSpec';
 import { getGraphNodesAndEdges } from '/src/pages/Panda/utils/getGraphNodesAndEdges';
 import { addNodeImages } from '/src/pages/Panda/utils/addNodeImages';
+import { isElementInViewport } from '/src/pages/Panda/utils/isElementInViewport';
 
 export function useGraph({
   graphRef,
@@ -50,10 +51,17 @@ export function useGraph({
           })
           .play();
 
-        addNodeImages({
-          nodes: cytoscapeRef.current?.nodes() as NodeCollection,
-          graph,
-        });
+        const interval = setInterval(() => {
+          if (isElementInViewport(graphRef.current as HTMLElement)) {
+            clearInterval(interval);
+            addNodeImages({
+              nodes: cytoscapeRef.current?.nodes() as NodeCollection,
+              graph,
+            });
+          } else {
+            console.log('not in viewport yet');
+          }
+        }, 500);
       });
     }
   }, []);
