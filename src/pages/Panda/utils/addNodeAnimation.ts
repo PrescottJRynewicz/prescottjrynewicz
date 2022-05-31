@@ -3,16 +3,18 @@ import { solids } from '/design-system/colors';
 import { pandaUserId } from '/src/fetchers/panda/constants';
 
 export function addNodeAnimation({ node }: { node: NodeSingular }) {
-  const originalWidth = node.renderedWidth();
-  const originalHeight = node.renderedHeight();
-
+  let originalWidth = node.renderedWidth();
+  let originalHeight = node.renderedHeight();
   node.unlisten('mouseover');
   node.unlisten('mouseout');
   node.addListener('mouseover', () => {
+    originalWidth = node.width();
+    originalHeight = node.height();
+
     node.animate({
       style: {
         width: node.id() === pandaUserId ? originalWidth * 1.2 : 500,
-        height: node.id() === pandaUserId ? originalWidth * 1.2 : 500,
+        height: node.id() === pandaUserId ? originalHeight * 1.2 : 500,
         'border-color': solids.PINK_STARBURST,
         'border-width': 20,
       },
