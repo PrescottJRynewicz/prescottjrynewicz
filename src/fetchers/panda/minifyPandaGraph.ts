@@ -46,13 +46,7 @@ export async function minifyPandaGraph() {
 
   // Uncomment to set the remote cache if desired
   // setGraphCache({
-  //   graphCache: Object.keys(newCache).reduce<GraphCache>((agg, current) => {
-  //     agg[current] = {
-  //       ...newCache[current],
-  //       base64Url: undefined,
-  //     };
-  //     return agg;
-  //   }, {}),
+  //   graphCache,
   // });
 
   return newCache;
