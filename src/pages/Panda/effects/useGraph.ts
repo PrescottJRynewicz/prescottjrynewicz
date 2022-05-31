@@ -1,16 +1,10 @@
 import { MutableRefObject, useEffect } from 'react';
-import cytoscape, { Core } from 'cytoscape';
+import cytoscape, { Core, NodeCollection } from 'cytoscape';
 import cola from 'cytoscape-cola';
-import {
-  GraphCache,
-  pandaUserId,
-  UserEntry,
-  waitFor,
-} from '/src/fetchers/panda/constants';
+import { GraphCache, UserEntry } from '/src/fetchers/panda/constants';
 import { cytoscapeGraphSpec } from '/src/pages/Panda/utils/cytoscapeGraphSpec';
 import { getGraphNodesAndEdges } from '/src/pages/Panda/utils/getGraphNodesAndEdges';
-import { addNodeAnimation } from '/src/pages/Panda/utils/addNodeAnimation';
-import { getApiUrl } from '/src/utils/url/getApiUrl';
+import { addNodeImages } from '/src/pages/Panda/utils/addNodeImages';
 
 export function useGraph({
   graphRef,
@@ -60,56 +54,9 @@ export function useGraph({
           })
           .play();
 
-        cytoscapeRef.current?.nodes().map(async (node) => {
-          const user = graph[node.id()];
-          if (user) {
-            const dimension =
-              user.id === pandaUserId ? 1000 : Math.random() * 200 + 30;
-
-            await waitFor(2000);
-            if (user.id !== pandaUserId) {
-              fetch(
-                getApiUrl(`images/proxy?imageUrl=${graph[node.id()].imageUrl}`)
-              ).then(async (response) => {
-                const result = await response.text();
-
-                node.style({
-                  display: 'element',
-                  'background-image': result,
-                });
-                node.animate({
-                  style: {
-                    opacity: 1,
-                  },
-                  duration: 1000,
-                  easing: 'ease-in-out',
-                });
-
-                node.connectedEdges().forEach((edge) => {
-                  edge.animate({
-                    style: {
-                      opacity: 0.1,
-                    },
-                    duration: 1000,
-                    easing: 'ease-in-out',
-                  });
-                });
-
-                // cytoscapeRef.current
-                //   ?.animation({
-                //     fit: { padding: 10, eles: cytoscapeRef.current?.nodes() },
-                //   })
-                //   .play();
-                addNodeAnimation({
-                  node,
-                });
-              });
-            }
-            node.css({
-              width: dimension,
-              height: dimension,
-            });
-          }
+        addNodeImages({
+          nodes: cytoscapeRef.current?.nodes() as NodeCollection,
+          graph,
         });
       });
     }
