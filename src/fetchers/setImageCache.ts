@@ -1,6 +1,6 @@
 import { PreviewImage } from 'notion-types';
 import { Client } from '@notionhq/client';
-import { chunk } from '/src/utils/chunk';
+import { chunkString } from '/src/utils/chunk';
 import { NotionPage, ParagraphBlock } from '/src/types/cms/properties';
 import { getKeyBlock } from '/src/fetchers/getKeyBlock';
 
@@ -27,7 +27,7 @@ export async function setImageCache(
     const cacheString = JSON.stringify(cache);
 
     // Limit is 2000, using 1900 to be safe
-    const cacheChunks = chunk(cacheString, 1900);
+    const cacheChunks = chunkString(cacheString, 1900);
 
     for (let index = 0; index < cacheChunks.length; index += 1) {
       const piece = cacheChunks[index];
