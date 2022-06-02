@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@notionhq/client": "^1.0.4",
-    "@types/jsdom": "^16.2.14",
     "cytoscape": "^3.21.1",
     "cytoscape-cola": "^2.5.1",
     "fast-memoize": "^2.5.2",
@@ -29,7 +28,6 @@
     "notion-client": "^6.0.23",
     "notion-types": "^6.0.23",
     "notion-utils": "^6.0.23",
-    "object-sizeof": "^1.6.3",
     "p-map": "^5.3.0",
     "p-memoize": "^6.0.1",
     "react": "^17.0.2",
@@ -40,13 +38,13 @@
     "react-modal": "^3.14.4",
     "react-notion-x": "^6.0.23",
     "react-spring": "^9.4.4",
-    "sharp": "^0.30.5",
     "styled-components": "^5.3.5",
     "swr": "^1.2.2",
     "ts-essentials": "^9.1.2"
   },
   "devDependencies": {
     "@types/cytoscape": "^3.19.4",
+    "@types/jsdom": "^16.2.14",
     "@types/lqip-modern": "^1.1.2",
     "@types/mermaid": "^8.2.9",
     "@types/react": "17.0.43",
