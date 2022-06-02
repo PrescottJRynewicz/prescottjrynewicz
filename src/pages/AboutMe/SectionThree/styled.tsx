@@ -27,7 +27,7 @@ export const CoffeeImageContainer = styled.div`
   width: ${500}px;
   position: relative;
   border-radius: 30px;
-  border: solid 10px ${solids.YELLOW};
+  border: solid 10px ${solids.MIMOSA};
   box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
   overflow: hidden;
 

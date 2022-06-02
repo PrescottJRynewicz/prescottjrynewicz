@@ -8,6 +8,7 @@ export type CmsProperties =
   | 'Subtitle'
   | 'Tags'
   | 'Categories'
+  | 'Preview'
   | 'Published'
   | 'Created'
   | 'Updated'
@@ -23,6 +24,7 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Created: 'Created',
   Tags: 'Tags',
   Categories: 'Categories',
+  Preview: 'Preview',
   Updated: 'Updated',
   Published: 'Published',
   Upvotes: 'Upvotes',
@@ -69,6 +71,10 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
     >;
+    Preview: Extract<
+      BaseNotionPage['properties']['checkbox'],
+      { type: 'checkbox' }
+    >;
   };
 };
 export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
@@ -76,6 +82,7 @@ export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
 
 export type ParagraphBlock = Extract<GetBlockResponse, { type: 'paragraph' }>;
+export type ToggleBlock = Extract<GetBlockResponse, { type: 'toggle' }>;
 export type RichTextProperty = Extract<
   BaseNotionPage['properties']['rich_text'],
   { type: 'rich_text' }

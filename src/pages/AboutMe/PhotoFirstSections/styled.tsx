@@ -54,7 +54,7 @@ export const CyclingImageContainer = styled.div`
   height: ${600 * (3 / 4)}px;
   position: relative;
   border-radius: 30px;
-  border: solid 10px ${solids.YELLOW};
+  border: solid 10px ${solids.MIMOSA};
   box-shadow: rgba(0, 0, 0, 0.25) 10px 10px 10px;
   overflow: hidden;
 

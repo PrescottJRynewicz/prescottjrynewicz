@@ -23,7 +23,7 @@ export async function paginateNotion<
   let nextCursor: string | undefined;
   const blocks: BlockType[] = [];
 
-  while (hasMore && iterations <= 100) {
+  while (hasMore && iterations <= 5000) {
     const methodParams = {
       ...arg1,
       start_cursor: nextCursor || undefined,
