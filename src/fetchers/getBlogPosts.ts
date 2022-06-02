@@ -45,6 +45,19 @@ export async function getBlogPosts({
             },
           ],
         }
+      : process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production'
+      ? {
+          or: [
+            {
+              property: Properties.Published,
+              date: { is_not_empty: true },
+            },
+            {
+              property: Properties.Preview,
+              checkbox: { equals: true },
+            },
+          ],
+        }
       : {
           property: Properties.Published,
           date: { is_not_empty: true },

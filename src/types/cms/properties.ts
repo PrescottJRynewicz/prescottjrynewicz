@@ -8,6 +8,7 @@ export type CmsProperties =
   | 'Subtitle'
   | 'Tags'
   | 'Categories'
+  | 'Preview'
   | 'Published'
   | 'Created'
   | 'Updated'
@@ -23,6 +24,7 @@ export const Properties: Record<CmsProperties, CmsProperties> = {
   Created: 'Created',
   Tags: 'Tags',
   Categories: 'Categories',
+  Preview: 'Preview',
   Updated: 'Updated',
   Published: 'Published',
   Upvotes: 'Upvotes',
@@ -68,6 +70,10 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
     CacheId: Extract<
       BaseNotionPage['properties']['rich_text'],
       { type: 'rich_text' }
+    >;
+    Preview: Extract<
+      BaseNotionPage['properties']['checkbox'],
+      { type: 'checkbox' }
     >;
   };
 };
