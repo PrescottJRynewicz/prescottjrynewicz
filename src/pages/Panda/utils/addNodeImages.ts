@@ -27,7 +27,6 @@ export async function addNodeImages({
         user.id === pandaUserId ? 1000 : Math.random() * 200 + 30;
 
       if (user.id !== pandaUserId) {
-        await waitFor(0.5);
         fetchAndAssignImage({ node, graph });
       }
       addNodeAnimation({ node });
