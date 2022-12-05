@@ -84,7 +84,7 @@ export default function Home() {
         <PolkaDots numDots={300} />
         <Menu />
 
-        <PeekABoo animationDelay={5} useConfetti />
+        <PeekABoo animationDelay={5} />
 
         <TitleContainer>
           <Title>PRESCOTT</Title>
@@ -94,14 +94,12 @@ export default function Home() {
           </SubTitle>
           <NavContainer>
             <PrimaryButton
-              useConfetti
               simultaneous
               confettiDuration={2000}
               onClick={handleNav('/blog/about-me')}>
               About me
             </PrimaryButton>
             <PrimaryButton
-              useConfetti
               simultaneous
               confettiDuration={2000}
               onClick={handleNav('/blog')}>
