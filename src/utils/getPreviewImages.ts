@@ -17,26 +17,19 @@ import { mapImageUrl } from './mapImageUrl';
  * @param cache
  */
 export async function getPreviewImageMap(
-  recordMap: ExtendedRecordMap,
-  cache: Record<string, PreviewImage>
+  recordMap: ExtendedRecordMap
 ): Promise<{
   previewImagesMap: PreviewImageMap;
-  newCache: Record<string, PreviewImage>;
 }> {
   const urls: string[] = getPageImageUrls(recordMap, {
     mapImageUrl,
   }).filter(Boolean);
 
-  const newCache: Record<string, PreviewImage> = {};
-
   const map = await pMap(
     urls,
     async (url) => {
       const cacheKey = normalizeUrl(url);
-      const previewImage = await getPreviewImage(url, { cacheKey }, cache);
-      if (previewImage) {
-        newCache[cacheKey] = previewImage;
-      }
+      const previewImage = await getPreviewImage(url);
 
       return [cacheKey, previewImage];
     },
@@ -47,23 +40,11 @@ export async function getPreviewImageMap(
 
   const previewImagesMap: PreviewImageMap = Object.fromEntries(map);
 
-  return { previewImagesMap, newCache };
+  return { previewImagesMap };
 }
 
-async function createPreviewImage(
-  url: string,
-  { cacheKey }: { cacheKey: string },
-  cache: Record<string, PreviewImage>
-): Promise<PreviewImage | null> {
+async function createPreviewImage(url: string): Promise<PreviewImage | null> {
   try {
-    const cachedPreviewImage = cache[cacheKey];
-    if (cachedPreviewImage) {
-      console.log('using cache for image');
-      console.log('\t url', url);
-      console.log('\t key', cacheKey, '\n\n');
-      return cachedPreviewImage;
-    }
-
     const { body } = await got(url, { responseType: 'buffer' });
     const result = await lqip(body);
 
