@@ -24,13 +24,13 @@ export function Footer() {
           </SplitLeftContent>
           <SplitRightContent>
             <MenuContainer>
-              <Link href="/" passHref>
+              <Link href="/" passHref legacyBehavior>
                 <MenuPrimaryLink>Home</MenuPrimaryLink>
               </Link>
-              <Link href="/blog/about-me" passHref>
+              <Link href="/blog/about-me" passHref legacyBehavior>
                 <MenuPrimaryLink>About Me</MenuPrimaryLink>
               </Link>
-              <Link href="/blog" passHref>
+              <Link href="/blog" passHref legacyBehavior>
                 <MenuPrimaryLink>Blog</MenuPrimaryLink>
               </Link>
             </MenuContainer>

@@ -20,7 +20,7 @@ export function AboutMeSectionThree() {
         <RightSection>
           <SectionTwoTitle>COFFEE</SectionTwoTitle>
           <ScribbleUnderlineContainer>
-            <Image src="/scribbles/green-underline.png" layout="fill" />
+            <Image alt="scribbles" src="/scribbles/green-underline.png" fill />
           </ScribbleUnderlineContainer>
           <TextContainer>
             <InfoText>
@@ -39,11 +39,12 @@ export function AboutMeSectionThree() {
         <LeftSection>
           <CoffeeImageContainer>
             <Image
+              alt="coffee"
               src="/coffee.jpeg"
-              layout="fill"
-              objectFit="cover"
+              fill
               quality={50}
               priority
+              style={{ objectFit: 'cover' }}
             />
           </CoffeeImageContainer>
         </LeftSection>
