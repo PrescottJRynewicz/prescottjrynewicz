@@ -73,7 +73,11 @@ export function PostListing({ post }: { post: NotionPage }) {
         </SubHeaderOne>
         <SubHeader1Light>
           {' '}
-          {new Date(post.properties.Created.created_time).toDateString()}
+          {post?.properties?.Published?.date?.start
+            ? new Date(
+                post.properties.Published.date?.start as string
+              ).toDateString()
+            : ''}
         </SubHeader1Light>
       </TitleContainer>
       <SubHeaderTwo style={{ color: solids.PINK_STARBURST }}>

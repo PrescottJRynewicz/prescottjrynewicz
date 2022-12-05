@@ -30,7 +30,7 @@ export function AboutMeSectionOne() {
   return (
     <TopSectionContainer>
       <Menu />
-      <PeekABoo useConfetti animationDelay={2} />
+      <PeekABoo animationDelay={2} />
       <ContentContainer>
         <LeftSection>
           <Title>WHO I BE</Title>
@@ -45,22 +45,17 @@ export function AboutMeSectionOne() {
             <ButtonContainer>
               <PrimaryButton
                 textColor="green"
-                useConfetti
                 simultaneous
                 onClick={handleNav('cycling')}>
                 Cycling
               </PrimaryButton>
               <PrimaryButton
                 textColor={solids.RUST}
-                useConfetti
                 simultaneous
                 onClick={handleNav('coffee')}>
                 Coffee
               </PrimaryButton>
-              <PrimaryButton
-                useConfetti
-                simultaneous
-                onClick={handleNav('code')}>
+              <PrimaryButton simultaneous onClick={handleNav('code')}>
                 Code
               </PrimaryButton>
             </ButtonContainer>
@@ -69,10 +64,11 @@ export function AboutMeSectionOne() {
         <RightSection>
           <ImageContainer>
             <Image
+              alt="prescott"
               src="/me.jpeg"
-              layout="fill"
-              objectFit="cover"
+              fill
               quality={50}
+              style={{ objectFit: 'cover' }}
               priority
               placeholder="blur"
               blurDataURL={speckles.MIMOSA}

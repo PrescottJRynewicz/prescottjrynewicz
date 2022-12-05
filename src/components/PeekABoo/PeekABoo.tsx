@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { NakedButton } from '/design-system/buttons/naked';
 import Image from 'next/image';
 import React, { RefObject } from 'react';
 
@@ -10,7 +9,7 @@ const SlideIn = keyframes`
 `;
 
 type Props = { animationDelay: number };
-const PeekABooWrapper = styled(NakedButton)<Props>`
+const PeekABooWrapper = styled.div<Props>`
   opacity: 0;
   animation: ${SlideIn} 1s ease-in-out forwards;
   animation-delay: ${(props) => props.animationDelay}s;
@@ -27,7 +26,7 @@ const PeekABooWrapper = styled(NakedButton)<Props>`
 
   &:hover {
     left: -40px;
-    cursor: pointer;
+    cursor: help;
   }
 
   @media (max-width: 700px) {
@@ -41,13 +40,16 @@ const CustomImage = styled(Image)`
   border-radius: 100px;
 `;
 
-export function PeekABoo(
-  props: React.ComponentProps<typeof NakedButton> &
-    Props & { ref?: RefObject<HTMLButtonElement> }
-) {
+export function PeekABoo(props: Props & { ref?: RefObject<HTMLDivElement> }) {
   return (
     <PeekABooWrapper {...props}>
-      <CustomImage src="/peek-a-boo.png" layout="fill" quality={5} />
+      <CustomImage
+        src="/peek-a-boo.png"
+        fill
+        style={{ borderRadius: '100px' }}
+        quality={5}
+        alt="peek a boo"
+      />
     </PeekABooWrapper>
   );
 }

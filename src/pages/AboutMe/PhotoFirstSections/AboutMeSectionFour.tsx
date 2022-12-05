@@ -37,13 +37,19 @@ export function AboutMeSectionFour() {
       <ContentContainer>
         <LeftSection>
           <CyclingImageContainer>
-            <Image src="/code.png" layout="fill" objectFit="cover" priority />
+            <Image
+              alt="code"
+              src="/code.png"
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
           </CyclingImageContainer>
         </LeftSection>
         <RightSection>
           <SectionTwoTitle>CODE</SectionTwoTitle>
           <ScribbleUnderlineContainer>
-            <Image src="/scribbles/green-underline.png" layout="fill" />
+            <Image alt="scribbles" src="/scribbles/green-underline.png" fill />
           </ScribbleUnderlineContainer>
           <TextContainer>
             <InfoText>I love writing code</InfoText>
@@ -52,7 +58,7 @@ export function AboutMeSectionFour() {
               This picture is a snippet of code that is running this website. It
               powers all the fun dots you see in this section, and allows me to
               do fun stuff like
-              <NakedButton onClick={animateDots} useConfetti simultaneous>
+              <NakedButton onClick={animateDots} simultaneous>
                 this
               </NakedButton>
             </InfoText>

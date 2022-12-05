@@ -7,7 +7,6 @@ import {
   CategoryText,
   CommentContainer,
   Divider,
-  ImageWrap,
   LikeContainer,
   PublishedOnContainer,
   Tag,
@@ -31,6 +30,7 @@ import { animateElement } from '/src/utils/animations/animate';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Link from 'next/link';
 
 export type BlogPostProps = {
   post: ExtendedRecordMap;
@@ -156,20 +156,27 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <Menu />
-      <PeekABoo useConfetti animationDelay={2} />
+      <PeekABoo animationDelay={2} />
       <BlogPostContainer>
         <BlogPostContentWrapper>
-          <ImageWrap>
-            <Image
-              src={url}
-              placeholder="blur"
-              blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
-              layout="fill"
-              // tested between 25-100. Did not notice a significant difference until 25
-              quality={25}
-              objectFit="cover"
-            />
-          </ImageWrap>
+          <Image
+            alt={title.title.map((item) => item.plain_text).join()}
+            src={url}
+            placeholder="blur"
+            blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
+            priority
+            height={500}
+            width={500}
+            style={{
+              objectFit: 'cover',
+              // This will override the width property
+              width: '100%',
+              borderRadius: '10px',
+              borderColor: solids.PINK_STARBURST,
+              borderWidth: '3px',
+              borderStyle: 'solid',
+            }}
+          />
           <TitleContainer>
             <TitleRow>
               <TitleText>
@@ -244,6 +251,8 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
             previewImages
             components={{
               Code,
+              nextImage: Image,
+              nextLink: Link,
             }}
           />
         </BlogPostContentWrapper>

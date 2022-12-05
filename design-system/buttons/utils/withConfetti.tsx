@@ -7,6 +7,7 @@ import { StyledComponent } from 'styled-components';
  * Fun button wrapper that allow the ability to explode
  * confetti in the button when clicked
  *
+ * @deprecated When upgrading to Next JS 13 this broke - need to investigate more or build a new component
  * @param Button
  * @constructor
  */
@@ -14,6 +15,9 @@ export function withConfetti<T extends object>(
   Button: StyledComponent<'button', any, T, never>
 ): React.FC<
   T & {
+    /**
+     * @deprecated Do not use this. It will not do anything
+     */
     useConfetti?: boolean;
     simultaneous?: boolean;
     confettiDuration?: number;
@@ -37,13 +41,9 @@ export function withConfetti<T extends object>(
     children,
     buttonRef,
     confettiDuration = 2000,
-    force = 0.2,
-    floorHeight = 1000,
-    floorWidth = 300,
-    particleCount = 60,
-    particleSize = 12,
     ...rest
   }) {
+    // @ts-ignore
     const [exploding, setExploding, explodingRef] = useStateRef(false);
 
     const handler = useCallback(
@@ -67,16 +67,17 @@ export function withConfetti<T extends object>(
     return (
       // @ts-ignore
       <Button {...rest} onClick={handler} ref={buttonRef}>
-        {useConfetti && exploding && (
-          <ConfettiExplosion
-            duration={confettiDuration}
-            force={force}
-            particleCount={particleCount}
-            floorHeight={floorHeight}
-            floorWidth={floorWidth}
-            particleSize={particleSize}
-          />
-        )}
+        {/* Turned off confetti when upgrading to Next JS 13 */}
+        {/* {useConfetti && exploding ( */}
+        {/*  <ConfettiExplosion */}
+        {/*    duration={confettiDuration} */}
+        {/*    force={force} */}
+        {/*    particleCount={particleCount} */}
+        {/*    floorHeight={floorHeight} */}
+        {/*    floorWidth={floorWidth} */}
+        {/*    particleSize={particleSize} */}
+        {/*  /> */}
+        {/* )} */}
         {children}
       </Button>
     );

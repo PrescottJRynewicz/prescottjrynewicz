@@ -57,7 +57,7 @@ export function Blog(props: BlogStaticProps) {
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <Menu />
-      <PeekABoo useConfetti animationDelay={2} />
+      <PeekABoo animationDelay={2} />
       <BlogPostContainer>
         <BlogContentWrapper>
           <Header1 style={{ marginBottom: '0px' }}>
@@ -84,7 +84,10 @@ export function Blog(props: BlogStaticProps) {
               <div style={{ whiteSpace: 'pre-wrap', minWidth: '100px' }}>
                 {(props.topics || []).map((category) => (
                   <>
-                    <Link passHref href={`/blog/topics/${category}`}>
+                    <Link
+                      passHref
+                      href={`/blog/topics/${category}`}
+                      legacyBehavior>
                       <CategoryLink>{category}</CategoryLink>
                     </Link>
                     {'          '}
@@ -94,7 +97,7 @@ export function Blog(props: BlogStaticProps) {
             ) : (
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <ChevronLeft color={solids.PINK_STARBURST} />
-                <Link passHref href="/blog">
+                <Link passHref href="/blog" legacyBehavior>
                   <CategoryLink>Home</CategoryLink>
                 </Link>
               </div>
@@ -119,9 +122,7 @@ export function Blog(props: BlogStaticProps) {
                 passHref
                 key={postName}
                 href={`/blog/${postName.replace(/\s/g, '-')}`}>
-                <a>
-                  <PostListing post={post} key={postName} />
-                </a>
+                <PostListing post={post} key={postName} />
               </Link>
             );
           })}

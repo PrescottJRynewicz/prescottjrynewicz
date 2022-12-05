@@ -21,9 +21,10 @@ export function AboutMeSectionTwo() {
         <LeftSection>
           <CyclingImageContainer>
             <Image
+              alt="cycling"
               src="/cycling.jpeg"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }}
               priority
             />
           </CyclingImageContainer>
@@ -31,7 +32,7 @@ export function AboutMeSectionTwo() {
         <RightSection>
           <SectionTwoTitle>CYCLING</SectionTwoTitle>
           <ScribbleUnderlineContainer>
-            <Image src="/scribbles/green-underline.png" layout="fill" />
+            <Image alt="scribbles" src="/scribbles/green-underline.png" fill />
           </ScribbleUnderlineContainer>
           <TextContainer>
             <InfoText>The bicycle is an amazing machine.</InfoText>
