@@ -7,7 +7,6 @@ import {
   CategoryText,
   CommentContainer,
   Divider,
-  ImageWrap,
   LikeContainer,
   PublishedOnContainer,
   Tag,
@@ -160,23 +159,24 @@ export function BlogPost({ post, pageData, coverBlurUrl }: BlogPostProps) {
       <PeekABoo animationDelay={2} />
       <BlogPostContainer>
         <BlogPostContentWrapper>
-          <ImageWrap>
-            <Image
-              alt={title.title.map((item) => item.plain_text).join()}
-              src={url}
-              placeholder="blur"
-              blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
-              priority
-              fill
-              style={{
-                objectFit: 'cover',
-                borderRadius: '10px',
-                borderColor: solids.PINK_STARBURST,
-                borderWidth: '3px',
-                borderStyle: 'solid',
-              }}
-            />
-          </ImageWrap>
+          <Image
+            alt={title.title.map((item) => item.plain_text).join()}
+            src={url}
+            placeholder="blur"
+            blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
+            priority
+            height={500}
+            width={500}
+            style={{
+              objectFit: 'cover',
+              // This will override the width property
+              width: '100%',
+              borderRadius: '10px',
+              borderColor: solids.PINK_STARBURST,
+              borderWidth: '3px',
+              borderStyle: 'solid',
+            }}
+          />
           <TitleContainer>
             <TitleRow>
               <TitleText>
