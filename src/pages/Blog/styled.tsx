@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { solids, speckles, textures } from '/design-system/colors';
 import { Header3 } from '/design-system/typography';
+import Image from 'next/image';
 
 const fadeIn = keyframes`
   to {
@@ -102,6 +103,15 @@ export const CommentContainer = styled.a`
   padding: 5px 10px;
   width: fit-content;
   margin-top: 20px;
+`;
+
+export const CoverImage = styled(Image)`
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+  border-color: ${solids.PINK_STARBURST};
+  border-width: 3px;
+  border-style: solid;
 `;
 
 export const SearchInputContainer = styled.div`

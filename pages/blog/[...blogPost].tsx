@@ -1,4 +1,4 @@
-import { BlogPost, BlogPostProps } from '/src/pages/Blog/BlogPost';
+import { BlogPost } from '/src/pages/Blog/BlogPost';
 import {
   GetStaticPathsResult,
   GetStaticPropsContext,
@@ -7,6 +7,7 @@ import {
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { getBlogPost } from '/src/fetchers/getPost';
 import { getBlurredImages } from '/src/fetchers/getBlurredImages';
+import { BlogPostProps } from '/src/pages/Blog/types';
 
 export default BlogPost;
 

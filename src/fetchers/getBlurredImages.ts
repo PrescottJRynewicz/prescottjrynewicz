@@ -5,6 +5,7 @@ import {
 } from '/src/utils/getPreviewImages';
 import { NotionPage, PageCover } from '/src/types/cms/properties';
 import { speckles } from '/design-system/colors';
+import { getNotionCoverUrl } from '/src/utils/getNotionCoverUrl';
 
 /**
  * This method will take a post, and attach image previews.
@@ -26,10 +27,7 @@ export async function getBlurredImages({
   const { previewImagesMap } = await getPreviewImageMap(post);
 
   const coverPhoto = pageData.cover as PageCover;
-  const { url } = coverPhoto?.[coverPhoto?.type] || {
-    url: speckles.MILK,
-  };
-
+  const url = getNotionCoverUrl({ cover: coverPhoto }) || speckles.MILK;
   const coverPreview = await getPreviewImage(url);
 
   return {

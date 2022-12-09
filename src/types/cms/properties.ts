@@ -77,7 +77,13 @@ export type NotionPage = NotionTypeHelper<GetPageResponse> & {
     >;
   };
 };
-export type PageCover = Extract<BaseNotionPage['cover'], { external: {} }>;
+
+export type PageCoverExternal = Extract<
+  BaseNotionPage['cover'],
+  { external: {} }
+>;
+export type PageCoverFile = Extract<BaseNotionPage['cover'], { file: {} }>;
+export type PageCover = PageCoverExternal | PageCoverFile;
 
 export type Emoji = Extract<BaseNotionPage['icon'], { type: 'emoji' }>;
 
