@@ -10,10 +10,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    await Promise.all(
-      (
-        await getBlogPosts({})
-      ).posts.map((post: NotionPage) =>
+    const promises = Promise.all(
+      (await getBlogPosts({})).posts.map((post: NotionPage) =>
         res.revalidate(
           `/blog/${post.properties.Title.title
             .map((item) => item.plain_text)
@@ -23,8 +21,13 @@ export default async function handler(
       )
     );
 
-    return res.json({ revalidated: true });
+    res.json({ revalidated: true });
+
+    const result = await promises;
+
+    console.log('finished re-validating', result);
   } catch (err) {
+    console.error(err);
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
     return res
