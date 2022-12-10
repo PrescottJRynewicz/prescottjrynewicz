@@ -65,13 +65,13 @@ export function Blog(props: BlogStaticProps) {
           </Header1>
           {!isCategoryPage && (
             <>
-              <SubHeader3 style={{ color: 'rgba(55, 53, 47, 0.8)' }}>
+              <SubHeader3 muted>
                 I created this space to share my passions. I am a serial
                 hobbyist and crave sharing my excitement for what I do.
               </SubHeader3>
               <SubHeader3
+                muted
                 style={{
-                  color: 'rgba(55, 53, 47, 0.8)',
                   marginBottom: '20px',
                 }}>
                 Thanks for reading 👋

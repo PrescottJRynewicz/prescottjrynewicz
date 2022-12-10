@@ -1,10 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const fonts = {
   Shrimp: 'Shrimp',
   Brandon: 'Brandon Grotesque',
   Avenir: 'Avenir',
 };
+
+const mutedMixin = css<{ muted?: boolean }>`
+  color: ${(props) => (props.muted ? 'var(--color-muted)' : '')};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${(props) => (props.muted ? 'var(--color-dark)' : '')};
+    opacity: ${(props) => (props.muted ? 0.8 : 1)};
+  }
+`;
 
 export const Header1 = styled.h1`
   font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
@@ -16,18 +25,7 @@ export const Header1 = styled.h1`
   @media (max-width: 700px) {
     font-size: 4em;
   }
-`;
-
-export const Header2 = styled.h2`
-  font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
-
-  font-size: 6em;
-
-  @media (max-width: 700px) {
-    font-size: 3em;
-  }
+  ${mutedMixin}
 `;
 
 export const Header3 = styled.h3`
@@ -80,4 +78,5 @@ export const SubHeader3 = styled.h3`
   @media (max-width: 700px) {
     font-size: 1em;
   }
+  ${mutedMixin}
 `;

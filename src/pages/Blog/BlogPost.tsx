@@ -18,9 +18,18 @@ import { useUpVotesAndViews } from '/src/pages/Blog/hooks/useUpVotesAndViews';
 import { BlogPostProps } from '/src/pages/Blog/types';
 import { getPageCover } from '/src/pages/Blog/utils/getPageCover';
 
-const UpvoteIcon = styled(ThumbsUp)`
+const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
   &:hover {
     cursor: pointer;
+  }
+
+  color: ${({ hasUpvoted }) =>
+    hasUpvoted ? solids.PINK_STARBURST : solids.DARK_KNIGHT};
+  fill: ${({ hasUpvoted }) =>
+    hasUpvoted ? solids.PINK_STARBURST : 'transparent'};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${solids.PINK_STARBURST};
   }
 `;
 
@@ -130,8 +139,7 @@ export function BlogPostContent({
                 <UpvoteIcon
                   id="ThumbsUpButton"
                   onClick={updateLikes}
-                  color={hasUpvoted ? solids.PINK_STARBURST : 'black'}
-                  fill={hasUpvoted ? solids.PINK_STARBURST : 'transparent'}
+                  hasUpvoted={hasUpvoted}
                 />
                 <SubHeader3>{upvotes}</SubHeader3>
               </Styled.LikeContainer>

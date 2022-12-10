@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { solids, speckles, textures } from '/design-system/colors';
 import { Header3 } from '/design-system/typography';
 import Image from 'next/image';
@@ -6,6 +6,12 @@ import Image from 'next/image';
 const fadeIn = keyframes`
   to {
     opacity: 100%;
+  }
+`;
+
+const BackgroundMixin = css`
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.DARK_KNIGHT});
   }
 `;
 
@@ -21,6 +27,8 @@ export const BlogPostContainer = styled.div`
   align-items: center;
   min-height: 100vh;
   width: 100%;
+
+  ${BackgroundMixin};
 `;
 
 export const BlogPostContentWrapper = styled.div`
@@ -78,6 +86,10 @@ export const CategoryText = styled.span`
   font-weight: 400;
   margin-right: 1em;
   margin-top: 20px;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.PINK_STARBURST});
+  }
 `;
 
 export const Tag = styled.span`
@@ -86,6 +98,11 @@ export const Tag = styled.span`
   padding: 0.5em 1em;
   margin-right: 1em;
   margin-top: 20px;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.PAPER});
+    color: black;
+  }
 `;
 
 export const Divider = styled.span`
@@ -93,6 +110,10 @@ export const Divider = styled.span`
   height: 1em;
   width: 100%;
   margin: 2em 0;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.PAPER});
+  }
 `;
 
 export const CommentContainer = styled.a`
@@ -103,6 +124,11 @@ export const CommentContainer = styled.a`
   padding: 5px 10px;
   width: fit-content;
   margin-top: 20px;
+
+  @media (prefers-color-scheme: dark) {
+    border: solid 3px ${solids.PAPER};
+    background-image: url(${speckles.PINK_STARBURST});
+  }
 `;
 
 export const CoverImage = styled(Image)<{ isImageLoaded: boolean }>`

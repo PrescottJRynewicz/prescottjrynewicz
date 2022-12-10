@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { withConfetti } from '/design-system/buttons/utils/withConfetti';
+import { solids } from '/design-system/colors';
 
 const Button = styled.button<{ textColor?: string }>`
   align-items: center;
@@ -16,6 +17,10 @@ const Button = styled.button<{ textColor?: string }>`
 
   &:hover {
     text-decoration: underline;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border: solid 2px ${solids.PINK_STARBURST};
   }
 `;
 

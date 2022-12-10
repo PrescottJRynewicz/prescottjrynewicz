@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Modal from 'react-modal';
-import { solids } from '/design-system/colors';
+import { solids, speckles } from '/design-system/colors';
 import {
   MenuPrimaryLink,
   HamburgerBorder,
@@ -9,19 +9,31 @@ import {
   HamburgerContainer,
 } from '/src/components/Menu/styled';
 import { useMenuState } from '/src/components/Menu/useMenuState';
+import styled from 'styled-components';
 
 const customStyles: Modal.Styles = {
   content: {
-    width: '175px',
+    width: 'fit-content',
     height: 'fit-content',
-    padding: '15px',
-    backgroundColor: solids.MILK,
-    border: `solid 3px ${solids.PINK_STARBURST}`,
+    padding: '0',
+    border: 'none',
+    borderRadius: '10px',
   },
   overlay: {
     backgroundColor: 'transparent',
   },
 };
+
+const Nav = styled.nav`
+  background-image: url(${speckles.MILK});
+  border: solid 3px ${solids.PINK_STARBURST};
+  border-radius: 10px;
+  padding: 15px 30px;
+
+  @media (prefers-color-scheme: dark) {
+    color: black;
+  }
+`;
 
 Modal.setAppElement('#app');
 
@@ -56,7 +68,7 @@ export function Menu() {
         shouldCloseOnOverlayClick
         style={customStyles}
         contentLabel="Example Modal">
-        <nav>
+        <Nav>
           <HamburgerBorder>
             <Link href="/" passHref legacyBehavior>
               <MenuPrimaryLink>Home</MenuPrimaryLink>
@@ -68,7 +80,7 @@ export function Menu() {
               <MenuPrimaryLink>Blog</MenuPrimaryLink>
             </Link>
           </HamburgerBorder>
-        </nav>
+        </Nav>
       </Modal>
       <HamburgerContainer>
         <svg
