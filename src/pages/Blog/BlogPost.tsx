@@ -103,6 +103,7 @@ export function BlogPostContent({
           <Styled.CoverImage
             alt={title.title.map((item) => item.plain_text).join()}
             src={(url as string) || (coverBlurUrl?.dataURIBase64 as string)}
+            isImageLoaded={!url}
             placeholder="blur"
             blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
             priority
