@@ -18,6 +18,11 @@ const Container = styled.div`
   border: 5px solid ${solids.PINK_STARBURST};
   margin-bottom: 40px;
   ${growOnHover};
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.PINK_STARBURST});
+    border: 5px solid ${solids.MIMOSA};
+  }
 `;
 
 const TitleContainer = styled.div`
@@ -34,6 +39,11 @@ const SubHeaderTwo = styled(SubHeader2)`
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 80%;
+  color: ${solids.PINK_STARBURST};
+
+  @media (prefers-color-scheme: dark) {
+    color: ${solids.MIMOSA};
+  }
 `;
 
 const SubHeaderOne = styled(SubHeader1)`
@@ -80,7 +90,7 @@ export function PostListing({ post }: { post: NotionPage }) {
             : ''}
         </SubHeader1Light>
       </TitleContainer>
-      <SubHeaderTwo style={{ color: solids.PINK_STARBURST }}>
+      <SubHeaderTwo>
         {post.properties.Subtitle.rich_text
           .map((item) => item.plain_text)
           .join()}
