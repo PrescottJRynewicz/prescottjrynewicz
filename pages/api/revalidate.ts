@@ -4,6 +4,9 @@ import { NotionPage } from '/src/types/cms/properties';
 
 /**
  * Re-validate all blog posts
+ *
+ * TODO: Could validate this with a secret - not required for
+ *  a hobby project
  */
 export default async function handler(
   _req: NextApiRequest,
@@ -21,6 +24,7 @@ export default async function handler(
       )
     );
 
+    // Return to avoid timeouts
     res.json({ revalidated: true });
 
     const result = await promises;
