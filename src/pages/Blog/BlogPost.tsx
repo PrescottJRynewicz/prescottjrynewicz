@@ -60,7 +60,7 @@ export function BlogPostContent({
       pageData,
     });
 
-  const url =
+  const { url } =
     getPageCover({
       updatedPageData: upToDatePageData,
       staticPageData: pageData,
@@ -102,7 +102,7 @@ export function BlogPostContent({
         <Styled.BlogPostContentWrapper>
           <Styled.CoverImage
             alt={title.title.map((item) => item.plain_text).join()}
-            src={url}
+            src={(url as string) || (coverBlurUrl?.dataURIBase64 as string)}
             placeholder="blur"
             blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
             priority

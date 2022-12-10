@@ -58,7 +58,7 @@ export async function getStaticProps(
       props: {
         post,
         pageData,
-        coverBlurUrl: coverPreview || undefined,
+        coverBlurUrl: coverPreview || null,
       },
       revalidate: 10,
     };

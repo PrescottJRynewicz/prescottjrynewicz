@@ -28,18 +28,19 @@ export function getPageCover({
   updatedPageData: NotionPage | undefined;
 }) {
   if (staticPageData.cover.type === 'file') {
-    console.log(
-      'Cover Photo expiring on',
-      staticPageData.cover.file?.expiry_time
-    );
     if (new Date(staticPageData.cover.file.expiry_time) < new Date()) {
-      console.log('cover photo is expired - fetching new photo');
+      if (updatedPageData?.cover) {
+        return {
+          url: getNotionCoverUrl({ cover: updatedPageData.cover }),
+        };
+      }
+      return {
+        url: undefined,
+      };
     }
   }
 
-  if (updatedPageData?.cover) {
-    return getNotionCoverUrl({ cover: updatedPageData.cover });
-  }
-
-  return getNotionCoverUrl({ cover: staticPageData.cover });
+  return {
+    url: getNotionCoverUrl({ cover: staticPageData.cover }),
+  };
 }
