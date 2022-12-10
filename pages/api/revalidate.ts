@@ -3,19 +3,12 @@ import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { NotionPage } from '/src/types/cms/properties';
 
 /**
- * Revlidate all blog posts cause why not
- * @param req
- * @param res
+ * Re-validate all blog posts
  */
 export default async function handler(
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // Check for secret to confirm this is a valid request
-  if (req.query.secret !== process.env.REVALIDATION_SECRET) {
-    return res.status(401).json({ message: 'Invalid token' });
-  }
-
   try {
     await Promise.all(
       (
