@@ -26,6 +26,7 @@ export default async function handler(
     const result = await promises;
 
     console.log('finished re-validating', result);
+    return result;
   } catch (err) {
     console.error(err);
     // If there was an error, Next.js will continue
