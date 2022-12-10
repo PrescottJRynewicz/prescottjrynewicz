@@ -9,4 +9,4 @@ jobs:
       - name: Call our API route
         run: |
           curl --request GET \
-          --url 'https://www.prescottjr.com/api/revalidate?secret=${{ secrets.REVALIDATION_SECRET }}'
+          --url 'https://www.prescottjr.com/api/revalidate?secret=${{ secrets.SECRET_STATIC_REVALIDATE }}'
