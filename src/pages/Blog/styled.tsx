@@ -105,13 +105,15 @@ export const CommentContainer = styled.a`
   margin-top: 20px;
 `;
 
-export const CoverImage = styled(Image)`
+export const CoverImage = styled(Image)<{ isImageLoaded: boolean }>`
   object-fit: cover;
   width: 100%;
   border-radius: 10px;
   border-color: ${solids.PINK_STARBURST};
   border-width: 3px;
   border-style: solid;
+  filter: ${(props) => (props.isImageLoaded ? 'blur(8px)' : '')};
+  -webkit-filter: ${(props) => (props.isImageLoaded ? 'blur(8px)' : '')};
 `;
 
 export const SearchInputContainer = styled.div`
