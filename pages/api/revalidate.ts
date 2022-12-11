@@ -13,6 +13,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
+    console.log('starting revalidation...');
+
     const promises = Promise.all(
       (await getBlogPosts({})).posts.map((post: NotionPage) =>
         res.revalidate(
@@ -24,9 +26,12 @@ export default async function handler(
       )
     );
 
+    console.log('resolving request');
+
     // Return to avoid timeouts
     res.json({ revalidated: true });
 
+    console.log('await promises');
     const result = await promises;
 
     console.log('finished re-validating', result);
