@@ -3,17 +3,18 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='-r @newrelic/next' next dev",
     "dev:debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "NEXT_PUBLIC_WEBSITE_URL=\"https://www.prescottjr.com\" next build",
     "postbuild": "next-sitemap",
-    "start": "next start",
+    "start": "NODE_OPTIONS='-r @newrelic/next' next start",
     "lint": "next lint",
     "graph-type-gen": "graphql-codegen --config codegen.yml",
     "dependency:check": "ncu",
     "test:types": "tsc"
   },
   "dependencies": {
+    "@newrelic/next": "^0.3.1",
     "@notionhq/client": "^2.2.2",
     "cytoscape": "^3.23.0",
     "cytoscape-cola": "^2.5.1",
@@ -22,6 +23,7 @@
     "jsdom": "^20.0.3",
     "lqip-modern": "^2.0.0",
     "mermaid": "^9.2.2",
+    "newrelic": "^9.7.2",
     "next": "^13.0.6",
     "next-sitemap": "^3.1.32",
     "node-fetch": "^3.3.0",
