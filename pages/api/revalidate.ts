@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { NotionPage } from '/src/types/cms/properties';
+import { logger } from '/src/utils/logging/logger';
 
 /**
  * Re-validate all blog posts
@@ -13,7 +14,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    console.log('starting revalidation...');
+    logger.info('starting revalidation...');
 
     const promises = Promise.all(
       (await getBlogPosts({})).posts.map((post: NotionPage) =>
@@ -26,18 +27,18 @@ export default async function handler(
       )
     );
 
-    console.log('resolving request');
+    logger.info('resolving request');
 
     // Return to avoid timeouts
     res.json({ revalidated: true });
 
-    console.log('await promises');
+    logger.info('await promises');
     const result = await promises;
 
-    console.log('finished re-validating', result);
+    logger.info('finished re-validating', result);
     return result;
   } catch (err) {
-    console.error(err);
+    logger.error('revlidate.error', { error: err });
     // If there was an error, Next.js will continue
     // to show the last successfully generated page
     return res
