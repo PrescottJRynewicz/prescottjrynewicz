@@ -27,16 +27,11 @@ export default async function handler(
       )
     );
 
-    logger.info('resolving request');
-
-    // Return to avoid timeouts
-    res.json({ revalidated: true });
-
     logger.info('await promises');
     const result = await promises;
 
     logger.info('finished re-validating', result);
-    return result;
+    return res.json({ revalidated: true });
   } catch (err) {
     logger.error('revlidate.error', { error: err });
     // If there was an error, Next.js will continue
