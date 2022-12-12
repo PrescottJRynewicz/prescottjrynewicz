@@ -26,7 +26,7 @@ export default async function handler(
 
     await Promise.all(blogUrls.map((url) => fetch(url)));
 
-    logger.info(`finished revalidating${blogUrls.length}pages`);
+    logger.info(`finished revalidating ${blogUrls.length} pages`);
     logger.info(blogUrls.toString());
 
     return res.json({ revalidated: true });
