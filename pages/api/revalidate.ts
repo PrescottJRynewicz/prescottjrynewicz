@@ -16,21 +16,16 @@ export default async function handler(
   try {
     logger.info('starting revalidation...');
 
-    const promises = Promise.all(
-      (await getBlogPosts({})).posts.map((post: NotionPage) =>
-        res.revalidate(
-          `/blog/${post.properties.Title.title
-            .map((item) => item.plain_text)
-            .join()
-            .replace(/\s/g, '-')}`
-        )
-      )
+    const blogUrls = (await getBlogPosts({})).posts.map(
+      (post: NotionPage) =>
+        `https://prescottjr.com/blog/${post.properties.Title.title
+          .map((item) => item.plain_text)
+          .join()
+          .replace(/\s/g, '-')}`
     );
 
-    logger.info('await promises');
-    const result = await promises;
+    await Promise.all(blogUrls.map((url) => fetch(url)));
 
-    logger.info('finished re-validating', result);
     return res.json({ revalidated: true });
   } catch (err) {
     logger.error('revlidate.error', { error: err });

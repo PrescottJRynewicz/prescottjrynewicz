@@ -17,6 +17,7 @@ import Link from 'next/link';
 import { useUpVotesAndViews } from '/src/pages/Blog/hooks/useUpVotesAndViews';
 import { BlogPostProps } from '/src/pages/Blog/types';
 import { getPageCover } from '/src/pages/Blog/utils/getPageCover';
+import { useBackupCoverImageLoading } from '/src/pages/Blog/hooks/useBackupCoverImageLoading';
 
 const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
   &:hover {
@@ -69,11 +70,16 @@ export function BlogPostContent({
       pageData,
     });
 
-  const { url } =
-    getPageCover({
-      updatedPageData: upToDatePageData,
-      staticPageData: pageData,
-    }) || speckles.PINK_STARBURST;
+  const { url } = getPageCover({
+    updatedPageData: upToDatePageData,
+    staticPageData: pageData,
+  });
+
+  const { updateImageBlur, shouldBlurCover } = useBackupCoverImageLoading({
+    staticUrl: url,
+    updatedPageData: upToDatePageData,
+    staticPageData: pageData,
+  });
   const title = pageData.properties.Title;
   const subtitle = pageData.properties.Subtitle;
   const tags = pageData.properties.Tags;
@@ -109,11 +115,13 @@ export function BlogPostContent({
       <PeekABoo animationDelay={2} />
       <Styled.BlogPostContainer>
         <Styled.BlogPostContentWrapper>
+          {/* If we want to avoid blurring the border we need to wrap this in a container */}
           <Styled.CoverImage
             alt={title.title.map((item) => item.plain_text).join()}
             src={(url as string) || (coverBlurUrl?.dataURIBase64 as string)}
-            isImageLoaded={!url}
+            shouldBlurImage={shouldBlurCover}
             placeholder="blur"
+            onLoad={updateImageBlur}
             blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
             priority
             height={500}

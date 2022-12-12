@@ -131,15 +131,13 @@ export const CommentContainer = styled.a`
   }
 `;
 
-export const CoverImage = styled(Image)<{ isImageLoaded: boolean }>`
+export const CoverImage = styled(Image)<{ shouldBlurImage: boolean }>`
   object-fit: cover;
   width: 100%;
+  border: solid 3px ${solids.PINK_STARBURST};
   border-radius: 10px;
-  border-color: ${solids.PINK_STARBURST};
-  border-width: 3px;
-  border-style: solid;
-  filter: ${(props) => (props.isImageLoaded ? 'blur(8px)' : '')};
-  -webkit-filter: ${(props) => (props.isImageLoaded ? 'blur(8px)' : '')};
+  filter: ${(props) => (props.shouldBlurImage ? 'blur(8px)' : '')};
+  -webkit-filter: ${(props) => (props.shouldBlurImage ? 'blur(8px)' : '')};
 `;
 
 export const SearchInputContainer = styled.div`
