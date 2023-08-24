@@ -5,7 +5,6 @@ import {
   Container,
   TitleContainer,
   Title,
-  BreathingCircle,
   SubTitle,
   NavContainer,
 } from '/src/pages/Home/styled';
@@ -79,8 +78,8 @@ export default function Home() {
         <meta name="twitter:image" content="/favicon.png" />
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
-      <BreathingCircle className={styles.breath} />
-      <Container className={styles.fadeIn} ref={containerRef}>
+      {/* <BreathingCircle className={styles.breath} /> */}
+      <Container ref={containerRef}>
         <PolkaDots numDots={300} />
         <Menu />
 
