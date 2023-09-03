@@ -49,9 +49,20 @@ export const BreathingCircle = styled.span`
 
 export const Title = styled.h1`
   font-size: 128px;
-  font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family:
+    Shrimp,
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
   margin: 10px 0;
 
   @media (max-width: 900px) {

@@ -13,7 +13,7 @@ export async function paginateNotion<
   Method extends (
     ..._args: Parameters<Method>
   ) => // eslint-disable-next-line camelcase
-  Promise<{ results: any; next_cursor: string | null; has_more: boolean }>
+  Promise<{ results: any; next_cursor: string | null; has_more: boolean }>,
 >(method: Method, ...params: Parameters<Method>) {
   // @ts-ignore
   const [arg1] = params;
