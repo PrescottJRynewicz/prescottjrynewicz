@@ -29,7 +29,7 @@ jobs: # each workflow consists of 1+ jobs; by default, all jobs run in parallel
         run: npm run lint
 
       - name: Run type checks
-        run: npm run typecheck
+        run: npm run test:types
 
       - name: Run Circular Dep Checks
         run: npm run circular:check
