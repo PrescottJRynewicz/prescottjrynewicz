@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { withConfetti } from '/design-system/buttons/utils/withConfetti';
 import { solids } from '/design-system/colors';
 
-const Button = styled.button<{ textColor?: string }>`
+export const PrimaryButton = styled.button<{ textColor?: string }>`
   align-items: center;
   display: flex;
   color: ${(props) => props.textColor || 'black'};
@@ -23,5 +22,3 @@ const Button = styled.button<{ textColor?: string }>`
     border: solid 2px ${solids.PINK_STARBURST};
   }
 `;
-
-export const PrimaryButton = withConfetti(Button);

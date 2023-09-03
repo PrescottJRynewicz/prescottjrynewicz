@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { withConfetti } from '/design-system/buttons/utils/withConfetti';
 
-const Button = styled.button`
+export const NakedButton = styled.button`
   border: none;
   background-color: transparent;
   font-family: 'Brandon Grotesque';
@@ -12,5 +11,3 @@ const Button = styled.button`
     text-decoration: underline;
   }
 `;
-
-export const NakedButton = withConfetti(Button);

@@ -16,9 +16,20 @@ const mutedMixin = css<{ muted?: boolean }>`
 `;
 
 export const Header1 = styled.h1`
-  font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family:
+    Shrimp,
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 
   font-size: 8em;
 
@@ -29,9 +40,20 @@ export const Header1 = styled.h1`
 `;
 
 export const Header3 = styled.h3`
-  font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family:
+    Shrimp,
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 
   font-size: 4em;
   margin: 1em 0 0;
@@ -42,8 +64,18 @@ export const Header3 = styled.h3`
 `;
 
 export const SubHeader1 = styled.h1`
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+  font-family:
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
     sans-serif;
   font-size: 2em;
 
@@ -55,8 +87,18 @@ export const SubHeader1 = styled.h1`
 `;
 
 export const SubHeader2 = styled.h2`
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+  font-family:
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
     sans-serif;
   font-size: 1.75em;
 
@@ -68,8 +110,18 @@ export const SubHeader2 = styled.h2`
 `;
 
 export const SubHeader3 = styled.h3`
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+  font-family:
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
     sans-serif;
   font-size: 1.25em;
 
