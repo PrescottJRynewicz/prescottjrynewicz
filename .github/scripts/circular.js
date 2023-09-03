@@ -4,9 +4,9 @@ const config = {
   tsConfig: 'tsconfig.json'
 };
 
-const RootPromise = madge('app/root.tsx', config);
-const ServerEntryPromise = madge('app/entry.server.tsx', config);
-const ClientEntryPromise = madge('app/entry.client.tsx', config);
+const RootPromise = madge('pages/_document.tsx', config);
+const ServerEntryPromise = madge('pages/index.tsx', config);
+const ClientEntryPromise = madge('pages/_app.tsx', config);
 
 new Promise(async () => {
   try {
