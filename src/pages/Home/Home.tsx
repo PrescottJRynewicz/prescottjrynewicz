@@ -92,18 +92,10 @@ export default function Home() {
             A bicycle, coffee, and people-loving software engineer.
           </SubTitle>
           <NavContainer>
-            <PrimaryButton
-              simultaneous
-              confettiDuration={2000}
-              onClick={handleNav('/blog/about-me')}>
+            <PrimaryButton onClick={handleNav('/blog/about-me')}>
               About me
             </PrimaryButton>
-            <PrimaryButton
-              simultaneous
-              confettiDuration={2000}
-              onClick={handleNav('/blog')}>
-              Blog
-            </PrimaryButton>
+            <PrimaryButton onClick={handleNav('/blog')}>Blog</PrimaryButton>
           </NavContainer>
         </TitleContainer>
       </Container>

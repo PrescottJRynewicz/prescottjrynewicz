@@ -6,7 +6,9 @@ export const fonts = {
   Avenir: 'Avenir',
 };
 
-const mutedMixin = css<{ muted?: boolean }>`
+type MutedProps = { muted?: boolean };
+
+const mutedMixin = css<MutedProps>`
   color: ${(props) => (props.muted ? 'var(--color-muted)' : '')};
 
   @media (prefers-color-scheme: dark) {
@@ -15,7 +17,7 @@ const mutedMixin = css<{ muted?: boolean }>`
   }
 `;
 
-export const Header1 = styled.h1`
+export const Header1 = styled.h1<MutedProps>`
   font-family:
     Shrimp,
     'Brandon Grotesque',
@@ -109,7 +111,7 @@ export const SubHeader2 = styled.h2`
   }
 `;
 
-export const SubHeader3 = styled.h3`
+export const SubHeader3 = styled.h3<MutedProps>`
   font-family:
     'Brandon Grotesque',
     -apple-system,

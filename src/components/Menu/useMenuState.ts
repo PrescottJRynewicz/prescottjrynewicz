@@ -8,10 +8,10 @@ export function useMenuState() {
     setter,
   } = useStateSetter(false);
   const contentRef: MutableRefObject<HTMLElement | undefined> = useRef();
-  const buttonParentRef = useRef() as MutableRefObject<HTMLButtonElement>;
+  const buttonParentRef = useRef<HTMLButtonElement>(null);
 
   const placeMenu = useCallback(() => {
-    if (contentRef.current) {
+    if (contentRef.current && buttonParentRef?.current) {
       const menuRect = buttonParentRef.current.getBoundingClientRect();
       const contentRect = contentRef.current.getBoundingClientRect();
 

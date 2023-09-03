@@ -40,6 +40,7 @@ export function Code({ block }: { block: Block }) {
     return (
       <Parent>
         <CodeBlock
+          // @ts-ignore Not sure why this isn't working - this prop exists.
           text={code}
           language={
             languageString.toLowerCase() === 'plain text'

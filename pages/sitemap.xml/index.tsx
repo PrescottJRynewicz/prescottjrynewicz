@@ -1,4 +1,4 @@
-import { getServerSideSitemap, ISitemapField } from 'next-sitemap';
+import { getServerSideSitemapLegacy, ISitemapField } from 'next-sitemap';
 import { GetServerSideProps } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     }))
   );
 
-  return getServerSideSitemap(ctx, routes);
+  return getServerSideSitemapLegacy(ctx, routes);
 };
 
 export default function Sitemap() {}
