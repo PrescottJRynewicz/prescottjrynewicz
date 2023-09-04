@@ -14,7 +14,6 @@ import { mapImageUrl } from './mapImageUrl';
  * blur image preview for each one.
  *
  * @param recordMap
- * @param cache
  */
 export async function getPreviewImageMap(
   recordMap: ExtendedRecordMap
