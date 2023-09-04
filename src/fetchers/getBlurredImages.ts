@@ -22,8 +22,6 @@ export async function getBlurredImages({
   post: ExtendedRecordMap;
   pageData: NotionPage;
 }) {
-  // const { cache, blockIds } = await getImageCache(pageData);
-
   const { previewImagesMap } = await getPreviewImageMap(post);
 
   const coverPhoto = pageData.cover as PageCover;
