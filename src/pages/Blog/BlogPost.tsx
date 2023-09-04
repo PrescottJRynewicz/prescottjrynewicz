@@ -18,6 +18,7 @@ import { useUpVotesAndViews } from '/src/pages/Blog/hooks/useUpVotesAndViews';
 import { BlogPostProps } from '/src/pages/Blog/types';
 import { getPageCover } from '/src/pages/Blog/utils/getPageCover';
 import { useBackupCoverImageLoading } from '/src/pages/Blog/hooks/useBackupCoverImageLoading';
+import { Equation } from 'react-notion-x/build/third-party/equation';
 
 const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
   &:hover {
@@ -200,6 +201,7 @@ export function BlogPostContent({
             previewImages
             components={{
               Code,
+              Equation,
               nextImage: Image,
               nextLink: Link,
             }}
