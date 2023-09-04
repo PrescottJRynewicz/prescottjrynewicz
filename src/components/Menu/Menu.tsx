@@ -48,7 +48,7 @@ export function Menu() {
   } = useMenuState();
 
   return (
-    <MenuButton buttonRef={buttonParentRef} onClick={setter(true)}>
+    <MenuButton ref={buttonParentRef} onClick={setter(true)}>
       <Modal
         isOpen={isMenuOpen}
         onRequestClose={(event) => {

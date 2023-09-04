@@ -43,21 +43,15 @@ export function AboutMeSectionOne() {
             <br />
             <InfoText>Checkout some of these passions below</InfoText>
             <ButtonContainer>
-              <PrimaryButton
-                textColor="green"
-                simultaneous
-                onClick={handleNav('cycling')}>
+              <PrimaryButton textColor="green" onClick={handleNav('cycling')}>
                 Cycling
               </PrimaryButton>
               <PrimaryButton
                 textColor={solids.RUST}
-                simultaneous
                 onClick={handleNav('coffee')}>
                 Coffee
               </PrimaryButton>
-              <PrimaryButton simultaneous onClick={handleNav('code')}>
-                Code
-              </PrimaryButton>
+              <PrimaryButton onClick={handleNav('code')}>Code</PrimaryButton>
             </ButtonContainer>
           </TextContainer>
         </LeftSection>

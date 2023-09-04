@@ -15,9 +15,20 @@ export const TopSectionContainer = styled.div`
 export const Title = styled.h1`
   font-size: 128px;
   color: white;
-  font-family: Shrimp, 'Brandon Grotesque', -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  font-family:
+    Shrimp,
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
   margin: 40px 0;
   text-align: center;
 

@@ -58,9 +58,7 @@ export function AboutMeSectionFour() {
               This picture is a snippet of code that is running this website. It
               powers all the fun dots you see in this section, and allows me to
               do fun stuff like
-              <NakedButton onClick={animateDots} simultaneous>
-                this
-              </NakedButton>
+              <NakedButton onClick={animateDots}>this</NakedButton>
             </InfoText>
             <br />
             <InfoText>

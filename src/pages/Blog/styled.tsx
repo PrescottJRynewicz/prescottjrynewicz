@@ -154,8 +154,18 @@ export const SearchInput = styled.input`
 
   font-size: 24px;
 
-  font-family: 'Brandon Grotesque', -apple-system, BlinkMacSystemFont, Segoe UI,
-    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+  font-family:
+    'Brandon Grotesque',
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
     sans-serif;
   &:focus {
     outline: none;
