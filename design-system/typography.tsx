@@ -29,7 +29,7 @@ export const Header1 = styled.h1.attrs({
   ${mutedMixin}
 `;
 
-export const Header3 = styled.h3`
+export const Header3 = styled.h3.attrs({ className: Shrimp.className })`
   font-size: 4em;
   margin: 1em 0 0;
 

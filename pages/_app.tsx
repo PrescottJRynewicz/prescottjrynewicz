@@ -3,7 +3,6 @@
 import React from 'react';
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
-import '../styles/notion-styles.css';
 
 // core styles shared by all of react-notion-x (required)
 import 'react-notion-x/src/styles.css';
@@ -14,7 +13,7 @@ import 'prismjs/themes/prism-tomorrow.css';
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css';
 
-import { Brandon } from '/src/fonts/fonts';
+import { Brandon, Shrimp } from '/src/fonts/fonts';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -33,6 +32,21 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
         a {
           font-family: ${Brandon.style.fontFamily};
+        }
+
+        .notion-h1,
+        .notion-h2,
+        notion-h3,
+        .notion-h4,
+        .notion-h5,
+        .notion-h6 {
+          font-family: ${Shrimp.style.fontFamily};
+          text-transform: uppercase;
+        }
+
+        .notion-hr {
+          background-color: rgba(0, 0, 0, 0.2);
+          height: 2px;
         }
       `}</style>
       <div id="app" className={Brandon.className}>
