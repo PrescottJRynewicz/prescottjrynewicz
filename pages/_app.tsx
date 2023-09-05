@@ -44,6 +44,12 @@ function MyApp({ Component, pageProps }: AppProps) {
           text-transform: uppercase;
         }
 
+        .notion-text {
+          font-family: ${Brandon.style.fontFamily};
+          font-size: 1.4em;
+          font-weight: 200;
+        }
+
         .notion-hr {
           background-color: rgba(0, 0, 0, 0.2);
           height: 2px;
