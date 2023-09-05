@@ -66,6 +66,13 @@ button:hover {
 
 .notion-callout {
     --notion-gray_background_co: rgb(241, 241, 239);
+
+    @media (prefers-color-scheme: dark) {
+        background-image: url(/textures/speckled/PAPER.png);
+        color: black;
+
+    }
+
 }
 
 .notion-table-of-contents {
