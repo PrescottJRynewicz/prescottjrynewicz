@@ -29,9 +29,9 @@ export default function Home() {
       let listenerAdded = false;
       dots.forEach(async (dot) => {
         const animationMap = {
-          1: styles.twoSec,
-          2: styles.threeSec,
-          3: styles.fourSec,
+          1: styles.oneSec,
+          2: styles.twoSec,
+          3: styles.twoSec,
         };
 
         const animationDuration =
