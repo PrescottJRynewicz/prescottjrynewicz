@@ -15,7 +15,6 @@ export const HamburgerBorder = styled.div`
 `;
 
 export const MenuPrimaryLink = styled.a`
-  font-family: 'Brandon Grotesque';
   font-size: 24px;
   font-weight: bold;
 

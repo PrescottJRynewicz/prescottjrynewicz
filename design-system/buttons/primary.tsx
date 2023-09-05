@@ -10,7 +10,6 @@ export const PrimaryButton = styled.button<{ textColor?: string }>`
   border: solid 1px black;
   border-radius: 5px;
   background-color: blanchedalmond;
-  font-family: 'Brandon Grotesque';
   font-size: 24px;
   font-weight: bold;
 

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import mermaid from 'mermaid';
-import { fonts } from '/design-system/typography';
+import { Brandon } from '/src/fonts/fonts';
 
 mermaid.initialize({
   startOnLoad: true,
-  fontFamily: `${fonts.Brandon} !important `,
+  fontFamily: `${Brandon.style.fontFamily} !important `,
 });
 
 /**

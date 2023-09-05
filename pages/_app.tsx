@@ -14,11 +14,31 @@ import 'prismjs/themes/prism-tomorrow.css';
 // used for rendering equations (optional)
 import 'katex/dist/katex.min.css';
 
+import { Brandon } from '/src/fonts/fonts';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div id="app">
-      <Component {...pageProps} />
-    </div>
+    <>
+      {/* Globally optimized styling and font optimization */}
+      {/* eslint-disable-next-line react/no-unknown-property */}
+      <style jsx global>{`
+        html {
+          font-family: ${Brandon.style.fontFamily};
+        }
+        body {
+          font-family: ${Brandon.style.fontFamily};
+        }
+        button {
+          font-family: ${Brandon.style.fontFamily};
+        }
+        a {
+          font-family: ${Brandon.style.fontFamily};
+        }
+      `}</style>
+      <div id="app" className={Brandon.className}>
+        <Component {...pageProps} />
+      </div>
+    </>
   );
 }
 export default MyApp;

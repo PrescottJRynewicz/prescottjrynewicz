@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { solids } from '/design-system/colors';
+import { Shrimp } from '/src/fonts/fonts';
 
 const Rainbow = '/rainbow-bar.png';
 
@@ -47,22 +48,9 @@ export const BreathingCircle = styled.span`
   top: 46vh;
 `;
 
-export const Title = styled.h1`
+export const Title = styled.h1.attrs({ className: Shrimp.className })`
   font-size: 128px;
-  font-family:
-    Shrimp,
-    'Brandon Grotesque',
-    -apple-system,
-    BlinkMacSystemFont,
-    Segoe UI,
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    Fira Sans,
-    Droid Sans,
-    Helvetica Neue,
-    sans-serif;
+
   margin: 10px 0;
 
   @media (max-width: 900px) {
@@ -91,7 +79,6 @@ export const SubTitle = styled.span`
   border-radius: 30px;
   border: solid 10px;
   border-color: ${solids.MIMOSA};
-  font-family: 'Brandon Grotesque';
   font-weight: bold;
   font-size: 48px;
   text-align: center;
