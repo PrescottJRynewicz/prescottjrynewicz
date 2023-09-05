@@ -19,7 +19,7 @@ function getRandomSplatterElement(index: number, className = dotClassname) {
         left: `${leftPosition}%`,
         width: '5px',
         height: '5px',
-        zIndex: -1,
+        zIndex: 10,
       }}>
       <span
         key={index}

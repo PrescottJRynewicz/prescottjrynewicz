@@ -9,7 +9,6 @@ import {
 } from '/src/pages/Blog/styled';
 import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
-import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { Header1, SubHeader3 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
 import Head from 'next/head';
@@ -57,7 +56,6 @@ export function Blog(props: BlogStaticProps) {
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <Menu />
-      <PeekABoo animationDelay={2} />
       <BlogPostContainer>
         <BlogContentWrapper>
           <Header1 style={{ marginBottom: '0px' }}>

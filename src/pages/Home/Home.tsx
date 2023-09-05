@@ -12,7 +12,6 @@ import { Menu } from '/src/components/Menu/Menu';
 
 import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
-import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import { animateElement } from '/src/utils/animations/animate';
 import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
 import { getUrl } from '/src/utils/url/getApiUrl';
@@ -82,8 +81,6 @@ export default function Home() {
       <Container ref={containerRef}>
         <PolkaDots numDots={300} />
         <Menu />
-
-        <PeekABoo animationDelay={5} />
 
         <TitleContainer>
           <Title>PRESCOTT</Title>

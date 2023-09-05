@@ -7,7 +7,6 @@ import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
 import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
-import { PeekABoo } from '/src/components/PeekABoo/PeekABoo';
 import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
 import { getUrl } from '/src/utils/url/getApiUrl';
@@ -113,7 +112,6 @@ export function BlogPostContent({
         <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <Menu />
-      <PeekABoo animationDelay={2} />
       <Styled.BlogPostContainer>
         <Styled.BlogPostContentWrapper>
           {/* If we want to avoid blurring the border we need to wrap this in a container */}
