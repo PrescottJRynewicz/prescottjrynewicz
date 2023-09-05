@@ -13,7 +13,7 @@ export const solids = Object.freeze({
 });
 
 export type Solids = keyof typeof solids;
-export type SolidValues = typeof solids[Solids];
+export type SolidValues = (typeof solids)[Solids];
 
 export const textures = Object.freeze({
   DARK_KNIGHT: '/textures/DARK_KNIGHT.png',
@@ -27,7 +27,7 @@ export const textures = Object.freeze({
 });
 
 export type Textures = keyof typeof textures;
-export type TextureUrls = typeof solids[Textures];
+export type TextureUrls = (typeof solids)[Textures];
 
 export const speckles = Object.freeze({
   BASIC: '/textures/speckled/BASIC.png',
@@ -44,4 +44,4 @@ export const speckles = Object.freeze({
 });
 
 export type Speckles = keyof typeof speckles;
-export type SpeckleUrls = typeof speckles[Speckles];
+export type SpeckleUrls = (typeof speckles)[Speckles];

@@ -52,7 +52,7 @@
 
 
 .fallOff {
-    animation-timing-function: cubic-bezier(0.30, 2.40, 0.85, 2.50);
+    animation-timing-function: cubic-bezier(0.310, 0.440, 0.445, 1.650); /* cubic-bezier(0.33333, 0, 0.66667, 0.33333); /*  cubic-bezier(0.30, 2.40, 0.85, 2.50); */
     animation: fallOffScreen;
     animation-fill-mode: forwards;
 }
@@ -71,6 +71,9 @@
 }
 
 
+.oneSec {
+    animation-duration: 1s;
+}
 .twoSec {
     animation-duration: 2s;
 }

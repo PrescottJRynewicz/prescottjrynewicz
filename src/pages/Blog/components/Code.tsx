@@ -3,6 +3,7 @@ import Mermaid from '/src/pages/Blog/components/Mermaid';
 import styled from 'styled-components';
 import { CodeBlock, tomorrowNightEighties } from 'react-code-blocks';
 import { Block, CodeBlock as CodeBlockType } from 'notion-types';
+import { speckles } from '/design-system/colors';
 
 const Container = styled.span`
   width: 100%;
@@ -13,6 +14,10 @@ const MermaidContainer = styled.span`
   border: solid 3px black;
   padding: 10px;
   border-radius: 5px;
+
+  @media (prefers-color-scheme: dark) {
+    background-image: url(${speckles.BASIC});
+  }
 `;
 
 function Parent({ children }: { children: ReactNode }) {
