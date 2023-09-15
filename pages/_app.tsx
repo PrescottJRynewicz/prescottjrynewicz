@@ -18,7 +18,10 @@ import { Brandon, Shrimp } from '/src/fonts/fonts';
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      {/* Globally optimized styling and font optimization */}
+      {/* Globally optimized styling and font optimization.
+       These styles are added here because you can't import the next
+       optimized fonts into css files 
+       */}
       {/* eslint-disable-next-line react/no-unknown-property */}
       <style jsx global>{`
         html {
@@ -44,15 +47,11 @@ function MyApp({ Component, pageProps }: AppProps) {
           text-transform: uppercase;
         }
 
-        .notion-text {
-          font-family: ${Brandon.style.fontFamily};
-          font-size: 1.4em;
+        .notion-page {
+          --notion-font: ${Brandon.style.fontFamily};
+          font-size: 1.3em;
+          font: ${Brandon.style.fontFamily};
           font-weight: 200;
-        }
-
-        .notion-hr {
-          background-color: rgba(0, 0, 0, 0.2);
-          height: 2px;
         }
       `}</style>
       <div id="app" className={Brandon.className}>

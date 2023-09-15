@@ -16,7 +16,6 @@ import Link from 'next/link';
 import { useUpVotesAndViews } from '/src/pages/Blog/hooks/useUpVotesAndViews';
 import { BlogPostProps } from '/src/pages/Blog/types';
 import { getPageCover } from '/src/pages/Blog/utils/getPageCover';
-import { useBackupCoverImageLoading } from '/src/pages/Blog/hooks/useBackupCoverImageLoading';
 import { Equation } from 'react-notion-x/build/third-party/equation';
 
 const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
@@ -75,11 +74,6 @@ export function BlogPostContent({
     staticPageData: pageData,
   });
 
-  const { updateImageBlur, shouldBlurCover } = useBackupCoverImageLoading({
-    staticUrl: url,
-    updatedPageData: upToDatePageData,
-    staticPageData: pageData,
-  });
   const title = pageData.properties.Title;
   const subtitle = pageData.properties.Subtitle;
   const tags = pageData.properties.Tags;
@@ -118,9 +112,7 @@ export function BlogPostContent({
           <Styled.CoverImage
             alt={title.title.map((item) => item.plain_text).join()}
             src={(url as string) || (coverBlurUrl?.dataURIBase64 as string)}
-            shouldBlurImage={shouldBlurCover}
             placeholder="blur"
-            onLoad={updateImageBlur}
             blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
             priority
             height={500}

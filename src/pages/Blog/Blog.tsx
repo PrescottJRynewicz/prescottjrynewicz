@@ -9,7 +9,7 @@ import {
 } from '/src/pages/Blog/styled';
 import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
-import { Header1, SubHeader3 } from '/design-system/typography';
+import { Header1 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
 import Head from 'next/head';
 import styled from 'styled-components';
@@ -61,21 +61,7 @@ export function Blog(props: BlogStaticProps) {
           <Header1 style={{ marginBottom: '0px' }}>
             {isCategoryPage ? props.topic?.toUpperCase() : 'BLOG'}
           </Header1>
-          {!isCategoryPage && (
-            <>
-              <SubHeader3 muted>
-                I created this space to share my passions. I am a serial
-                hobbyist and crave sharing my excitement for what I do.
-              </SubHeader3>
-              <SubHeader3
-                muted
-                style={{
-                  marginBottom: '20px',
-                }}>
-                Thanks for reading 👋
-              </SubHeader3>
-            </>
-          )}
+
           <div
             style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             {!isCategoryPage ? (
