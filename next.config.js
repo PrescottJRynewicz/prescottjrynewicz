@@ -1,4 +1,8 @@
-module.exports = {
+const nextRoutes = require('nextjs-routes/config');
+
+const withRoutes = nextRoutes();
+
+const nextConfig = {
   reactStrictMode: true,
 
   images: {
@@ -20,3 +24,5 @@ module.exports = {
     return config;
   },
 };
+
+module.exports = withRoutes(nextConfig);

@@ -70,7 +70,10 @@ export function Blog(props: BlogStaticProps) {
                   <>
                     <Link
                       passHref
-                      href={`/blog/topics/${category}`}
+                      href={{
+                        pathname: '/blog/topics/[...topic]',
+                        query: { topic: [category] },
+                      }}
                       legacyBehavior>
                       <CategoryLink>{category}</CategoryLink>
                     </Link>
@@ -105,7 +108,10 @@ export function Blog(props: BlogStaticProps) {
               <Link
                 passHref
                 key={postName}
-                href={`/blog/${postName.replace(/\s/g, '-')}`}>
+                href={{
+                  pathname: '/blog/[...blogPost]',
+                  query: { blogPost: [postName.replace(/\s/g, '-')] },
+                }}>
                 <PostListing post={post} key={postName} />
               </Link>
             );

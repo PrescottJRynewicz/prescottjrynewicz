@@ -51,6 +51,7 @@ export default function Home() {
               node: containerRef.current,
               animationClassNames: [styles.fadeOut],
             });
+            // @ts-ignore
             await router.push(pathname);
           }
         }

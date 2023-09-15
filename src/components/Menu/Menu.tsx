@@ -73,7 +73,13 @@ export function Menu() {
             <Link href="/" passHref legacyBehavior>
               <MenuPrimaryLink>Home</MenuPrimaryLink>
             </Link>
-            <Link href="/blog/about-me" passHref legacyBehavior>
+            <Link
+              href={{
+                pathname: '/blog/[...blogPost]',
+                query: { blogPost: ['about-me'] },
+              }}
+              passHref
+              legacyBehavior>
               <MenuPrimaryLink>About Me</MenuPrimaryLink>
             </Link>
             <Link href="/blog" passHref legacyBehavior>
