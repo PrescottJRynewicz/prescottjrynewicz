@@ -48,7 +48,7 @@ export function Blog(props: BlogStaticProps) {
           rel="icon"
           href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22100%22>📝</text></svg>"
         />
-        <link rel="canonical" href={getUrl(router.asPath)} />
+        <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
         <meta property="og:image" content="/site-image.png" />
         <meta name="twitter:title" content="PrescottJR" />
         <meta name="twitter:description" content="Prescott's Playground" />

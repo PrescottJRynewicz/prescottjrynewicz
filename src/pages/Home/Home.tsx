@@ -69,7 +69,7 @@ export default function Home() {
         />
         <meta name="robots" content="index, follow, all" />
 
-        <link rel="canonical" href={getUrl(router.asPath)} />
+        <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
         <link rel="icon" href="/favicon.png" />
         <meta property="og:image" content="/site-image.png" />
         <meta name="twitter:title" content="PrescottJR" />

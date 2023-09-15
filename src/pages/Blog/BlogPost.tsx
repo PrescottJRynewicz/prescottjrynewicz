@@ -94,7 +94,7 @@ export function BlogPostContent({
         />
 
         <meta name="robots" content="index, follow, all" />
-        <link rel="canonical" href={getUrl(router.asPath)} />
+        <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
 
         <meta property="og:image" content={url} />
         <meta
