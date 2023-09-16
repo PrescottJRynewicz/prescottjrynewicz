@@ -32,7 +32,7 @@ export function SEOTags({
       />
       <meta property="og:image" content={image} />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={title} />
+      <meta property="og:description" content={description} />
       <meta property="og:url" content={getUrl(router.asPath.slice(1))} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
