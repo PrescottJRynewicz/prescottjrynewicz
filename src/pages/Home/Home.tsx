@@ -60,23 +60,28 @@ export default function Home() {
     [router]
   );
 
+  const title = 'Prescott J. Rynewicz';
+  const description =
+    "Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions.";
+
   return (
     <div>
       <Head>
-        <title>Prescott J. Rynewicz</title>
-        <meta
-          name="description"
-          content="Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions. "
-        />
+        <title>{title}</title>
+        <meta name="description" content={description} />
         <meta name="robots" content="index, follow, all" />
 
         <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
         <link rel="icon" href="/favicon.png" />
         <meta property="og:image" content="/site-image.png" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={title} />
+        <meta property="og:url" content={getUrl(router.asPath.slice(1))} />
         <meta name="twitter:title" content="PrescottJR" />
-        <meta name="twitter:description" content="Prescott's Playground" />
+        <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content="/favicon.png" />
         <meta name="twitter:image:alt" content="Prescott's Playground" />
+        <meta property="twitter:card" content="summary_large_image" />
       </Head>
       {/* <BreathingCircle className={styles.breath} /> */}
       <Container ref={containerRef}>
