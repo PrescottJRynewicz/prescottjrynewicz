@@ -14,7 +14,7 @@ import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
 import { animateElement } from '/src/utils/animations/animate';
 import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
-import { getUrl } from '/src/utils/url/getApiUrl';
+import { SEOTags } from '/src/components/SEOTags/SEOTags';
 
 export default function Home() {
   const router = useRouter();
@@ -67,21 +67,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="robots" content="index, follow, all" />
-
-        <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
-        <link rel="icon" href="/favicon.png" />
-        <meta property="og:image" content="/site-image.png" />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={title} />
-        <meta property="og:url" content={getUrl(router.asPath.slice(1))} />
-        <meta name="twitter:title" content="PrescottJR" />
-        <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content="/favicon.png" />
-        <meta name="twitter:image:alt" content="Prescott's Playground" />
-        <meta property="twitter:card" content="summary_large_image" />
+        <SEOTags router={router} title={title} description={description} />
       </Head>
       {/* <BreathingCircle className={styles.breath} /> */}
       <Container ref={containerRef}>

@@ -9,7 +9,6 @@ import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
 import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
-import { getUrl } from '/src/utils/url/getApiUrl';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -17,6 +16,7 @@ import { useUpVotesAndViews } from '/src/pages/Blog/hooks/useUpVotesAndViews';
 import { BlogPostProps } from '/src/pages/Blog/types';
 import { getPageCover } from '/src/pages/Blog/utils/getPageCover';
 import { Equation } from 'react-notion-x/build/third-party/equation';
+import { SEOTags } from '/src/components/SEOTags/SEOTags';
 
 const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
   &:hover {
@@ -69,7 +69,7 @@ export function BlogPostContent({
       pageData,
     });
 
-  const { url } = getPageCover({
+  const { url: pageCoverImage } = getPageCover({
     updatedPageData: upToDatePageData,
     staticPageData: pageData,
   });
@@ -80,30 +80,20 @@ export function BlogPostContent({
   const categories = pageData.properties.Categories;
   const { icon } = pageData;
 
+  const seoTitle = `PJR | ${title.title.map((item) => item.plain_text).join()}`;
+  const seoDescription = subtitle.rich_text
+    .map((item) => item.plain_text)
+    .join();
+
   return (
     <>
       <Head>
-        <title>PJR - {title.title.map((item) => item.plain_text).join()}</title>
-        <meta
-          name="description"
-          content={subtitle.rich_text.map((item) => item.plain_text).join()}
+        <SEOTags
+          router={router}
+          title={seoTitle}
+          description={seoDescription}
+          emoji={icon?.emoji as string & { length: 1 }}
         />
-        <link
-          rel="icon"
-          href={`data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22100%22>${icon?.emoji}</text></svg>`}
-        />
-
-        <meta name="robots" content="index, follow, all" />
-        <link rel="canonical" href={getUrl(router.asPath.slice(1))} />
-
-        <meta property="og:image" content={url} />
-        <meta
-          name="twitter:title"
-          content={title.title.map((item) => item.plain_text).join()}
-        />
-        <meta name="twitter:description" content="Prescott's Playground" />
-        <meta name="twitter:image" content="/favicon.png" />
-        <meta name="twitter:image:alt" content="Prescott's Playground" />
       </Head>
       <Menu />
       <Styled.BlogPostContainer>
@@ -111,7 +101,10 @@ export function BlogPostContent({
           {/* If we want to avoid blurring the border we need to wrap this in a container */}
           <Styled.CoverImage
             alt={title.title.map((item) => item.plain_text).join()}
-            src={(url as string) || (coverBlurUrl?.dataURIBase64 as string)}
+            src={
+              (pageCoverImage as string) ||
+              (coverBlurUrl?.dataURIBase64 as string)
+            }
             placeholder="blur"
             blurDataURL={coverBlurUrl?.dataURIBase64 || speckles.MILK}
             priority
