@@ -12,6 +12,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const blogPosts = await getBlogPosts({});
 
+  /**
+   * Include a generator for each route.
+   * If the route doesn't need a sitemap, exclude it below.
+   */
   const SiteMapGenerator: Record<
     Exclude<
       Route['pathname'],
