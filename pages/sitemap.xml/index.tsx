@@ -52,8 +52,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     })),
   };
 
-  console.log(Object.values(SiteMapGenerator).flat());
-
   return getServerSideSitemapLegacy(
     context,
     Object.values(SiteMapGenerator).flat()
