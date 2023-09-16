@@ -92,6 +92,7 @@ export function BlogPostContent({
           router={router}
           title={seoTitle}
           description={seoDescription}
+          imageUrl={pageCoverImage}
           emoji={icon?.emoji as string & { length: 1 }}
         />
       </Head>
