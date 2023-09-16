@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Mermaid from '/src/pages/Blog/components/Mermaid';
+import Mermaid from '/src/pages/Blog/components/CustomMermaid';
 import styled from 'styled-components';
 import { CodeBlock, tomorrowNightEighties } from 'react-code-blocks';
 import { Block, CodeBlock as CodeBlockType } from 'notion-types';
