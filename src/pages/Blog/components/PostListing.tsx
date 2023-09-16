@@ -86,7 +86,10 @@ export function PostListing({ post }: { post: NotionPage }) {
           {post?.properties?.Published?.date?.start
             ? new Date(
                 post.properties.Published.date?.start as string
-              ).toDateString()
+              ).toLocaleDateString('en-US', {
+                dateStyle: 'medium',
+                timeZone: 'UTC',
+              })
             : ''}
         </SubHeader1Light>
       </TitleContainer>

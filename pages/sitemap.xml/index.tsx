@@ -2,6 +2,7 @@ import { getServerSideSitemapLegacy, ISitemapField } from 'next-sitemap';
 import { GetServerSideProps } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { Route } from 'nextjs-routes';
+import { formatBlogPostUrlParam } from '/src/utils/url/formatBlogPostUrlParam';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const urlString =
@@ -38,10 +39,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       },
     ],
     '/blog/[...blogPost]': blogPosts.posts.map((post) => ({
-      loc: `${url.origin}/blog/${post.properties.Title.title
-        .map((item) => item.plain_text)
-        .join()
-        .replace(/\s/g, '-')}`,
+      loc: `${url.origin}/blog/${formatBlogPostUrlParam({
+        title: post.properties.Title.title,
+        id: post.id,
+      })}`,
       lastmod: new Date().toISOString(),
       priority: 0.7,
     })),

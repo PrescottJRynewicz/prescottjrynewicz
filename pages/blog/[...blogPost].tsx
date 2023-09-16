@@ -8,6 +8,7 @@ import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { getBlogPost } from '/src/fetchers/getPost';
 import { getBlurredImages } from '/src/fetchers/getBlurredImages';
 import { BlogPostProps } from '/src/pages/Blog/types';
+import { formatBlogPostUrlParam } from '/src/utils/url/formatBlogPostUrlParam';
 
 export default BlogPost;
 
@@ -15,16 +16,18 @@ export async function getStaticPaths(): Promise<GetStaticPathsResult> {
   const blogs = await getBlogPosts({});
 
   const result = {
-    paths: blogs.posts.map((post) => ({
-      params: {
-        blogPost: [
-          post.properties.Title.title
-            .map((item) => item.plain_text)
-            .join()
-            .replace(/\s/g, '-'),
-        ],
-      },
-    })),
+    paths: blogs.posts.map((post) => {
+      const blogPost = formatBlogPostUrlParam({
+        title: post.properties.Title.title,
+        id: post.id,
+      });
+
+      return {
+        params: {
+          blogPost: [blogPost],
+        },
+      };
+    }),
     fallback: true,
   };
 
