@@ -3,7 +3,6 @@ import { NotionPage } from '/src/types/cms/properties';
 import { NotionAPI } from 'notion-client';
 import { Client } from '@notionhq/client';
 
-const blogDatbaseId = process.env.BLOG_DATABASE_ID;
 const notionAPIKey = process.env.NOTION_API_KEY;
 const notionUserTokenV2 = process.env.NOTION_USER_SECRET;
 
@@ -20,19 +19,13 @@ export async function getBlogPost({
 }: {
   name: string;
 }): Promise<BlogPostGetResponse> {
-  const postName = (name as string).replace(/-/g, ' ').toLowerCase();
+  const postId = (name as string).split('-').pop();
 
-  const postQuery = await notion.databases.query({
-    database_id: blogDatbaseId as string,
-    filter: {
-      property: 'title',
-      rich_text: {
-        equals: postName,
-      },
-    },
+  const pageResult = await notion.pages.retrieve({
+    page_id: postId as string,
   });
 
-  const pageData = postQuery.results[0] as NotionPage;
+  const pageData = pageResult as NotionPage;
 
   if (!pageData) {
     throw Error('Unable to find post');

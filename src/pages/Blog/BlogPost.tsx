@@ -141,11 +141,17 @@ export function BlogPostContent({
               Published On{' '}
               {new Date(
                 pageData.properties.Published.date?.start || new Date()
-              ).toLocaleDateString('en-US', { dateStyle: 'medium' })}
+              ).toLocaleDateString('en-US', {
+                dateStyle: 'medium',
+                timeZone: `UTC`,
+              })}{' '}
               {pageData.properties?.Updated?.last_edited_time &&
-                `  (Updated On ${new Date(
+                `(Updated On ${new Date(
                   pageData.properties?.Updated?.last_edited_time
-                ).toLocaleDateString('en-US', { dateStyle: 'medium' })})`}{' '}
+                ).toLocaleDateString('en-US', {
+                  dateStyle: 'medium',
+                  timeZone: 'UTC',
+                })}) `}
               · {(views || 1) + 1} Views
             </Styled.PublishedOnContainer>
             <div

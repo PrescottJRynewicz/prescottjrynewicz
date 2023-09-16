@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { getBlogPosts } from '/src/fetchers/getBlogPosts';
 import { NotionPage } from '/src/types/cms/properties';
+import { formatBlogPostUrlParam } from '/src/utils/url/formatBlogPostUrlParam';
 
 /**
  * Re-validate all blog posts
@@ -17,10 +18,10 @@ export default async function handler(
 
     const blogUrls = (await getBlogPosts({})).posts.map(
       (post: NotionPage) =>
-        `https://prescottjr.com/blog/${post.properties.Title.title
-          .map((item) => item.plain_text)
-          .join()
-          .replace(/\s/g, '-')}`
+        `https://prescottjr.com/blog/${formatBlogPostUrlParam({
+          title: post.properties.Title.title,
+          id: post.id,
+        })}`
     );
 
     await Promise.all(blogUrls.map((url) => fetch(url)));

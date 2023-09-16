@@ -17,6 +17,7 @@ import { solids } from '/design-system/colors';
 import { Footer } from '/src/components/Footer/Footer';
 import { useRouter } from 'next/router';
 import { SEOTags } from '/src/components/SEOTags/SEOTags';
+import { formatBlogPostUrlParam } from '/src/utils/url/formatBlogPostUrlParam';
 
 export type BlogStaticProps = {
   posts: BlogGetResponse['posts'];
@@ -81,28 +82,23 @@ export function Blog(props: BlogStaticProps) {
                 </Link>
               </div>
             )}
-
-            {/* Turn this back on to start working on search */}
-            {/* <SearchInputContainer> */}
-            {/*  <SearchInput */}
-            {/*    type="text" */}
-            {/*    onChange={(event) => onSearchChange(event.target.value)} */}
-            {/*  /> */}
-            {/*  <Search style={{ marginLeft: '-20px' }} /> */}
-            {/* </SearchInputContainer> */}
           </div>
           <Divider />
           {(props.posts || []).map((post) => {
             const postName = post.properties.Title.title
               .map((item) => item.plain_text)
               .join();
+            const postNameParam = formatBlogPostUrlParam({
+              title: post.properties.Title.title,
+              id: post.id,
+            });
             return (
               <Link
                 passHref
                 key={postName}
                 href={{
                   pathname: '/blog/[...blogPost]',
-                  query: { blogPost: [postName.replace(/\s/g, '-')] },
+                  query: { blogPost: [postNameParam] },
                 }}>
                 <PostListing post={post} key={postName} />
               </Link>
