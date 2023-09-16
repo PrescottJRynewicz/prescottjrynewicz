@@ -36,7 +36,7 @@ export const BlogPostContentWrapper = styled.div`
   flex-direction: column;
   padding-top: 20vh;
   width: 1280px;
-  max-width: 80%;
+  max-width: 85%;
   margin-bottom: 5vh;
 `;
 
@@ -131,13 +131,13 @@ export const CommentContainer = styled.a`
   }
 `;
 
-export const CoverImage = styled(Image)<{ shouldBlurImage: boolean }>`
+export const CoverImage = styled(Image)`
   object-fit: cover;
   width: 100%;
+  height: fit-content;
+  max-height: 50vh;
   border: solid 3px ${solids.PINK_STARBURST};
   border-radius: 10px;
-  filter: ${(props) => (props.shouldBlurImage ? 'blur(8px)' : '')};
-  -webkit-filter: ${(props) => (props.shouldBlurImage ? 'blur(8px)' : '')};
 `;
 
 export const SearchInputContainer = styled.div`

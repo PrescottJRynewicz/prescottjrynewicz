@@ -9,14 +9,14 @@ import {
 } from '/src/pages/Blog/styled';
 import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
-import { Header1, SubHeader3 } from '/design-system/typography';
+import { Header1 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
 import Head from 'next/head';
 import styled from 'styled-components';
 import { solids } from '/design-system/colors';
 import { Footer } from '/src/components/Footer/Footer';
-import { getUrl } from '/src/utils/url/getApiUrl';
 import { useRouter } from 'next/router';
+import { SEOTags } from '/src/components/SEOTags/SEOTags';
 
 export type BlogStaticProps = {
   posts: BlogGetResponse['posts'];
@@ -39,21 +39,13 @@ export function Blog(props: BlogStaticProps) {
   const isCategoryPage = !!props.topic;
   const router = useRouter();
 
+  const title = `Prescott | Blog${isCategoryPage ? ` | ${props.topic}` : ''}`;
+  const description = `Prescott's Playground 🎢`;
+
   return (
     <BlogContainer>
       <Head>
-        <title>PJR - {isCategoryPage ? props.topic : 'Blog'}</title>
-        <meta name="description" content="Prescott's Playground 🎢" />
-        <link
-          rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%22100%22>📝</text></svg>"
-        />
-        <link rel="canonical" href={getUrl(router.asPath)} />
-        <meta property="og:image" content="/site-image.png" />
-        <meta name="twitter:title" content="PrescottJR" />
-        <meta name="twitter:description" content="Prescott's Playground" />
-        <meta name="twitter:image" content="/favicon.png" />
-        <meta name="twitter:image:alt" content="Prescott's Playground" />
+        <SEOTags router={router} title={title} description={description} />
       </Head>
       <Menu />
       <BlogPostContainer>
@@ -61,21 +53,7 @@ export function Blog(props: BlogStaticProps) {
           <Header1 style={{ marginBottom: '0px' }}>
             {isCategoryPage ? props.topic?.toUpperCase() : 'BLOG'}
           </Header1>
-          {!isCategoryPage && (
-            <>
-              <SubHeader3 muted>
-                I created this space to share my passions. I am a serial
-                hobbyist and crave sharing my excitement for what I do.
-              </SubHeader3>
-              <SubHeader3
-                muted
-                style={{
-                  marginBottom: '20px',
-                }}>
-                Thanks for reading 👋
-              </SubHeader3>
-            </>
-          )}
+
           <div
             style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             {!isCategoryPage ? (
@@ -84,7 +62,10 @@ export function Blog(props: BlogStaticProps) {
                   <>
                     <Link
                       passHref
-                      href={`/blog/topics/${category}`}
+                      href={{
+                        pathname: '/blog/topics/[...topic]',
+                        query: { topic: [category] },
+                      }}
                       legacyBehavior>
                       <CategoryLink>{category}</CategoryLink>
                     </Link>
@@ -119,7 +100,10 @@ export function Blog(props: BlogStaticProps) {
               <Link
                 passHref
                 key={postName}
-                href={`/blog/${postName.replace(/\s/g, '-')}`}>
+                href={{
+                  pathname: '/blog/[...blogPost]',
+                  query: { blogPost: [postName.replace(/\s/g, '-')] },
+                }}>
                 <PostListing post={post} key={postName} />
               </Link>
             );

@@ -12,6 +12,10 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: 'module',
+    parserOptions: {
+      project: 'tsconfig.json',
+      tsconfigRootDir: __dirname,
+    },
   },
   plugins: ['react', 'prettier', '@typescript-eslint'],
   rules: {

@@ -14,7 +14,7 @@ import { PrimaryButton } from '/design-system/buttons/primary';
 import { useRouter } from 'next/router';
 import { animateElement } from '/src/utils/animations/animate';
 import { dotClassname, PolkaDots } from '/src/components/PolkaDots/PolkaDots';
-import { getUrl } from '/src/utils/url/getApiUrl';
+import { SEOTags } from '/src/components/SEOTags/SEOTags';
 
 export default function Home() {
   const router = useRouter();
@@ -51,6 +51,7 @@ export default function Home() {
               node: containerRef.current,
               animationClassNames: [styles.fadeOut],
             });
+            // @ts-ignore
             await router.push(pathname);
           }
         }
@@ -59,23 +60,14 @@ export default function Home() {
     [router]
   );
 
+  const title = 'Prescott J. Rynewicz';
+  const description =
+    "Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions.";
+
   return (
     <div>
       <Head>
-        <title>Prescott J. Rynewicz</title>
-        <meta
-          name="description"
-          content="Prescott's Playground 🎢: I created this space to share my passions. I am a serial hobbyist and crave sharing my excitement for these passions. "
-        />
-        <meta name="robots" content="index, follow, all" />
-
-        <link rel="canonical" href={getUrl(router.asPath)} />
-        <link rel="icon" href="/favicon.png" />
-        <meta property="og:image" content="/site-image.png" />
-        <meta name="twitter:title" content="PrescottJR" />
-        <meta name="twitter:description" content="Prescott's Playground" />
-        <meta name="twitter:image" content="/favicon.png" />
-        <meta name="twitter:image:alt" content="Prescott's Playground" />
+        <SEOTags router={router} title={title} description={description} />
       </Head>
       {/* <BreathingCircle className={styles.breath} /> */}
       <Container ref={containerRef}>
