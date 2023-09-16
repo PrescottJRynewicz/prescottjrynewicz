@@ -15,7 +15,7 @@ export function SEOTags({
   imageUrl?: string;
   router: ReturnType<typeof useRouter>;
 }) {
-  const image = imageUrl || '/site-image.png';
+  const image = imageUrl || getUrl('site-image.png');
 
   return (
     <>
