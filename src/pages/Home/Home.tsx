@@ -81,7 +81,10 @@ export default function Home() {
             A bicycle, coffee, and people-loving software engineer.
           </SubTitle>
           <NavContainer>
-            <PrimaryButton onClick={handleNav('/blog/about-me')}>
+            <PrimaryButton
+              onClick={handleNav(
+                '/blog/about-me-f53c54947b1d4351b5fde3f5721b86ec'
+              )}>
               About me
             </PrimaryButton>
             <PrimaryButton onClick={handleNav('/blog')}>Blog</PrimaryButton>
