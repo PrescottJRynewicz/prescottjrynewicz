@@ -76,7 +76,9 @@ export function Menu() {
             <Link
               href={{
                 pathname: '/blog/[...blogPost]',
-                query: { blogPost: ['about-me'] },
+                query: {
+                  blogPost: ['about-me-f53c54947b1d4351b5fde3f5721b86ec'],
+                },
               }}
               passHref
               legacyBehavior>
