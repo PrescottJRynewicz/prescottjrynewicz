@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:debug": "NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev -p 3002",
+    "dev:debug": "NODE_OPTIONS='--inspect' next dev -p 3002",
     "build": "NEXT_PUBLIC_WEBSITE_URL=\"https://www.prescottjr.com\" next build",
     "postbuild": "next-sitemap",
     "start": "next start",

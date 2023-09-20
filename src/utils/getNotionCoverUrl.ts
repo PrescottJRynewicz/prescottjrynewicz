@@ -7,11 +7,11 @@ import { PageCover } from '/src/types/cms/properties';
  * @param cover
  */
 export function getNotionCoverUrl({ cover }: { cover: PageCover }) {
-  if ('external' in cover) {
+  if (!!cover && 'external' in cover) {
     return cover.external.url;
   }
-  if ('file' in cover) {
+  if (!!cover && 'file' in cover) {
     return cover.file.url;
   }
-  return undefined;
+  return '';
 }

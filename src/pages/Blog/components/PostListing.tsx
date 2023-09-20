@@ -77,7 +77,7 @@ export function PostListing({ post }: { post: NotionPage }) {
     <Container>
       <TitleContainer>
         <SubHeaderOne>
-          {post.icon.emoji}{' '}
+          {post?.icon?.emoji}{' '}
           {post.properties.Title.title.map((item) => item.plain_text).join()}
           {'  '}
         </SubHeaderOne>
