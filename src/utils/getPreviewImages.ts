@@ -27,10 +27,10 @@ export async function getPreviewImageMap(
   const map = await pMap(
     urls,
     async (url) => {
-      const cacheKey = normalizeUrl(url);
+      const normalizedUrl = normalizeUrl(url);
       const previewImage = await getPreviewImage(url);
 
-      return [cacheKey, previewImage];
+      return [normalizedUrl, previewImage];
     },
     {
       concurrency: 8,
@@ -47,9 +47,22 @@ async function createPreviewImage(url: string): Promise<PreviewImage | null> {
     const { body } = await got(url, { responseType: 'buffer' });
     const result = await lqip(body);
 
+    // The max width of a post is 720px
+    // When displaying a preview image blur with a larger width,
+    // the preview becomes pixelated because the preview is zoomed in
+    const maxContentWidth = 720;
+    let { originalWidth } = result.metadata;
+    let { originalHeight } = result.metadata;
+
+    if (originalWidth > maxContentWidth) {
+      const ratio = maxContentWidth / originalWidth;
+      originalWidth = maxContentWidth;
+      originalHeight *= ratio;
+    }
+
     const previewImage = {
-      originalWidth: result.metadata.originalWidth,
-      originalHeight: result.metadata.originalHeight,
+      originalWidth,
+      originalHeight,
       dataURIBase64: result.metadata.dataURIBase64,
     };
 

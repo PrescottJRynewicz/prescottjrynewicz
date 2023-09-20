@@ -124,6 +124,16 @@ code {
 max-width: 100% !important;
 }
 
+.notion-asset-wrapper > div {
+    height: fit-content !important;
+}
+
+.notion-asset-wrapper img,video {
+    border-radius: 10px;
+    /* Not sure I like this */
+    /* box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 0.40); */
+}
+
 .notion-quote {
     font-style: italic;
 }
@@ -139,10 +149,6 @@ max-width: 100% !important;
 .notion-equation-block {
     display: flex;
     align-items: center;
-}
-
-.notion-asset-wrapper > div {
-height: fit-content !important;
 }
 
 .notion-simple-table td {
