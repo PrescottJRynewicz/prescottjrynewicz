@@ -63,7 +63,7 @@ export async function getStaticProps(
         pageData,
         coverBlurUrl: coverPreview || null,
       },
-      revalidate: 10,
+      revalidate: 60 * 60 * 6, // every 6 hours
     };
   } catch (error) {
     console.log('error getting static props');
