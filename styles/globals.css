@@ -85,6 +85,9 @@ button:hover {
 }
 
 .notion-hash-link {
+
+    margin-left: -30px !important;
+
     @media (prefers-color-scheme: dark) {
         fill: white !important;
     }
