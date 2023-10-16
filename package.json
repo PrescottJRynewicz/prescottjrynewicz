@@ -41,7 +41,7 @@
     "react-spring": "^9.7.2",
     "styled-components": "^6.0.8",
     "swr": "^2.2.4",
-    "ts-essentials": "^9.4.0",
+    "ts-essentials": "^9.4.1",
     "winston": "^3.10.0"
   },
   "devDependencies": {
