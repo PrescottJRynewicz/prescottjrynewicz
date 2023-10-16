@@ -27,6 +27,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       | '/api/blog/posts/[postId]/view'
       | '/api/images/proxy'
       | '/sitemap.xml'
+      | '/sitemap-new.xml'
     >,
     ISitemapField[]
   > = {
