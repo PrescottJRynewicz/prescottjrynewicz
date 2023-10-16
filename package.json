@@ -12,7 +12,7 @@
     "graph-type-gen": "graphql-codegen --config codegen.yml",
     "circular:check": "ts-node ci/scripts/circular.ts",
     "dependency:check": "node ./.github/scripts/dependencies.js",
-    "test:types": "tsc",
+    "test:types": "nextjs-routes && tsc",
     "deps:update": "ncu -u && npm i"
   },
   "dependencies": {
