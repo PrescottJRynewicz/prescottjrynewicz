@@ -2,5 +2,5 @@
 	"name": "Personal Site",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:18-bullseye",
-	"forwardPorts": [3000, 3001]
+	"forwardPorts": [3000, 3001, 3002]
   }

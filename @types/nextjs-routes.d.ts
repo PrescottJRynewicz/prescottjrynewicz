@@ -21,6 +21,7 @@ declare module "nextjs-routes" {
     | StaticRoute<"/blog">
     | DynamicRoute<"/blog/topics/[...topic]", { "topic": string[] }>
     | StaticRoute<"/">
+    | StaticRoute<"/sitemap-new.xml">
     | StaticRoute<"/sitemap.xml">;
 
   interface StaticRoute<Pathname> {
