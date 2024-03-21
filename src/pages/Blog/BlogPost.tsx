@@ -168,10 +168,12 @@ export function BlogPostContent({
                   alignItems: 'center',
                 }}>
                 {categories.multi_select.map((cat) => (
-                  <Styled.CategoryText>{cat.name}</Styled.CategoryText>
+                  <Styled.CategoryText key={cat.id}>
+                    {cat.name}
+                  </Styled.CategoryText>
                 ))}
                 {tags.multi_select.map((tag) => (
-                  <Styled.Tag>{tag.name}</Styled.Tag>
+                  <Styled.Tag key={cat.id}>{tag.name}</Styled.Tag>
                 ))}
               </div>
               <Styled.CommentContainer

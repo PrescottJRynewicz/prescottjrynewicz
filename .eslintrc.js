@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['next', 'plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: ['next', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -17,7 +17,7 @@ module.exports = {
       tsconfigRootDir: __dirname,
     },
   },
-  plugins: ['react', 'prettier'],
+  plugins: ['react'],
   rules: {
     'no-return-await': 'off',
     'no-nested-ternary': 'off',

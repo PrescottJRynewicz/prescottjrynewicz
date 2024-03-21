@@ -78,7 +78,8 @@ export default function Home() {
           <Title>PRESCOTT</Title>
           <Title>RYNEWICZ</Title>
           <SubTitle>
-            A bicycle, coffee, and people-loving software engineer.
+            {`Product Engineering Leader
+          Serial Hobbyist`}
           </SubTitle>
           <NavContainer>
             <PrimaryButton

@@ -53,6 +53,7 @@ export function Footer() {
           <a
             href="https://www.instagram.com/pjrynewicz/"
             target="_blank"
+            aria-label="instagram"
             rel="noreferrer">
             <Instagram />
           </a>
@@ -60,6 +61,7 @@ export function Footer() {
           <a
             href="https://twitter.com/prescott_ryno"
             target="_blank"
+            aria-label="twitter"
             rel="noreferrer">
             <Twitter />
           </a>
@@ -67,6 +69,7 @@ export function Footer() {
           <a
             href="https://github.com/PrescottJRynewicz"
             target="_blank"
+            aria-label="github"
             rel="noreferrer">
             <GitHub />
           </a>
@@ -74,6 +77,7 @@ export function Footer() {
           <a
             href="https://www.linkedin.com/in/prescott-rynewicz-36295182/"
             target="_blank"
+            aria-label="linkedin"
             rel="noreferrer">
             <Linkedin />
           </a>
