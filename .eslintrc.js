@@ -17,7 +17,7 @@ module.exports = {
       tsconfigRootDir: __dirname,
     },
   },
-  plugins: ['react', 'prettier', '@typescript-eslint'],
+  plugins: ['react', 'prettier'],
   rules: {
     'no-return-await': 'off',
     'no-nested-ternary': 'off',
