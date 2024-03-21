@@ -173,7 +173,7 @@ export function BlogPostContent({
                   </Styled.CategoryText>
                 ))}
                 {tags.multi_select.map((tag) => (
-                  <Styled.Tag key={cat.id}>{tag.name}</Styled.Tag>
+                  <Styled.Tag key={tag.id}>{tag.name}</Styled.Tag>
                 ))}
               </div>
               <Styled.CommentContainer
