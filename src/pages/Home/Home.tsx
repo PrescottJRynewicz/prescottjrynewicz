@@ -66,9 +66,8 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <SEOTags router={router} title={title} description={description} />
-      </Head>
+      <SEOTags router={router} title={title} description={description} />
+
       {/* <BreathingCircle className={styles.breath} /> */}
       <Container ref={containerRef}>
         <PolkaDots numDots={300} />

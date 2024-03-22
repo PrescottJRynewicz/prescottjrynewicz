@@ -45,9 +45,8 @@ export function Blog(props: BlogStaticProps) {
 
   return (
     <BlogContainer>
-      <Head>
-        <SEOTags router={router} title={title} description={description} />
-      </Head>
+      <SEOTags router={router} title={title} description={description} />
+
       <Menu />
       <BlogPostContainer>
         <BlogContentWrapper>

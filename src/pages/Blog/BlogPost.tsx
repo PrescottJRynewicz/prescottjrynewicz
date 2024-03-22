@@ -87,15 +87,14 @@ export function BlogPostContent({
 
   return (
     <>
-      <Head>
-        <SEOTags
-          router={router}
-          title={seoTitle}
-          description={seoDescription}
-          imageUrl={pageCoverImage}
-          emoji={icon?.emoji as string & { length: 1 }}
-        />
-      </Head>
+      <SEOTags
+        router={router}
+        title={seoTitle}
+        description={seoDescription}
+        imageUrl={pageCoverImage}
+        emoji={icon?.emoji as string & { length: 1 }}
+      />
+
       <Menu />
       <Styled.BlogPostContainer>
         <Styled.BlogPostContentWrapper>
