@@ -7,7 +7,6 @@ import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
 import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
-import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
