@@ -1,5 +1,4 @@
 import React, { useCallback, useRef } from 'react';
-import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
   Container,
@@ -66,9 +65,8 @@ export default function Home() {
 
   return (
     <div>
-      <Head>
-        <SEOTags router={router} title={title} description={description} />
-      </Head>
+      <SEOTags router={router} title={title} description={description} />
+
       {/* <BreathingCircle className={styles.breath} /> */}
       <Container ref={containerRef}>
         <PolkaDots numDots={300} />
@@ -78,7 +76,8 @@ export default function Home() {
           <Title>PRESCOTT</Title>
           <Title>RYNEWICZ</Title>
           <SubTitle>
-            A bicycle, coffee, and people-loving software engineer.
+            {`Product Engineering Leader
+          Serial Hobbyist`}
           </SubTitle>
           <NavContainer>
             <PrimaryButton

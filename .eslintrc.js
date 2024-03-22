@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['next', 'plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: ['next', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -17,13 +17,12 @@ module.exports = {
       tsconfigRootDir: __dirname,
     },
   },
-  plugins: ['react', 'prettier', '@typescript-eslint'],
+  plugins: ['react'],
   rules: {
     'no-return-await': 'off',
     'no-nested-ternary': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'import/extensions': 'off',
     'no-console': 'off',
     'import/no-absolute-path': 'off',

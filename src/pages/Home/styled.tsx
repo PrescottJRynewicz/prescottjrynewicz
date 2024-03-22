@@ -75,6 +75,7 @@ const SharedContainerWidth = css`
 `;
 
 export const SubTitle = styled.span`
+  white-space: pre-line;
   padding: 20px;
   border-radius: 30px;
   border: solid 10px;

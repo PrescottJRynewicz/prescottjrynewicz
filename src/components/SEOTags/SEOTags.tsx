@@ -1,6 +1,7 @@
 import React from 'react';
 import { getUrl } from '/src/utils/url/getApiUrl';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 export function SEOTags({
   title,
@@ -18,7 +19,7 @@ export function SEOTags({
   const image = imageUrl || getUrl('site-image.png');
 
   return (
-    <>
+    <Head>
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="robots" content="index, follow, all" />
@@ -39,6 +40,6 @@ export function SEOTags({
       <meta name="twitter:image" content={image} />
       <meta name="twitter:image:alt" content="Prescott's Playground" />
       <meta property="twitter:card" content="summary_large_image" />
-    </>
+    </Head>
   );
 }

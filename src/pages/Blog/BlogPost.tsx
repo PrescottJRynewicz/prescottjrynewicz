@@ -7,7 +7,6 @@ import { Menu } from '/src/components/Menu/Menu';
 import { Code } from '/src/pages/Blog/components/Code';
 import { solids, speckles } from '/design-system/colors';
 import { Header3, SubHeader1, SubHeader3 } from '/design-system/typography';
-import Head from 'next/head';
 import { Footer } from '/src/components/Footer/Footer';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
@@ -87,15 +86,14 @@ export function BlogPostContent({
 
   return (
     <>
-      <Head>
-        <SEOTags
-          router={router}
-          title={seoTitle}
-          description={seoDescription}
-          imageUrl={pageCoverImage}
-          emoji={icon?.emoji as string & { length: 1 }}
-        />
-      </Head>
+      <SEOTags
+        router={router}
+        title={seoTitle}
+        description={seoDescription}
+        imageUrl={pageCoverImage}
+        emoji={icon?.emoji as string & { length: 1 }}
+      />
+
       <Menu />
       <Styled.BlogPostContainer>
         <Styled.BlogPostContentWrapper>
@@ -168,10 +166,12 @@ export function BlogPostContent({
                   alignItems: 'center',
                 }}>
                 {categories.multi_select.map((cat) => (
-                  <Styled.CategoryText>{cat.name}</Styled.CategoryText>
+                  <Styled.CategoryText key={cat.id}>
+                    {cat.name}
+                  </Styled.CategoryText>
                 ))}
                 {tags.multi_select.map((tag) => (
-                  <Styled.Tag>{tag.name}</Styled.Tag>
+                  <Styled.Tag key={tag.id}>{tag.name}</Styled.Tag>
                 ))}
               </div>
               <Styled.CommentContainer

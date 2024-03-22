@@ -11,7 +11,6 @@ import { ChevronLeft } from 'react-feather';
 import { Menu } from '/src/components/Menu/Menu';
 import { Header1 } from '/design-system/typography';
 import { PostListing } from '/src/pages/Blog/components/PostListing';
-import Head from 'next/head';
 import styled from 'styled-components';
 import { solids } from '/design-system/colors';
 import { Footer } from '/src/components/Footer/Footer';
@@ -45,9 +44,8 @@ export function Blog(props: BlogStaticProps) {
 
   return (
     <BlogContainer>
-      <Head>
-        <SEOTags router={router} title={title} description={description} />
-      </Head>
+      <SEOTags router={router} title={title} description={description} />
+
       <Menu />
       <BlogPostContainer>
         <BlogContentWrapper>
