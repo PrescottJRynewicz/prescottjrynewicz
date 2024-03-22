@@ -1,5 +1,4 @@
 import React, { useCallback, useRef } from 'react';
-import Head from 'next/head';
 import styles from '/src/pages/Home/Home.module.css';
 import {
   Container,
