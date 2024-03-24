@@ -123,12 +123,13 @@ code {
     }
 }
 
-.notion-asset-wrapper {
+.notion-asset-wrapper-video {
 max-width: 100% !important;
 }
 
 .notion-asset-wrapper > div {
     height: fit-content !important;
+    max-width: 90vw !important;
 }
 
 .notion-asset-wrapper img,video {
