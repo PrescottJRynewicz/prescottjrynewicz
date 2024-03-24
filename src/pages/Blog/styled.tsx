@@ -36,7 +36,7 @@ export const BlogPostContentWrapper = styled.div`
   flex-direction: column;
   padding-top: 20vh;
   width: 1280px;
-  max-width: 85%;
+  max-width: 90%;
   margin-bottom: 5vh;
 `;
 
