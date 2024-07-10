@@ -194,6 +194,23 @@ export function BlogPostContent({
               Equation,
               nextImage: Image,
               nextLink: Link,
+              // TODO: finish component if we want
+              // embeds in the future.
+              // Embed: (props) => {
+              //   if (props?.block?.format?.display_source) {
+              //     return (
+              //       <iframe
+              //         style={{
+              //           border: 'none',
+              //           height: '100%',
+              //           width: '100%',
+              //         }}
+              //         src={props.block.format.display_source}
+              //       />
+              //     );
+              //   }
+              //   return <div>Embed</div>;
+              // },
             }}
           />
         </Styled.BlogPostContentWrapper>
