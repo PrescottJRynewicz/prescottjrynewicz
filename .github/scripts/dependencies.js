@@ -1,11 +1,19 @@
 const ncu = require('npm-check-updates');
 
+/**
+ * Packages to ignore that require manual updates due to conflicts.
+ */
+const packagesToIgnore = ['eslint'];
+
 console.log('\x1b[32mChecking for dependencies that can be updated...\x1b[0m');
 
 
 ncu.run().then((result) => {
   // print to the screen in green
 
+  packagesToIgnore.forEach((packageToIgnore) => {
+    delete result[packageToIgnore];
+  });
 
   if (Object.keys(result).length > 0) {
     // print to console in green color
