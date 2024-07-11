@@ -20,15 +20,14 @@ export async function getBlogPost({
 }: {
   name: string;
 }): Promise<BlogPostGetResponse> {
-  const postId = (name as string).split('-').pop();
+  let pageResult = undefined;
+  try {
+    const postId = (name as string).split('-').pop();
 
-  const pageResult = await notion.pages.retrieve({
-    page_id: postId as string,
-  });
-
-  const pageData = pageResult as NotionPage;
-
-  if (!pageData) {
+    pageResult = await notion.pages.retrieve({
+      page_id: postId as string,
+    });
+  } catch (error) {
     // attempt old URL structure
     const postName = (name as string).replace(/-/g, ' ').toLowerCase();
 
@@ -42,16 +41,12 @@ export async function getBlogPost({
       },
     });
 
-    const pageData = postQuery.results[0] as NotionPage;
-    if (pageData) {
-      const post = await api.getPage(pageData.id);
+    pageResult = postQuery.results[0] as NotionPage;
+  }
 
-      return {
-        post,
-        pageData,
-      };
-    }
+  const pageData = pageResult as NotionPage;
 
+  if (!pageData) {
     throw Error('Unable to find post');
   }
 
