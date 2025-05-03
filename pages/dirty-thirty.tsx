@@ -94,6 +94,12 @@ const htmlContent = `<!DOCTYPE html>
             backdrop-filter: blur(10px);
             margin-top: 70px;
         }
+        
+        @media (max-width: 768px) {
+            main {
+                padding: 10px;
+            }
+        }
 
         h1 {
             font-size: 36px;
@@ -144,6 +150,12 @@ const htmlContent = `<!DOCTYPE html>
             border-radius: 10px;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        
+        @media (max-width: 768px) {
+            .event-description {
+                padding: 10px;
+            }
+        }
 
         .event-description a {
             color: #f0f;
@@ -168,7 +180,16 @@ const htmlContent = `<!DOCTYPE html>
 
         .event-item {
             margin-bottom: 8px;
+            margin-top: 8px;
             margin-left: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .event-item {
+                margin-bottom: 5px;
+                margin-top: 5px;
+                margin-left: 10px;
+            }
         }
 
         .event-highlight {
@@ -283,7 +304,7 @@ const htmlContent = `<!DOCTYPE html>
       <img 
         src="https://partiful.imgix.net/user/cUzbVQvadaXR6Shi5UZcuDD84zB2/3fe94229-8b9b-46f7-a2?fit=clip&w=920&auto=format" 
         alt="Prescott's Dirty Thirty" 
-        style="width: 500px; max-width: 100%; height: auto; margin-bottom: 20px;" />
+        style="width: 500px; max-width: 100%; height: auto; margin-bottom: 20px; border-radius: 15px;" />
         </div>
         <h1>Prescott's Dirty Thirty</h1>
         <a href="https://open.spotify.com/playlist/1OyHLGyr9eFcTNljQapJkT?si=Fg25AZWITxuZTPDWNYbUkw&pt=03756aac57032552a9a63d7802e8dd7d" target="_BLANK" class="playlist-link">
