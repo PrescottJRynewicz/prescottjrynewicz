@@ -326,7 +326,7 @@ const htmlContent = `<!DOCTYPE html>
             <p class="event-item">• <span class="event-highlight">4 PM - Siesta:</span> Prepare your body for the evening</p>
             <p class="event-item">• <span class="event-highlight">8:30 PM - Dinner and drinks</span> at <a href="https://www.google.com/maps/place/Spritzenhaus33/@40.7232932,-73.9552754,17z/data=!3m2!4b1!5s0x89c2594485b6b8b9:0x3a08baf1126564e8!4m6!3m5!1s0x89c259448f9fe1fd:0xdb8de662ae8f43ca!8m2!3d40.7232892!4d-73.9527058!16s%2Fg%2F1tdqjd9n?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Spritzenhaus</a></p>
             <p class="event-item">• <span class="event-highlight">11:00 PM - DANCE THE NIGHT AWAY:</span> Leopard Lounge @ <a href="https://www.google.com/maps/place/Cafe+Balearica/@40.7211109,-73.9591058,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259c4a644da9f:0x5cd59f1b483441d2!8m2!3d40.7211069!4d-73.9565362!16s%2Fg%2F11swxmbf9p?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Cafe Balerica</a>. We have a table booked from 10:00 until close.</p>
-            <p class="price-option">- Two price options: Please Venmo <a href="https://venmo.com/prescott" target="_blank">@prescott</a></p>
+            <p class="price-option">- Two price options: Please Venmo <a href="venmo://users/prescott" onclick="if(navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)){return true;}else{window.open('https://venmo.com/prescott', '_blank');return false;}">@prescott</a></p>
             <p class="price-option">- $60 | Drinks included at the table. 3-5 drinks per person.</p>
             <p class="price-option">- $20 | Entry to table, no drinks. Drinks can be purchased at the bar.</p>
             <p class="price-option">- First 25 arrivals: Free cover</p>
