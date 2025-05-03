@@ -304,13 +304,12 @@ const htmlContent = `<!DOCTYPE html>
             <p class="event-item">• <span class="event-highlight">1 PM - Brooklyn Bridge Park:</span> Picnic, volleyball, and outdoor fun at <a href="https://www.google.com/maps/place/Brooklyn+Bridge+Park+Pier+3+Plaza/@40.697916,-74.0008789,18.35z/data=!4m14!1m7!3m6!1s0x89c25a55b113209b:0xa1d983d6fcedd155!2sRoyal+Palms+Shuffleboard+Club!8m2!3d40.6786376!4d-73.9869098!16s%2Fg%2F1ptx0dycd!3m5!1s0x89c25b206c5bbbff:0x21d6982f761f9611!8m2!3d40.6984433!4d-74.0003428!16s%2Fg%2F11gjp39007?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">BK Bridge Park</a> (walk or bike from the Rynochin household)</p>
             <p class="event-item">• <span class="event-highlight">4 PM - Siesta:</span> Prepare your body for the evening</p>
             <p class="event-item">• <span class="event-highlight">8:30 PM - Dinner and drinks</span> at <a href="https://www.google.com/maps/place/Spritzenhaus33/@40.7232932,-73.9552754,17z/data=!3m2!4b1!5s0x89c2594485b6b8b9:0x3a08baf1126564e8!4m6!3m5!1s0x89c259448f9fe1fd:0xdb8de662ae8f43ca!8m2!3d40.7232892!4d-73.9527058!16s%2Fg%2F1tdqjd9n?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Spritzenhaus</a></p>
-            <p class="event-item">• <span class="event-highlight">11:00 PM - DANCE THE NIGHT AWAY:</span> Leopard Lounge @ <a href="https://www.google.com/maps/place/Cafe+Balearica/@40.7211109,-73.9591058,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259c4a644da9f:0x5cd59f1b483441d2!8m2!3d40.7211069!4d-73.9565362!16s%2Fg%2F11swxmbf9p?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Cafe Balerica</a></p>
+            <p class="event-item">• <span class="event-highlight">11:00 PM - DANCE THE NIGHT AWAY:</span> Leopard Lounge @ <a href="https://www.google.com/maps/place/Cafe+Balearica/@40.7211109,-73.9591058,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259c4a644da9f:0x5cd59f1b483441d2!8m2!3d40.7211069!4d-73.9565362!16s%2Fg%2F11swxmbf9p?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Cafe Balerica</a>. We have a table booked from 10:00 until close.</p>
             <p class="price-option">- Two price options:</p>
             <p class="price-option">- $50 | Drinks included at the table. 3-6 drinks per person.</p>
             <p class="price-option">- $25 | Entry to table, but cover your own drinks at the bar.</p>
             <p class="price-option">- First 25 arrivals: Free cover</p>
             <p class="price-option">- After that: $10 cash cover</p>
-
             <h2 class="day-title">SUNDAY (May 11th)</h2>
             <p class="event-item">• Free day - Sleep in with potential brunch for those still in town</p>
 
@@ -322,6 +321,8 @@ const htmlContent = `<!DOCTYPE html>
 
 const DirtyThirty = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const imageUrl =
+    'https://partiful.imgix.net/user/cUzbVQvadaXR6Shi5UZcuDD84zB2/3fe94229-8b9b-46f7-a2?fit=clip&w=920&auto=format';
 
   useEffect(() => {
     if (iframeRef.current) {
@@ -339,7 +340,39 @@ const DirtyThirty = () => {
   return (
     <>
       <Head>
-        <title>Prescott&apos;s Dirty Thirty | Partiful</title>
+        <title>🪩 Prescott&apos;s Dirty Thirty 🪩</title>
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://prescottjrynewicz.com/dirty-thirty"
+        />
+        <meta
+          property="og:title"
+          content="Prescott's Dirty Thirty | Partiful"
+        />
+        <meta
+          property="og:description"
+          content="A weekend of Prescott's favorite NYC activities!"
+        />
+        <meta property="og:image" content={imageUrl} />
+
+        {/* Twitter */}
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+          property="twitter:url"
+          content="https://prescottjrynewicz.com/dirty-thirty"
+        />
+        <meta
+          property="twitter:title"
+          content="Prescott's Dirty Thirty | Partiful"
+        />
+        <meta
+          property="twitter:description"
+          content="A weekend of Prescott's favorite NYC activities!"
+        />
+        <meta property="twitter:image" content={imageUrl} />
       </Head>
       <iframe
         ref={iframeRef}
