@@ -22,9 +22,9 @@ const UpvoteIcon = styled(ThumbsUp)<{ hasUpvoted: boolean }>`
     cursor: pointer;
   }
 
-  color: ${({ hasUpvoted }) =>
+  color: ${({ hasUpvoted }: { hasUpvoted: boolean }) =>
     hasUpvoted ? solids.PINK_STARBURST : solids.DARK_KNIGHT};
-  fill: ${({ hasUpvoted }) =>
+  fill: ${({ hasUpvoted }: { hasUpvoted: boolean }) =>
     hasUpvoted ? solids.PINK_STARBURST : 'transparent'};
 
   @media (prefers-color-scheme: dark) {
