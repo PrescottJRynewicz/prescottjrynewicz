@@ -26,6 +26,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       | '/api/revalidate'
       | '/api/blog/posts/[postId]/view'
       | '/api/images/proxy'
+      | '/dirty-thirty'
       | '/sitemap.xml'
       | '/sitemap-new.xml'
     >,

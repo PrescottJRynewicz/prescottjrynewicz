@@ -28,6 +28,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       | '/api/images/proxy'
       | '/sitemap.xml'
       | '/sitemap-new.xml'
+      | '/dirty-thirty'
     >,
     ISitemapField[]
   > = {
