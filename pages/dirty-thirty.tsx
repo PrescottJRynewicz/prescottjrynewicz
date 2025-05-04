@@ -307,7 +307,7 @@ const htmlContent = `<!DOCTYPE html>
         style="width: 500px; max-width: 100%; height: auto; margin-bottom: 20px; border-radius: 15px;" />
         </div>
         <h1>Prescott's Dirty Thirty</h1>
-        <a href="https://open.spotify.com/playlist/1OyHLGyr9eFcTNljQapJkT?si=ca0f0ba3ef2d4427" target="_BLANK" class="playlist-link">
+        <a href="https://open.spotify.com/playlist/1OyHLGyr9eFcTNljQapJkT?si=73acfecffc4b4fad&pt=593971d8095b3c2ea4ed6c7315df37a6" target="_BLANK" class="playlist-link">
             🎵 Dirty Thirty Playlist 🎵
         </a>
 
