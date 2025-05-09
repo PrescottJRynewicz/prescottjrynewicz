@@ -255,6 +255,38 @@ const htmlContent = `<!DOCTYPE html>
             0% { box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
             100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8); }
         }
+
+        /* Navigation menu styling */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 15px;
+            background-color: rgba(255, 0, 255, 0.2);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(0, 255, 255, 0.3);
+            transform: scale(1.05);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
 </head>
 <body>
@@ -306,32 +338,42 @@ const htmlContent = `<!DOCTYPE html>
         alt="Prescott's Dirty Thirty" 
         style="width: 500px; max-width: 100%; height: auto; margin-bottom: 20px; border-radius: 15px;" />
         </div>
-        <h1>Prescott's Dirty Thirty</h1>
-        <a href="https://open.spotify.com/playlist/1OyHLGyr9eFcTNljQapJkT?si=73acfecffc4b4fad&pt=593971d8095b3c2ea4ed6c7315df37a6" target="_BLANK" class="playlist-link">
+        <h1 id="main-title">Prescott's Dirty Thirty</h1>
+
+        <!-- Navigation Menu -->
+        <div class="nav-menu">
+            <a href="#main-title" class="nav-link">Top</a>
+            <a href="#friday" class="nav-link">Friday</a>
+            <a href="#saturday" class="nav-link">Saturday</a>
+            <a href="#sunday" class="nav-link">Sunday</a>
+            <a href="#playlist" class="nav-link">Playlist</a>
+        </div>
+
+        <a id="playlist" href="https://open.spotify.com/playlist/1OyHLGyr9eFcTNljQapJkT?si=73acfecffc4b4fad&pt=593971d8095b3c2ea4ed6c7315df37a6" target="_BLANK" class="playlist-link">
             🎵 Dirty Thirty Playlist 🎵
         </a>
 
         <div class="event-description">
             <p>WELCOME, friends, compadres, lovers, and Fred G - to a weekend of Prescott's favorite NYC activities!</p>
 
-            <h2 class="day-title">FRIDAY (May 9th)</h2>
+            <h2 id="friday" class="day-title">FRIDAY (May 9th)</h2>
             <p class="event-item">• Arrive anytime after 6:30 PM</p>
             <p class="event-item">• Board games and casual hangout in Gowanus</p>
-            <p class="event-item">• If nice weather: <a href="https://www.google.com/maps/place/Threes+Brewing/@40.6798052,-73.9847322,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25bab47b7fbff:0x7ddcbcc39bb2c360!8m2!3d40.6798012!4d-73.9821573!16s%2Fg%2F11b6cq329v?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Threes Brewing</a></p>
-            <p class="event-item">• If raining: <a href="https://www.google.com/maps/place/Royal+Palms+Shuffleboard+Club/@40.6798052,-73.9847322,17z/data=!4m6!3m5!1s0x89c25a55b113209b:0xa1d983d6fcedd155!8m2!3d40.6786376!4d-73.9869098!16s%2Fg%2F1ptx0dycd?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Royal Palms Shuffleboard Club</a></p>
+            <p class="event-item">• <a href="https://www.google.com/maps/place/Royal+Palms+Shuffleboard+Club/@40.6798052,-73.9847322,17z/data=!4m6!3m5!1s0x89c25a55b113209b:0xa1d983d6fcedd155!8m2!3d40.6786376!4d-73.9869098!16s%2Fg%2F1ptx0dycd?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Royal Palms Shuffleboard Club</a></p>
+            <p class="event-item">• We might update to <a href="https://www.google.com/maps/place/Threes+Brewing/@40.6798052,-73.9847322,17z/data=!3m1!4b1!4m6!3m5!1s0x89c25bab47b7fbff:0x7ddcbcc39bb2c360!8m2!3d40.6798012!4d-73.9821573!16s%2Fg%2F11b6cq329v?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Threes Brewing</a> depending on how busy the shuffle board is. Will update with text blasts day of.</p>
 
-            <h2 class="day-title">SATURDAY (May 10th)</h2>
+            <h2 id="saturday" class="day-title">SATURDAY (May 10th)</h2>
             <p class="event-item">• <span class="event-highlight">10 AM - ESPRESCOTT'S CAFE:</span> Home-brewed espresso drinks and bagels at the Rynochin household. 25 Dean Street, #2R</p>
             <p class="event-item">• <span class="event-highlight">1 PM - Brooklyn Bridge Park:</span> Picnic, volleyball, and outdoor fun at <a href="https://www.google.com/maps/place/Brooklyn+Bridge+Park+Pier+3+Plaza/@40.697916,-74.0008789,18.35z/data=!4m14!1m7!3m6!1s0x89c25a55b113209b:0xa1d983d6fcedd155!2sRoyal+Palms+Shuffleboard+Club!8m2!3d40.6786376!4d-73.9869098!16s%2Fg%2F1ptx0dycd!3m5!1s0x89c25b206c5bbbff:0x21d6982f761f9611!8m2!3d40.6984433!4d-74.0003428!16s%2Fg%2F11gjp39007?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">BK Bridge Park</a> (walk or bike from the Rynochin household)</p>
             <p class="event-item">• <span class="event-highlight">4 PM - Siesta:</span> Prepare your body for the evening</p>
             <p class="event-item">• <span class="event-highlight">8:30 PM - Dinner and drinks</span> at <a href="https://www.google.com/maps/place/Spritzenhaus33/@40.7232932,-73.9552754,17z/data=!3m2!4b1!5s0x89c2594485b6b8b9:0x3a08baf1126564e8!4m6!3m5!1s0x89c259448f9fe1fd:0xdb8de662ae8f43ca!8m2!3d40.7232892!4d-73.9527058!16s%2Fg%2F1tdqjd9n?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Spritzenhaus</a></p>
             <p class="event-item">• <span class="event-highlight">11:00 PM - DANCE THE NIGHT AWAY:</span> Leopard Lounge @ <a href="https://www.google.com/maps/place/Cafe+Balearica/@40.7211109,-73.9591058,17z/data=!3m1!4b1!4m6!3m5!1s0x89c259c4a644da9f:0x5cd59f1b483441d2!8m2!3d40.7211069!4d-73.9565362!16s%2Fg%2F11swxmbf9p?entry=ttu&g_ep=EgoyMDI1MDQzMC4xIKXMDSoASAFQAw%3D%3D" target="_BLANK">Cafe Balerica</a>. We have a table booked from 10:00 until close.</p>
-            <p class="price-option">- Two price options: Please Venmo <a href="venmo://users/prescott" onclick="if(navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)){return true;}else{window.open('https://venmo.com/prescott', '_blank');return false;}">@prescott</a></p>
+            <p class="price-option">- Please Venmo <a href="venmo://users/prescott" onclick="if(navigator.userAgent.match(/iPhone|iPad|iPod|Android/i)){return true;}else{window.open('https://venmo.com/prescott', '_blank');return false;}">@prescott</a></p>
             <p class="price-option">- $60 | Drinks included at the table. 3-5 drinks per person.</p>
-            <p class="price-option">- $20 | Entry to table, no drinks. Drinks can be purchased at the bar.</p>
+            <p class="price-option">- Text me if you don't plan on drinking! </p>
             <p class="price-option">- First 25 arrivals: Free cover</p>
             <p class="price-option">- After that: $10 cash cover</p>
-            <h2 class="day-title">SUNDAY (May 11th)</h2>
+            <h2 id="sunday" class="day-title">SUNDAY (May 11th)</h2>
             <p class="event-item">• Free day - Sleep in with potential brunch for those still in town</p>
 
             <p style="margin-top: 20px; text-align: right; font-style: italic; color: #aaa;">Photo Credit: The Chin</p>
